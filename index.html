@@ -1018,6 +1018,14 @@
           grid-template-columns: 1fr;
           gap: 8px;
         }
+        .navLinks {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 8px;
+        }
+        .navCta {
+          justify-content: center;
+        }
         .grid2,
         .grid2Alt {
           grid-template-columns: 1fr;
@@ -1049,6 +1057,17 @@
           right: auto;
           margin-bottom: 20px;
           animation: none;
+        }
+        .logoMark {
+          height: 46px;
+        }
+        .contactGrid {
+          grid-template-columns: 1fr !important;
+        }
+        .footerInner {
+          flex-direction: column;
+          gap: 10px;
+          align-items: flex-start;
         }
       }
 
@@ -1553,7 +1572,10 @@
       <div class="wrap reveal-item">
         <h2 class="sectionTitle">Contact</h2>
         <div class="app-card" style="margin-top: 24px; padding: 24px">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px">
+          <div
+            class="contactGrid"
+            style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px"
+          >
             <div>
               <h3 style="margin: 0 0 12px; font-size: 16px">
                 Operator Details
@@ -1586,18 +1608,17 @@
       "
     >
       <div
-        class="wrap"
+        class="wrap footerInner"
         style="
           display: flex;
           justify-content: space-between;
           align-items: center;
         "
       >
-        <div
-          style="font-family: &quot;Syne&quot;, sans-serif; font-weight: 800"
-        >
-          JalanJalanMY
-        </div>
+        <a class="logo" href="#home" aria-label="JalanJalanMY home">
+          <img class="logoMark" src="Mobile%20App%20Logo.png" alt="" />
+          <span class="logoText">JalanJalanMY</span>
+        </a>
         <div style="font-size: 12px; opacity: 0.6">
           © 2026 JalanJalanMY. All rights reserved.
         </div>
@@ -1621,17 +1642,23 @@
       }
 
       var revealItems = document.querySelectorAll(".reveal");
-      var revealObserver = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            entry.target.classList.toggle("is-visible", entry.isIntersecting);
-          });
-        },
-        { threshold: 0.15 },
-      );
-      revealItems.forEach(function (el) {
-        revealObserver.observe(el);
-      });
+      if ("IntersectionObserver" in window) {
+        var revealObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              entry.target.classList.toggle("is-visible", entry.isIntersecting);
+            });
+          },
+          { threshold: 0.15 },
+        );
+        revealItems.forEach(function (el) {
+          revealObserver.observe(el);
+        });
+      } else {
+        revealItems.forEach(function (el) {
+          el.classList.add("is-visible");
+        });
+      }
 
       document.querySelectorAll("[data-stagger]").forEach(function (group) {
         var items = group.querySelectorAll(".reveal-item");
