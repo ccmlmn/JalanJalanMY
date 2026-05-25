@@ -150,10 +150,25 @@
         padding: 14px 0;
       }
       .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
         font-family: "Syne", sans-serif;
         font-weight: 800;
         color: var(--textLight);
         font-size: 18px;
+        line-height: 1;
+        white-space: nowrap;
+      }
+      .logoMark {
+        display: block;
+        height: 54px;
+        width: auto;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+      .logoText {
+        display: block;
       }
       .navLinks {
         display: flex;
@@ -1083,7 +1098,10 @@
     <!-- 1) NAVBAR -->
     <nav class="nav" id="top">
       <div class="wrap navInner">
-        <a class="logo" href="#home">JalanJalanMY</a>
+        <a class="logo" href="#home" aria-label="JalanJalanMY home">
+          <img class="logoMark" src="Mobile%20App%20Logo.png" alt="" />
+          <span class="logoText">JalanJalanMY</span>
+        </a>
         <div class="navLinks">
           <a href="#home">Home</a>
           <a href="#how">How It Works</a>
