@@ -1,4 +1,5 @@
-# MyTripMY — Agentic AI Travel Planner for Malaysia
+# JalanJalanMY — Agentic AI Travel Planner for Malaysia
+
 ## Complete FYP Brainstorm Document
 
 ---
@@ -6,7 +7,9 @@
 ## 1. OVERVIEW
 
 ### Problem Statement
+
 Tourists visiting Malaysia must juggle multiple separate booking platforms:
+
 - **Hotels**: Traveloka, Agoda, Booking.com
 - **Attractions & Tours**: Klook, GetYourGuide, TripAdvisor
 - **Transport**: Grab, AirAsia, RapidKL
@@ -14,16 +17,19 @@ Tourists visiting Malaysia must juggle multiple separate booking platforms:
 - **Events & Activities**: Individual venue websites
 
 There is no single intelligent platform that:
+
 - Connects all services simultaneously
 - Understands user preferences
 - Proactively manages entire trips
 - Provides real-time notifications
 - Handles multi-step bookings automatically
 
-### Solution — MyTripMY
+### Solution — JalanJalanMY
+
 An agentic AI mobile application (Android + iOS) that acts as a personal Malaysia travel concierge.
 
 **Core value proposition:**
+
 - User types natural language request: "Plan me a 5-day Penang trip under RM2000"
 - AI agent parses intent, searches all platforms in parallel, personalizes recommendations
 - System handles booking execution, builds itinerary, syncs to calendar
@@ -31,31 +37,36 @@ An agentic AI mobile application (Android + iOS) that acts as a personal Malaysi
 - All in one app
 
 ### Target Users
+
 - **Foreign tourists** visiting Malaysia (primary)
 - **Domestic travelers** exploring new states
 - **Backpackers & budget groups**
 - **Business travelers** needing quick itinerary planning
 
 ### Geographic Scope
+
 - Coverage: All of Malaysia
 - Major focus: Kuala Lumpur, Penang, Sabah, Sarawak, Langkawi, Melaka, Johor Bahru
 
 ### AI Core Technology
+
 - **Agentic LLM**: Google Gemini API (gemini-2.0-flash) with tool-calling and reasoning
 - **Framework**: LangChain / LangGraph for multi-agent orchestration
 - **Reasoning model**: Used for complex multi-step booking logic and preference learning
 
 ### Key Differentiators vs Competitors
 
-| Competitor | How MyTripMY Wins |
-|---|---|
-| **Traveloka / Klook** | Single-category platforms. MyTripMY is the orchestration layer above them — cross-platform, AI-driven, integrated booking |
-| **Google Travel** | Google shows info only. MyTripMY executes bookings, manages calendar, sends alerts, builds personalized itineraries |
-| **ChatGPT Travel Advice** | ChatGPT provides text advice. MyTripMY takes action — actual booking, real prices, live availability, calendar integration |
-| **Existing travel apps** | No existing app combines Malaysia-specific context + agentic AI + unified booking across hotels/attractions/transport |
+| Competitor                | How JalanJalanMY Wins                                                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **Traveloka / Klook**     | Single-category platforms. JalanJalanMY is the orchestration layer above them — cross-platform, AI-driven, integrated booking  |
+| **Google Travel**         | Google shows info only. JalanJalanMY executes bookings, manages calendar, sends alerts, builds personalized itineraries        |
+| **ChatGPT Travel Advice** | ChatGPT provides text advice. JalanJalanMY takes action — actual booking, real prices, live availability, calendar integration |
+| **Existing travel apps**  | No existing app combines Malaysia-specific context + agentic AI + unified booking across hotels/attractions/transport          |
 
 ### FYP Novelty Angle
+
 **Multi-agent orchestration for real-world booking domain** — a genuine research contribution. This combines:
+
 - Tool-calling with external APIs
 - Agent memory (user preferences)
 - Malaysia-specific knowledge grounding
@@ -71,6 +82,7 @@ No published prior work on this specific combination in academic literature.
 ### MVP Features (Must Have for FYP)
 
 #### 1. Conversational Trip Planner
+
 - **Chat interface** where user types natural language requests
 - **NLU parsing**: Extract trip parameters (location, dates, budget, interests)
 - **Example input**: "Plan me a 5-day trip to Penang beach area, check-in Friday, budget RM200/night"
@@ -78,6 +90,7 @@ No published prior work on this specific combination in academic literature.
 - **Multi-turn conversation**: Refine results with follow-ups
 
 #### 2. Unified Hotel Search
+
 - **Aggregates from**: Traveloka, Agoda, Booking.com, local boutique hotels
 - **Real-time data**: Live prices, availability, cancellation policies
 - **Price comparison**: Shows same hotel across platforms side-by-side
@@ -85,6 +98,7 @@ No published prior work on this specific combination in academic literature.
 - **Book via**: Redirect to partner platform or affiliate link
 
 #### 3. Attraction & Tour Booking
+
 - **Integrates with**: Klook, GetYourGuide, Google Places
 - **Features**: Tickets, guided tours, experiences, cultural activities
 - **AI recommendations**: Based on user interests and available time
@@ -92,6 +106,7 @@ No published prior work on this specific combination in academic literature.
 - **Reviews & ratings**: Aggregated from multiple sources
 
 #### 4. Itinerary Builder & Calendar Sync
+
 - **Auto-generates**: Day-by-day schedule from confirmed bookings
 - **Optimization**: Minimizes travel time between locations using Google Maps
 - **Suggests**: Meal breaks, rest periods, travel transitions
@@ -99,6 +114,7 @@ No published prior work on this specific combination in academic literature.
 - **Smart reminders**: Check-in alerts, tour start times, flight boarding
 
 #### 5. Smart Notifications
+
 - **Price drop alerts**: "Hotel X dropped 15% — book now?"
 - **Check-in reminders**: "Check-in in 2 hours at [hotel]"
 - **Weather warnings**: "Heavy rain forecast for Day 3 in Penang"
@@ -106,6 +122,7 @@ No published prior work on this specific combination in academic literature.
 - **Geolocation triggers**: Alerts based on where user is currently
 
 #### 6. Offline Map & Navigation
+
 - **Cached Malaysia maps**: All states, major cities downloadable
 - **Navigation**: Walking routes, driving directions, public transport (RapidKL, Penang Bus)
 - **Works completely offline**: No internet needed for maps
@@ -113,6 +130,7 @@ No published prior work on this specific combination in academic literature.
 - **Transport integration**: LRT/MRT route guidance
 
 #### 7. Currency & Budget Tracker
+
 - **Live exchange rates**: MYR conversion for all currencies
 - **Trip spending tracker**: Auto-tracks all bookings (hotels, food, attractions)
 - **Daily budget alerts**: Warns if spending exceeds daily limit
@@ -120,6 +138,7 @@ No published prior work on this specific combination in academic literature.
 - **Refund/cancellation tracking**: Manages refund status for cancelled bookings
 
 #### 8. Multilingual Support
+
 - **Languages**: English, Bahasa Malaysia, Mandarin Chinese, Japanese
 - **Geolocation-based**: Auto-detect user language
 - **All content**: Chat responses, itinerary descriptions, notifications in user's language
@@ -190,8 +209,9 @@ No published prior work on this specific combination in academic literature.
 **Scenario**: User asks "Book a 3-star hotel in Penang beach area, check-in Friday, budget RM200/night"
 
 #### Step 1: Natural Language Understanding
+
 ```
-User Input: "Book a 3-star hotel in Penang beach area, 
+User Input: "Book a 3-star hotel in Penang beach area,
              check-in Friday, budget RM200/night"
     ↓
 AI Agent parses intent
@@ -206,6 +226,7 @@ Extracted parameters:
 ```
 
 #### Step 2: Parallel API Calls
+
 ```
 Hotel Agent calls multiple APIs simultaneously:
   - Agoda API → Returns 20 hotels matching filters
@@ -216,22 +237,24 @@ Hotel Agent calls multiple APIs simultaneously:
 ```
 
 #### Step 3: AI Ranking & Personalization
+
 ```
 Agent retrieves user preference vector from Pinecone:
-  - User profile: "Budget traveler, likes local experiences, 
+  - User profile: "Budget traveler, likes local experiences,
                   avoids chain hotels, family-friendly"
   - Past trips: (none yet for new user)
-  
+
 AI scores each hotel using:
   - Relevance to preferences (vector similarity)
   - Review quality & recency
   - Cancellation policy user prefers
   - Distance to attractions user is interested in
-  
+
 Top 5 candidates ranked
 ```
 
 #### Step 4: Recommendation & Presentation
+
 ```
 AI presents to user:
   "Top pick: Berjaya Beach Resort Penang
@@ -239,15 +262,16 @@ AI presents to user:
    - ⭐ 4.2 rating, 800+ reviews
    - Free cancellation until noon
    - 5-min walk to Batu Ferringhi Beach
-   - Why this pick: Local favorite, great value, 
+   - Why this pick: Local favorite, great value,
                     matches your beach preference"
-   
+
    Other options:
    - Golden Sands Resort (RM220/night)
    - Lone Pine Hotel (RM165/night — lowest price)
 ```
 
 #### Step 5: Booking Confirmation
+
 ```
 User: "Book the Berjaya one"
     ↓
@@ -259,13 +283,14 @@ Booking Agent calls:
 ```
 
 #### Step 6: Calendar & Notification Setup
+
 ```
 Calendar Agent:
   - Adds "Check-in: Berjaya Beach Resort" to Google Calendar
   - Time: Friday 3:00 PM (standard check-in)
   - Location: Address + Google Maps link
   - Note: Booking reference, hotel phone, cancellation policy
-  
+
 Notification Agent:
   - Sets reminder: 2 hours before check-in
   - Monitors for price drops (alert if price falls)
@@ -274,6 +299,7 @@ Notification Agent:
 ```
 
 #### Step 7: Itinerary Integration
+
 ```
 Once hotel is booked, Itinerary Agent can now:
   - Suggest nearby attractions for Day 1, 2, 3
@@ -285,25 +311,27 @@ Once hotel is booked, Itinerary Agent can now:
 
 ### Key Architectural Decisions
 
-| Decision | Rationale |
-|---|---|
-| **FastAPI backend** | Async-native, excellent for AI/LLM workloads, auto-generated API docs, Python ecosystem strong for AI |
-| **LangGraph agents** | Enables graph-based multi-agent flows, better than simple chains for complex workflows, state management built-in |
-| **PostgreSQL** | ACID guarantees for booking transactions, relational structure fits user/trip/booking data well |
-| **Redis** | Fast session caching, conversation history (JSON), rate limiting, distributed locks for concurrent bookings |
-| **Pinecone** | Vector database for user preference embeddings, enables semantic search of attractions, memory across trips |
-| **Firebase FCM** | Cross-platform push notifications, free tier generous, integrates easily with Flutter |
-| **Google Maps API** | Market-standard maps, excellent offline tile caching, routing algorithms |
-| **Google Gemini API** | Fast reasoning for complex multi-step tasks, tool-calling native, free tier with generous quotas |
+| Decision              | Rationale                                                                                                         |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| **FastAPI backend**   | Async-native, excellent for AI/LLM workloads, auto-generated API docs, Python ecosystem strong for AI             |
+| **LangGraph agents**  | Enables graph-based multi-agent flows, better than simple chains for complex workflows, state management built-in |
+| **PostgreSQL**        | ACID guarantees for booking transactions, relational structure fits user/trip/booking data well                   |
+| **Redis**             | Fast session caching, conversation history (JSON), rate limiting, distributed locks for concurrent bookings       |
+| **Pinecone**          | Vector database for user preference embeddings, enables semantic search of attractions, memory across trips       |
+| **Firebase FCM**      | Cross-platform push notifications, free tier generous, integrates easily with Flutter                             |
+| **Google Maps API**   | Market-standard maps, excellent offline tile caching, routing algorithms                                          |
+| **Google Gemini API** | Fast reasoning for complex multi-step tasks, tool-calling native, free tier with generous quotas                  |
 
 ---
 
 ## 4. AGENTIC AI DESIGN
 
 ### Overview
+
 The app doesn't use a single monolithic LLM. Instead, it uses a **multi-agent framework** where a central orchestrator delegates specialized tasks to sub-agents.
 
 **Why multi-agent?**
+
 - **Separation of concerns**: Each agent is expert in its domain
 - **Easier to test**: Can debug hotel agent separately from itinerary agent
 - **Reusable tools**: Hotel agent's price-comparison logic is not mixed with calendar logic
@@ -313,9 +341,11 @@ The app doesn't use a single monolithic LLM. Instead, it uses a **multi-agent fr
 ### The 6 Core Agents
 
 #### 1. **Orchestrator Agent** (Master Planner)
+
 **Role**: Central command center. Receives user request, understands intent, decides which agents to invoke.
 
 **What it does**:
+
 - Parses natural language into structured goals
 - Breaks down complex requests into sub-tasks
 - Decides which agents to call and in what order
@@ -323,33 +353,37 @@ The app doesn't use a single monolithic LLM. Instead, it uses a **multi-agent fr
 - Manages conversation context and memory
 
 **Framework**: ReAct (Reasoning + Acting) via LangGraph
-**Tools available**: 
-  - Classify user intent (hotel search, tour guide search, itinerary, notification)
-  - Invoke specific agents
-  - Memory retrieval (user preferences, past trips)
-  - Conversation history management
+**Tools available**:
+
+- Classify user intent (hotel search, tour guide search, itinerary, notification)
+- Invoke specific agents
+- Memory retrieval (user preferences, past trips)
+- Conversation history management
 
 **Example workflow**:
+
 ```
 User: "Plan my 5-day Penang trip"
     ↓
-Orchestrator parses: 
+Orchestrator parses:
   Intent = TRIP_PLANNING
   Location = Penang
   Duration = 5 days
   ↓
 Calls: Hotel Agent → Tour Guide Agent → Attraction Agent → Itinerary Agent
     ↓
-Synthesizes results into: 
+Synthesizes results into:
   "Here's your 5-day Penang itinerary: ..."
 ```
 
 ---
 
 #### 2. **Hotel Agent** (Accommodation Specialist)
+
 **Role**: Expert in hotel search, comparison, and booking.
 
 **What it does**:
+
 - Searches hotels by location, budget, amenities
 - Compares prices across Agoda, Traveloka, Booking.com
 - Filters by star rating, reviews, cancellation policies
@@ -357,6 +391,7 @@ Synthesizes results into:
 - Handles booking execution
 
 **External tools**:
+
 - Agoda Affiliate API
 - Traveloka web scraper (BeautifulSoup)
 - Booking.com API
@@ -366,9 +401,11 @@ Synthesizes results into:
 ---
 
 #### 3. **Tour Guide Agent** (Tour Guide Specialist) — NEW
+
 **Role**: Expert in finding and booking professional tour guides.
 
 **What it does**:
+
 - Searches for licensed tour guides by specialization
 - Filters by location, language spoken, availability
 - Compares guide ratings, experience, daily rates
@@ -376,6 +413,7 @@ Synthesizes results into:
 - Provides guide information (background, credentials, reviews)
 
 **Specializations**:
+
 - Beach tours (Penang, Langkawi, Terengganu)
 - Cultural tours (Melaka, Georgetown, Kuching)
 - Adventure guides (Sabah climbing, diving, hiking)
@@ -383,12 +421,14 @@ Synthesizes results into:
 - Nature/eco-tours (rainforest, wildlife viewing)
 
 **External tools**:
+
 - Local Malaysia tour guide databases
 - GetYourGuide API (has guide services)
 - Klook tour guide/private tour options
 - Language filtering (English, Bahasa Malaysia, Mandarin, Japanese)
 
 **Example**:
+
 ```
 User: "I want a beach tour guide in Penang, English speaker"
 
@@ -404,9 +444,11 @@ Tour Guide Agent:
 ---
 
 #### 4. **Attraction Agent** (Experience Curator)
+
 **Role**: Expert in finding tours, tickets, and experiences.
 
 **What it does**:
+
 - Searches attractions by category (nature, culture, food, adventure)
 - Books tours and tickets via Klook, GetYourGuide
 - Filters by duration, group size, ratings
@@ -414,6 +456,7 @@ Tour Guide Agent:
 - Handles pricing and availability
 
 **External tools**:
+
 - Klook API
 - GetYourGuide API
 - Google Places API
@@ -423,9 +466,11 @@ Tour Guide Agent:
 ---
 
 #### 5. **Itinerary Agent** (Schedule Optimizer)
+
 **Role**: Builds optimized day-by-day schedules.
 
 **What it does**:
+
 - Takes confirmed bookings (hotel, tours, guide, attractions)
 - Builds logical sequence minimizing travel time
 - Suggests meal times and local food spots
@@ -434,6 +479,7 @@ Tour Guide Agent:
 - Exports as calendar events
 
 **External tools**:
+
 - Google Maps API (routing, distance matrix)
 - Google Calendar API (event creation)
 - Weather API (plan indoor/outdoor by weather)
@@ -442,9 +488,11 @@ Tour Guide Agent:
 ---
 
 #### 6. **Notification Agent** (Background Monitor)
+
 **Role**: Continuously watches for events and sends alerts.
 
 **What it does**:
+
 - Sends check-in reminders (2 hours before hotel check-in)
 - Sends booking confirmations (hotel, tour guide, attraction booked)
 - Sends upcoming event alerts (tour starts in X hours)
@@ -452,6 +500,7 @@ Tour Guide Agent:
 - Sends tour guide confirmation and meeting point details
 
 **External tools**:
+
 - Firebase Cloud Messaging (FCM)
 - Calendar API
 - Booking confirmation tracking
@@ -459,9 +508,11 @@ Tour Guide Agent:
 ---
 
 #### 7. **Conversational Agent** (Chat Interface)
+
 **Role**: Front-facing chat experience. Maintains conversation flow and context.
 
 **What it does**:
+
 - Understands natural language queries
 - Maintains multi-turn conversation history
 - Clarifies ambiguous requests
@@ -470,6 +521,7 @@ Tour Guide Agent:
 - Handles casual chat (e.g., "What's a good beach in Penang?")
 
 **Conversation memory**:
+
 - Short-term: Last 20 messages in current session (Redis)
 - Medium-term: User preferences from past trips (Pinecone)
 - Long-term: Booking history (PostgreSQL)
@@ -477,10 +529,11 @@ Tour Guide Agent:
 ### Agent Memory Architecture
 
 #### 1. **Short-term Memory (Redis)** — Session-based
+
 - **Duration**: Current conversation session
 - **Content**: Last 20 messages, current task state
 - **Purpose**: Maintain conversation continuity, context awareness
-- **Example**: 
+- **Example**:
   ```json
   {
     "session_id": "user_12345_2024_05",
@@ -499,6 +552,7 @@ Tour Guide Agent:
   ```
 
 #### 2. **Long-term User Preference Memory (Pinecone)** — Vector embeddings
+
 - **Duration**: Persistent across trips
 - **Content**: User profile vectors, preference embeddings
 - **Purpose**: Improve recommendations over time
@@ -514,6 +568,7 @@ Tour Guide Agent:
   ```
 
 #### 3. **Episodic Memory (PostgreSQL)** — Trip history
+
 - **Duration**: Permanent record
 - **Content**: Past trips, hotels visited, attractions seen, bookings
 - **Purpose**: Avoid recommending same place twice, learn preferences
@@ -585,6 +640,7 @@ Tour Guide Agent:
 **Purpose**: Collect user preferences to personalize recommendations
 
 **Key elements**:
+
 - Profile picture / avatar
 - "Where are you from?" — Country selector
 - "Budget range?" — Slider (RM500 – RM10,000)
@@ -603,6 +659,7 @@ Tour Guide Agent:
 **Purpose**: Main entry point. Conversational trip planning.
 
 **Layout**:
+
 - **Top bar**: App logo, notification bell, user profile icon
 - **Main area**: Chat message history (bubbles - user on right, AI on left)
 - **Input area**: Text field + microphone icon + "Send" button
@@ -613,11 +670,12 @@ Tour Guide Agent:
   - "What's nearby?"
 
 **Interaction**:
+
 ```
 User: "Plan a 3-day Penang trip"
 
 Bot: "Great! Let me find options for you...
-      
+
       📍 Location: Penang
       📅 Duration: 3 days
       💰 Budget: RM2000 (from your profile)
@@ -644,6 +702,7 @@ Bot: "Perfect! I'm building your itinerary...
 **Purpose**: Display full trip schedule with all bookings and activities.
 
 **Layout**:
+
 - **Header**: "My Penang Trip" | May 10-14 | ⭐ 4.5 (predicted rating)
 - **Cost summary**: RM1,850 spent | RM150 remaining
 - **Day tabs**: "Day 1" | "Day 2" | "Day 3" [scrollable]
@@ -656,6 +715,7 @@ Bot: "Perfect! I'm building your itinerary...
 - **Action buttons**: "Add activity" | "Edit" | "Delete" | "Share itinerary"
 
 **Example — Day 2**:
+
 ```
 🌅 Day 2 — May 11, Penang
   📍 Berjaya Beach Resort
@@ -693,8 +753,10 @@ Bot: "Perfect! I'm building your itinerary...
 **Purpose**: Show comparison of available hotels.
 
 **Layout**:
+
 - **Filter bar** (collapsible): Price range | Star rating | Amenities | Sort (Price | Rating | Distance)
 - **Results list** (card-based):
+
   ```
   Card 1:
   🏨 Berjaya Beach Resort Penang
@@ -704,7 +766,7 @@ Bot: "Perfect! I'm building your itinerary...
   🏷️ Available on Agoda, Traveloka, Booking.com
   ✅ Free cancellation
   🎯 Best value (AI recommended)
-  
+
   [Buttons: View details | Book]
   ```
 
@@ -723,8 +785,9 @@ Bot: "Perfect! I'm building your itinerary...
 **Purpose**: Visualize trip geographically.
 
 **Features**:
+
 - **Map canvas**: Google Maps, Malaysia-focused, zoomable
-- **Pinned locations**: 
+- **Pinned locations**:
   - 📍 Blue: Hotel check-in locations
   - 📍 Red: Attractions & tours
   - 📍 Yellow: Restaurants
@@ -735,6 +798,7 @@ Bot: "Perfect! I'm building your itinerary...
 - **Bottom sheet**: Current selected day's locations, expandable
 
 **Interaction**:
+
 ```
 User taps Penang Hill marker
     ↓
@@ -753,8 +817,10 @@ Info window shows:
 **Purpose**: All alerts and reminders in one place.
 
 **Layout**:
+
 - **Filter tabs**: "All" | "Alerts" | "Reminders" | "Deals"
 - **Notification list** (reverse chronological):
+
   ```
   💰 PRICE DROP ALERT
      5 minutes ago
@@ -777,7 +843,7 @@ Info window shows:
 
   🎉 DEAL ALERT
      1 day ago
-     "50% off Petronas Towers tickets! 
+     "50% off Petronas Towers tickets!
       Only 3 hours left. Valid for May 12 (your Day 2).
       Current itinerary has Penang Hill. Want to add this?
       [View & add to itinerary]"
@@ -792,11 +858,13 @@ Info window shows:
 **Purpose**: Real-time spending overview.
 
 **Layout**:
+
 - **Trip summary card**:
+
   ```
   My Penang Trip
   May 10-14 (3 nights)
-  
+
   Budget:  RM2,000
   Spent:   RM1,320 (66%)
   Remaining: RM680
@@ -809,6 +877,7 @@ Info window shows:
   - 🚗 Transport: RM75 (6%)
 
 - **Daily breakdown** (swipeable):
+
   ```
   Day 1 (May 10): RM480 (flights not included yet)
     🏨 Hotel (1 night): RM185
@@ -837,8 +906,10 @@ Info window shows:
 **Purpose**: Discover activities and book tours.
 
 **Layout**:
+
 - **Category filter**: "All" | "🏞️ Nature" | "🏛️ Culture" | "🍜 Food" | "🏃 Adventure" | "🎭 Nightlife"
 - **Results grid** (card-based):
+
   ```
   Card 1:
   🚡 Penang Hill Cable Car & Viewing Platform
@@ -847,10 +918,10 @@ Info window shows:
   💰 From RM45
   Available: Daily 6:30 AM - 10:00 PM
   👥 Good for: All ages, families
-  
+
   "Visit the highest point in Penang with 360° views.
    Cable car ride + open air & Japanese garden + bistro."
-  
+
   [View details] [Book via Klook]
   ```
 
@@ -868,6 +939,7 @@ Info window shows:
 **Purpose**: Customize app experience and manage account.
 
 **Sections**:
+
 - **Profile**: Name, photo, home country, language
 - **Trip Preferences**: Budget default, interests, dietary restrictions, travel style
 - **Notifications**:
@@ -889,21 +961,21 @@ Info window shows:
 
 #### API Costs
 
-| Service | Details | Monthly Cost (FYP) | Notes |
-|---|---|---|---|
+| Service                                  | Details                              | Monthly Cost (FYP)                               | Notes                                        |
+| ---------------------------------------- | ------------------------------------ | ------------------------------------------------ | -------------------------------------------- |
 | **Google Gemini API (gemini-2.0-flash)** | Free tier (50 req/min) or $2-5/month | Dev/testing: Free tier is generous for FYP scope |
-| **Google Maps API** | Free tier: 28,500 requests/month | $0 | Covers dev needs; may need upgrade at launch |
-| **Google Calendar API** | Unlimited at free tier | $0 | No quotas, no costs |
-| **OpenWeather API** | Free tier: 1,000 calls/day | $0 | Sufficient for testing |
-| **Firebase (FCM)** | Free Spark plan | $0 | Unlimited notifications at free tier |
-| **Firebase Auth** | Free tier | $0 | No payment required |
-| **PostgreSQL (Supabase)** | Free tier: 500MB DB | $0 | Generous for FYP scope |
-| **Redis (Upstash)** | Free tier: 10,000 ops/day | $0 | Sufficient for session/cache during dev |
-| **Pinecone** | Free starter: 1 index, 100K vectors | $0 | Enough for learning, small user base |
-| **Backend hosting** | Railway/Render free tier | $0 | Can run containerized FastAPI app free |
-| **Klook API** | Affiliate program (free) | $0 | Apply for partner access, no dev fee |
-| **Agoda API** | Affiliate program (free) | $0 | Apply for partner access, no dev fee |
-| **Traveloka** | Web scraper (free, but check ToS) | $0 | Free but legal risk — use only for demo |
+| **Google Maps API**                      | Free tier: 28,500 requests/month     | $0                                               | Covers dev needs; may need upgrade at launch |
+| **Google Calendar API**                  | Unlimited at free tier               | $0                                               | No quotas, no costs                          |
+| **OpenWeather API**                      | Free tier: 1,000 calls/day           | $0                                               | Sufficient for testing                       |
+| **Firebase (FCM)**                       | Free Spark plan                      | $0                                               | Unlimited notifications at free tier         |
+| **Firebase Auth**                        | Free tier                            | $0                                               | No payment required                          |
+| **PostgreSQL (Supabase)**                | Free tier: 500MB DB                  | $0                                               | Generous for FYP scope                       |
+| **Redis (Upstash)**                      | Free tier: 10,000 ops/day            | $0                                               | Sufficient for session/cache during dev      |
+| **Pinecone**                             | Free starter: 1 index, 100K vectors  | $0                                               | Enough for learning, small user base         |
+| **Backend hosting**                      | Railway/Render free tier             | $0                                               | Can run containerized FastAPI app free       |
+| **Klook API**                            | Affiliate program (free)             | $0                                               | Apply for partner access, no dev fee         |
+| **Agoda API**                            | Affiliate program (free)             | $0                                               | Apply for partner access, no dev fee         |
+| **Traveloka**                            | Web scraper (free, but check ToS)    | $0                                               | Free but legal risk — use only for demo      |
 
 **Total FYP monthly: ~RM0-20 (~$0-5 USD)**
 
@@ -911,14 +983,14 @@ Info window shows:
 
 #### Non-Cloud Costs
 
-| Item | Cost | Notes |
-|---|---|---|
-| **App Store Registration** | One-time $25 USD | Google Play Developer account (one-time, lifetime) |
-| **Apple Developer Account** | $99 USD/year | Required to deploy iOS app |
-| **Domain name** (optional) | $12-15/year | For API backend; can use free tier subdomain instead |
-| **SSL certificate** (optional) | Free (Let's Encrypt) | Built into most hosting platforms |
-| **Development tools** | $0 | VS Code, Android Studio, Xcode (free), Git (free) |
-| **Anthropic API credits** | Potentially free | Anthropic offers research program credits for students/academics |
+| Item                           | Cost                 | Notes                                                            |
+| ------------------------------ | -------------------- | ---------------------------------------------------------------- |
+| **App Store Registration**     | One-time $25 USD     | Google Play Developer account (one-time, lifetime)               |
+| **Apple Developer Account**    | $99 USD/year         | Required to deploy iOS app                                       |
+| **Domain name** (optional)     | $12-15/year          | For API backend; can use free tier subdomain instead             |
+| **SSL certificate** (optional) | Free (Let's Encrypt) | Built into most hosting platforms                                |
+| **Development tools**          | $0                   | VS Code, Android Studio, Xcode (free), Git (free)                |
+| **Anthropic API credits**      | Potentially free     | Anthropic offers research program credits for students/academics |
 
 **Total one-time: ~RM150 (~$25-35 USD)**
 
@@ -926,13 +998,14 @@ Info window shows:
 
 #### Total FYP Budget Summary
 
-| Category | Cost |
-|---|---|
-| Monthly API usage | ~RM0-20/month |
-| One-time app store fees | RM150 |
+| Category                   | Cost                       |
+| -------------------------- | -------------------------- |
+| Monthly API usage          | ~RM0-20/month              |
+| One-time app store fees    | RM150                      |
 | **Total 6-month FYP cost** | **~RM30-80 (~$10-25 USD)** |
 
 **Reality check**: Most will fall within free tiers. You likely need to pay only:
+
 - **Google Play Store registration** ($25 once)
 - **Apple Developer account** ($99/year, only if testing on physical iPhone)
 - **Gemini API usage** ($0-5/month if exceeding free tier quota)
@@ -943,22 +1016,23 @@ Info window shows:
 
 **Assumptions**: 1,000 active users, 10M API calls/month
 
-| Service | Monthly Cost | Rationale |
-|---|---|---|
-| **Google Gemini API** | $20-50 | 10M requests/month at scale |
-| **Google Maps API** | $20-50 | Beyond free tier, pay-as-you-go |
-| **Supabase Pro** | $25 | 8GB database, real-time support |
-| **Upstash Redis** | $10-20 | 10M operations/month |
-| **Pinecone Starter** | $70 | 1M vectors, storage + retrieval |
-| **Firebase FCM** | $0 | Still free at 1,000 users |
-| **Backend hosting** | $20-50 | Railway/Render paid tier, 2-4 containers |
-| **Monitoring (Sentry)** | $0 | Free tier for error tracking |
-| **Email service (SendGrid)** | $0 | Free tier 100 emails/day |
-| **CDN (optional)** | $0 | Cloudflare free tier |
+| Service                      | Monthly Cost | Rationale                                |
+| ---------------------------- | ------------ | ---------------------------------------- |
+| **Google Gemini API**        | $20-50       | 10M requests/month at scale              |
+| **Google Maps API**          | $20-50       | Beyond free tier, pay-as-you-go          |
+| **Supabase Pro**             | $25          | 8GB database, real-time support          |
+| **Upstash Redis**            | $10-20       | 10M operations/month                     |
+| **Pinecone Starter**         | $70          | 1M vectors, storage + retrieval          |
+| **Firebase FCM**             | $0           | Still free at 1,000 users                |
+| **Backend hosting**          | $20-50       | Railway/Render paid tier, 2-4 containers |
+| **Monitoring (Sentry)**      | $0           | Free tier for error tracking             |
+| **Email service (SendGrid)** | $0           | Free tier 100 emails/day                 |
+| **CDN (optional)**           | $0           | Cloudflare free tier                     |
 
 **Estimated production monthly: $200-400 USD (~RM900-1,800/month)**
 
-**To break even at scale**: 
+**To break even at scale**:
+
 - In-app ads, affiliate commissions from hotel/tour bookings, or premium subscription tier (RM4.99/month for unlimited searches)
 
 ---
@@ -981,6 +1055,7 @@ Info window shows:
 ### Frontend / Mobile Layer
 
 #### **Flutter (Dart)**
+
 - **Why chosen**:
   - Single codebase compiles to Android APK + iOS IPA
   - Hot reload for fast iteration (critical for FYP time pressure)
@@ -990,21 +1065,22 @@ Info window shows:
   - Dart is modern, fast, and easy to learn
 
 - **Key packages**:
+
   ```yaml
   flutter:
     sdk: flutter
-  google_maps_flutter: ^2.5.0      # Map display & routing
-  firebase_auth: ^4.10.0            # User authentication
-  firebase_messaging: ^14.8.0        # Push notifications
-  google_maps_webservice: ^6.5.0     # Autocomplete, places
-  intl: ^0.19.0                      # Internationalization (Bahasa, Mandarin, Japanese)
-  provider: ^6.0.0                   # State management
-  http: ^1.1.0                       # HTTP requests to backend
-  location: ^5.0.1                   # GPS, geolocation
-  shared_preferences: ^2.2.0         # Local storage
-  cached_network_image: ^3.3.0       # Image caching
-  table_calendar: ^3.0.0              # Calendar widget for itinerary
-  fl_chart: ^0.65.0                  # Charts for budget tracking
+  google_maps_flutter: ^2.5.0 # Map display & routing
+  firebase_auth: ^4.10.0 # User authentication
+  firebase_messaging: ^14.8.0 # Push notifications
+  google_maps_webservice: ^6.5.0 # Autocomplete, places
+  intl: ^0.19.0 # Internationalization (Bahasa, Mandarin, Japanese)
+  provider: ^6.0.0 # State management
+  http: ^1.1.0 # HTTP requests to backend
+  location: ^5.0.1 # GPS, geolocation
+  shared_preferences: ^2.2.0 # Local storage
+  cached_network_image: ^3.3.0 # Image caching
+  table_calendar: ^3.0.0 # Calendar widget for itinerary
+  fl_chart: ^0.65.0 # Charts for budget tracking
   ```
 
 - **Platform support**:
@@ -1015,6 +1091,7 @@ Info window shows:
 ---
 
 #### **Firebase Services**
+
 - **Firebase Auth**:
   - Google Sign-In (for tourists with Google accounts)
   - Email/password registration
@@ -1036,6 +1113,7 @@ Info window shows:
 ### Backend / API Layer
 
 #### **FastAPI (Python)**
+
 - **Why chosen**:
   - Native async/await — ideal for I/O-heavy operations (API calls, DB queries, LLM calls)
   - Automatic OpenAPI documentation (Swagger UI)
@@ -1044,6 +1122,7 @@ Info window shows:
   - Easy to deploy (Docker, Railway, Render)
 
 - **Project structure**:
+
   ```
   backend/
     ├── main.py                 # FastAPI app initialization
@@ -1075,29 +1154,30 @@ Info window shows:
   ```
 
 - **Key dependencies**:
+
   ```
   fastapi==0.104.1
   uvicorn==0.24.0              # ASGI server
   sqlalchemy==2.0.23           # ORM
   pydantic==2.5.0              # Data validation
   python-dotenv==1.0.0         # Environment variables
-  
+
   # AI & agents
   langchain==0.1.0
   langgraph==0.0.20            # Graph-based agents
   google-generativeai==0.3.0   # Google Gemini API client
-  
+
   # External APIs
   requests==2.31.0
   aiohttp==3.9.1               # Async HTTP
   google-maps-services==4.10.0
   googlemaps==4.10.0
-  
+
   # Database
   psycopg2-binary==2.9.0       # PostgreSQL driver
   redis==5.0.0                 # Redis client
   pinecone-client==2.2.3       # Vector DB
-  
+
   # Utilities
   pyjwt==2.8.0                 # JWT tokens
   python-multipart==0.0.6
@@ -1109,6 +1189,7 @@ Info window shows:
 ### Database Layer
 
 #### **PostgreSQL (via Supabase)**
+
 - **Why chosen**:
   - ACID transactions essential for booking integrity
   - Relational schema fits user/trip/booking data
@@ -1116,6 +1197,7 @@ Info window shows:
   - Built-in PostGIS extension (if location queries needed)
 
 - **Core tables**:
+
   ```sql
   users
     - id (UUID primary key)
@@ -1160,6 +1242,7 @@ Info window shows:
 ---
 
 #### **Redis (via Upstash)**
+
 - **Why chosen**:
   - Fast in-memory caching (conversation history, session state)
   - Pub/Sub for real-time notifications
@@ -1179,6 +1262,7 @@ Info window shows:
 ---
 
 #### **Pinecone (Vector Database)**
+
 - **Why chosen**:
   - Store user preference embeddings (semantic search)
   - Find similar users for collaborative filtering
@@ -1186,15 +1270,16 @@ Info window shows:
   - Free tier: 1 index, 100K vectors (enough for FYP)
 
 - **Usage**:
+
   ```
   Index: user_preferences
     - Vector: 384-dim embedding of user preferences
     - Metadata: user_id, interests, budget_range, past_trips
-  
+
   Index: attraction_embeddings
     - Vector: 384-dim embedding of attraction description
     - Metadata: attraction_id, name, location, rating, price
-  
+
   Query example:
     "Find attractions similar to user's past preferences"
     → Retrieve user_id=123's vector
@@ -1207,21 +1292,23 @@ Info window shows:
 ### AI & LLM Layer
 
 #### **Google Gemini API (gemini-2.0-flash)**
+
 - **Model**: gemini-2.0-flash
 - **Strengths**: Fast reasoning, native tool-calling, free tier with 50 requests/minute
 - **Pricing**: Free tier (sufficient for FYP) or $2-5/month if exceeding
 - **Usage patterns**:
+
   ```python
   import google.generativeai as genai
-  
+
   genai.configure(api_key="YOUR_API_KEY")
-  
+
   # Create model with tools
   model = genai.GenerativeModel(
       "gemini-2.0-flash",
       tools=[search_hotels, book_hotel, get_reviews]
   )
-  
+
   # Call with tool use
   response = model.generate_content(
       "Find 3-star hotel in Penang under RM200/night",
@@ -1230,6 +1317,7 @@ Info window shows:
   ```
 
 **Why Gemini over Claude for this project?**
+
 - Free tier is more generous (50 req/min vs limited tokens for Claude)
 - Native tool-calling like Claude
 - Fast inference speed
@@ -1238,6 +1326,7 @@ Info window shows:
 ---
 
 #### **LangChain & LangGraph**
+
 - **Why chosen**:
   - Handles agent orchestration (calling sub-agents in sequence)
   - Memory management (conversation history, user preferences)
@@ -1245,20 +1334,21 @@ Info window shows:
   - Graph-based workflows (more flexible than simple chains)
 
 - **Agent definition example**:
+
   ```python
   from langgraph.graph import StateGraph
   from langchain.tools import tool
-  
+
   # Define tools
   @tool
   def search_hotels(location: str, budget: float) -> str:
       """Search for hotels matching criteria"""
       # Call Agoda/Traveloka APIs
       return json.dumps(results)
-  
+
   # Create agent with tools
   tools = [search_hotels, book_hotel, get_reviews]
-  
+
   # Build graph (orchestrator state machine)
   graph = StateGraph(...)
   graph.add_node("orchestrator", orchestrator_agent)
@@ -1267,9 +1357,9 @@ Info window shows:
   graph.add_edge("orchestrator", "hotel_agent", condition=...)
   graph.add_edge("hotel_agent", "itinerary_agent", condition=...)
   graph.add_edge("itinerary_agent", "orchestrator")
-  
+
   compiled = graph.compile()
-  
+
   # Run workflow
   result = compiled.invoke({
       "user_input": "Plan my trip",
@@ -1283,25 +1373,26 @@ Info window shows:
 
 #### **Hotel Booking APIs**
 
-| Platform | API | Cost | Status |
-|---|---|---|---|
-| **Agoda** | Affiliate API | Free (apply for partner program) | Preferred |
-| **Traveloka** | Official API (limited) / Web scraper | Free / Risky | Fallback |
-| **Booking.com** | Affiliate API | Free (apply for partner program) | Preferred |
+| Platform        | API                                  | Cost                             | Status    |
+| --------------- | ------------------------------------ | -------------------------------- | --------- |
+| **Agoda**       | Affiliate API                        | Free (apply for partner program) | Preferred |
+| **Traveloka**   | Official API (limited) / Web scraper | Free / Risky                     | Fallback  |
+| **Booking.com** | Affiliate API                        | Free (apply for partner program) | Preferred |
 
 **Integration approach**:
+
 ```python
 # hotel_search.py
 async def search_hotels(location, date_from, date_to, budget):
     # Call Agoda API
     agoda_results = await agoda_search(...)
-    
+
     # Call Booking.com API
     booking_results = await booking_search(...)
-    
+
     # Deduplicate & merge
     merged = merge_and_deduplicate(agoda_results, booking_results)
-    
+
     return merged
 ```
 
@@ -1309,54 +1400,55 @@ async def search_hotels(location, date_from, date_to, budget):
 
 #### **Attraction & Tours**
 
-| Platform | API | Cost | Status |
-|---|---|---|---|
-| **Klook** | Affiliate API | Free (apply) | Primary |
-| **GetYourGuide** | Affiliate API | Free (apply) | Backup |
-| **Google Places API** | Places API | $0.007/request | For search |
-| **TripAdvisor** | Web scraper | Free (risky) | Reviews only |
+| Platform              | API           | Cost           | Status       |
+| --------------------- | ------------- | -------------- | ------------ |
+| **Klook**             | Affiliate API | Free (apply)   | Primary      |
+| **GetYourGuide**      | Affiliate API | Free (apply)   | Backup       |
+| **Google Places API** | Places API    | $0.007/request | For search   |
+| **TripAdvisor**       | Web scraper   | Free (risky)   | Reviews only |
 
 ---
 
 #### **Maps & Navigation**
 
-| Service | API | Cost | Notes |
-|---|---|---|---|
-| **Google Maps** | Maps SDK, Directions API, Places API | Free tier 28,500 req/month | Offline tiles available |
-| **OpenStreetMap** | Tiles via Leaflet/Mapbox | Free | Alternative if Google hits quota |
+| Service           | API                                  | Cost                       | Notes                            |
+| ----------------- | ------------------------------------ | -------------------------- | -------------------------------- |
+| **Google Maps**   | Maps SDK, Directions API, Places API | Free tier 28,500 req/month | Offline tiles available          |
+| **OpenStreetMap** | Tiles via Leaflet/Mapbox             | Free                       | Alternative if Google hits quota |
 
 ---
 
 #### **Calendar**
 
-| Service | API | Cost | Notes |
-|---|---|---|---|
-| **Google Calendar API** | Calendar API | Free | Unlimited calls |
-| **Apple CalendarKit** | Native iOS framework | Free | iOS only |
+| Service                 | API                  | Cost | Notes           |
+| ----------------------- | -------------------- | ---- | --------------- |
+| **Google Calendar API** | Calendar API         | Free | Unlimited calls |
+| **Apple CalendarKit**   | Native iOS framework | Free | iOS only        |
 
 ---
 
 #### **Weather**
 
-| Service | API | Cost | Notes |
-|---|---|---|---|
+| Service         | API                       | Cost                      | Notes              |
+| --------------- | ------------------------- | ------------------------- | ------------------ |
 | **OpenWeather** | Current weather, forecast | Free tier 1,000 calls/day | Sufficient for FYP |
-| **Weather.com** | Alternative | Free tier | Backup |
+| **Weather.com** | Alternative               | Free tier                 | Backup             |
 
 ---
 
 #### **Notifications**
 
-| Service | Type | Cost | Notes |
-|---|---|---|---|
-| **Firebase Cloud Messaging** | Push notifications | Free | Cross-platform |
-| **SendGrid** | Email notifications | Free tier 100/day | For email reminders |
+| Service                      | Type                | Cost              | Notes               |
+| ---------------------------- | ------------------- | ----------------- | ------------------- |
+| **Firebase Cloud Messaging** | Push notifications  | Free              | Cross-platform      |
+| **SendGrid**                 | Email notifications | Free tier 100/day | For email reminders |
 
 ---
 
 ### Deployment & Hosting
 
 #### **Backend Hosting**
+
 - **Local dev**: `uvicorn main.py --reload`
 - **Production options**:
   - **Railway.app**: Free tier, easy Docker deployment, $5/mo paid tier
@@ -1364,12 +1456,15 @@ async def search_hotels(location, date_from, date_to, budget):
   - **Heroku** (legacy): Now paid only
 
 #### **Database**
+
 - **Supabase** (PostgreSQL): Free tier 500MB, paid from $25/mo
 
 #### **Version Control**
+
 - **GitHub**: Free private repos, integrates with Railway/Render for auto-deploy
 
 #### **CI/CD**
+
 - **GitHub Actions**: Free tier, auto-test on push
 - **Docker**: Containerize FastAPI app for easy deployment
 
@@ -1380,6 +1475,7 @@ async def search_hotels(location, date_from, date_to, budget):
 ### Semester 1 (FYP 1) — 14 Weeks
 
 #### **Week 1-3: Literature Review & Proposal**
+
 - **Goal**: Establish research foundation and project scope
 - **Deliverables**:
   - Literature review report (10-15 pages)
@@ -1389,7 +1485,6 @@ async def search_hotels(location, date_from, date_to, budget):
     - Malaysia tourism context
   - Problem statement (1-2 pages)
   - Project proposal with objectives and scope (3-5 pages)
-  
 - **Milestones**:
   - Week 1: Finalize topic with supervisor
   - Week 2: Complete literature review draft
@@ -1398,6 +1493,7 @@ async def search_hotels(location, date_from, date_to, budget):
 ---
 
 #### **Week 4-6: System Design & Architecture**
+
 - **Goal**: Design complete system before coding
 - **Deliverables**:
   - System architecture diagram (tech stack visual)
@@ -1406,7 +1502,6 @@ async def search_hotels(location, date_from, date_to, budget):
   - Agent architecture diagram (how agents interact)
   - UI wireframes for 8+ screens
   - Integration plan for Agoda/Klook/Traveloka
-  
 - **Milestones**:
   - Week 4: Finalize tech stack, get supervisor approval
   - Week 5: Complete database and API design reviews
@@ -1415,6 +1510,7 @@ async def search_hotels(location, date_from, date_to, budget):
 ---
 
 #### **Week 7-10: Core Backend & AI Agent Development**
+
 - **Goal**: Build working backend with 2-3 functional agents
 - **Deliverables**:
   - FastAPI backend with basic CRUD endpoints
@@ -1424,7 +1520,6 @@ async def search_hotels(location, date_from, date_to, budget):
   - Itinerary builder agent (basic day-by-day scheduling)
   - Claude API integration (tool-calling working)
   - Unit tests for core functions
-  
 - **Milestones**:
   - Week 7: FastAPI project structure + DB setup
   - Week 8: LangGraph agents created, Claude API calls working
@@ -1436,6 +1531,7 @@ async def search_hotels(location, date_from, date_to, budget):
 ---
 
 #### **Week 11-14: Proposal Defence & Interim Report**
+
 - **Goal**: Present progress to examiners and document findings
 - **Deliverables**:
   - Proposal defence presentation (15-20 min, with live demo)
@@ -1448,7 +1544,6 @@ async def search_hotels(location, date_from, date_to, budget):
     - Plan for FYP 2
   - Live demo of working backend
   - Code repository (GitHub with README and setup instructions)
-  
 - **Milestones**:
   - Week 11: Complete interim report draft
   - Week 12: Finalize presentation materials
@@ -1460,6 +1555,7 @@ async def search_hotels(location, date_from, date_to, budget):
 ### Semester 2 (FYP 2) — 14 Weeks
 
 #### **Week 1-5: Flutter Mobile App Development**
+
 - **Goal**: Build fully functional mobile UI connected to backend
 - **Deliverables**:
   - Flutter project structure (main, routes, models, widgets)
@@ -1474,7 +1570,6 @@ async def search_hotels(location, date_from, date_to, budget):
   - Firebase Cloud Messaging setup (receive notifications)
   - HTTP client connected to FastAPI backend
   - Unit & widget tests for key components
-  
 - **Milestones**:
   - Week 1: Flutter project setup, basic navigation
   - Week 2: Chat UI + backend connection (text messages flowing)
@@ -1485,6 +1580,7 @@ async def search_hotels(location, date_from, date_to, budget):
 ---
 
 #### **Week 6-9: Full Integration & All 5 Agents**
+
 - **Goal**: Complete all agents, real booking flows, end-to-end testing
 - **Deliverables**:
   - Complete Conversation Agent (chat refinement, multi-turn conversations)
@@ -1497,7 +1593,6 @@ async def search_hotels(location, date_from, date_to, budget):
   - Multilingual support (English, Bahasa Malaysia, Mandarin, Japanese)
   - Error handling & edge cases
   - Integration tests (full workflows from chat → booking → calendar)
-  
 - **Milestones**:
   - Week 6: All agents complete, individually tested
   - Week 7: All APIs connected, real data flowing
@@ -1509,6 +1604,7 @@ async def search_hotels(location, date_from, date_to, budget):
 ---
 
 #### **Week 10-12: User Testing & Evaluation**
+
 - **Goal**: Validate AI recommendations and system usability
 - **Deliverables**:
   - User testing plan (10-20 testers, mostly foreign students at UTP)
@@ -1519,7 +1615,6 @@ async def search_hotels(location, date_from, date_to, budget):
   - Usability issues identified & fixed
   - Performance metrics (response time, API latency)
   - Bug fixes from testing
-  
 - **Milestones**:
   - Week 10: Recruit testers, distribute app via TestFlight/Firebase Test Lab
   - Week 11: Collect feedback, analyze results
@@ -1534,6 +1629,7 @@ async def search_hotels(location, date_from, date_to, budget):
 ---
 
 #### **Week 13-14: Final Presentation & Dissertation**
+
 - **Goal**: Complete final deliverable and present findings
 - **Deliverables**:
   - Final dissertation (40-60 pages)
@@ -1551,7 +1647,6 @@ async def search_hotels(location, date_from, date_to, budget):
   - GitHub repository (clean code, comprehensive README, setup instructions)
   - Optional: Demo video recorded for online review
   - Optional: Submit to Google Play Store as public app (for real user reach)
-  
 - **Milestones**:
   - Week 13: Complete dissertation draft, record demo video
   - Week 14: Final polish, submit all deliverables, conduct final presentation
@@ -1561,6 +1656,7 @@ async def search_hotels(location, date_from, date_to, budget):
 ### Key Deliverables Checklist
 
 #### **FYP 1**
+
 - [ ] Literature review report
 - [ ] Problem statement & proposal
 - [ ] System architecture diagram
@@ -1575,6 +1671,7 @@ async def search_hotels(location, date_from, date_to, budget):
 - [ ] Interim report (15-20 pages)
 
 #### **FYP 2**
+
 - [ ] Complete Flutter mobile app (8+ screens)
 - [ ] Firebase Auth + Messaging setup
 - [ ] All 5 agents complete and integrated
@@ -1622,39 +1719,40 @@ async def search_hotels(location, date_from, date_to, budget):
 
 ### Risk Mitigation
 
-| Risk | Mitigation |
-|---|---|
-| **API approval delays** (Agoda, Klook take weeks) | Apply in Week 1; use deep links as fallback in Week 7 |
-| **Scope creep** (trying to do too much) | Lock scope in proposal; cut non-MVP features ruthlessly |
-| **Agent errors** (Claude makes bad recommendations) | Test heavily with sample data; implement fallback UX |
-| **Flutter platform issues** (iOS/Android difference) | Test on real devices early; prioritize Android if stuck |
-| **Database performance** | Use indexes on trip_id, booking_id; test with 1000+ records |
-| **API rate limits** (hitting Klook/Google Maps quota) | Cache aggressively; implement exponential backoff |
-| **User testing recruiting** (hard to find testers) | Start recruiting in Week 6; offer small incentive if budget allows |
+| Risk                                                  | Mitigation                                                         |
+| ----------------------------------------------------- | ------------------------------------------------------------------ |
+| **API approval delays** (Agoda, Klook take weeks)     | Apply in Week 1; use deep links as fallback in Week 7              |
+| **Scope creep** (trying to do too much)               | Lock scope in proposal; cut non-MVP features ruthlessly            |
+| **Agent errors** (Claude makes bad recommendations)   | Test heavily with sample data; implement fallback UX               |
+| **Flutter platform issues** (iOS/Android difference)  | Test on real devices early; prioritize Android if stuck            |
+| **Database performance**                              | Use indexes on trip_id, booking_id; test with 1000+ records        |
+| **API rate limits** (hitting Klook/Google Maps quota) | Cache aggressively; implement exponential backoff                  |
+| **User testing recruiting** (hard to find testers)    | Start recruiting in Week 6; offer small incentive if budget allows |
 
 ---
 
 ## SUMMARY
 
-### MyTripMY Project Overview
+### JalanJalanMY Project Overview
 
-| Aspect | Details |
-|---|---|
-| **App Name** | MyTripMY — Agentic AI Travel Planner for Malaysia |
-| **Target Users** | Foreign & domestic tourists, backpackers, business travelers |
-| **Core Tech** | Flutter (mobile) + FastAPI (backend) + Claude API (LLM) + LangGraph (agents) |
-| **Unique Value** | Multi-agent orchestration across hotel/tour/itinerary platforms |
-| **FYP Scope** | 6 months, MVP features: chat planning, hotel search, itinerary building, calendar sync, notifications |
-| **Expected Cost** | RM50-150 (mostly free tiers) |
-| **Research Contribution** | Novel multi-agent framework for travel domain; evaluation metrics for agentic AI |
-| **Success Criteria** | SUS > 70, task completion > 80%, AI accuracy > 75%, response time < 3s |
-| **Feasible?** | Yes, with strict scope management and tight timeline discipline |
+| Aspect                    | Details                                                                                               |
+| ------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **App Name**              | JalanJalanMY — Agentic AI Travel Planner for Malaysia                                                 |
+| **Target Users**          | Foreign & domestic tourists, backpackers, business travelers                                          |
+| **Core Tech**             | Flutter (mobile) + FastAPI (backend) + Claude API (LLM) + LangGraph (agents)                          |
+| **Unique Value**          | Multi-agent orchestration across hotel/tour/itinerary platforms                                       |
+| **FYP Scope**             | 6 months, MVP features: chat planning, hotel search, itinerary building, calendar sync, notifications |
+| **Expected Cost**         | RM50-150 (mostly free tiers)                                                                          |
+| **Research Contribution** | Novel multi-agent framework for travel domain; evaluation metrics for agentic AI                      |
+| **Success Criteria**      | SUS > 70, task completion > 80%, AI accuracy > 75%, response time < 3s                                |
+| **Feasible?**             | Yes, with strict scope management and tight timeline discipline                                       |
 
 ---
 
 ## APPENDIX: Useful Resources
 
 ### Documentation Links
+
 - [LangChain Documentation](https://python.langchain.com/)
 - [LangGraph](https://langchain-ai.github.io/langgraph/)
 - [Anthropic Claude API](https://docs.anthropic.com/)
@@ -1664,11 +1762,13 @@ async def search_hotels(location, date_from, date_to, budget):
 - [Firebase Documentation](https://firebase.google.com/docs)
 
 ### Example Projects (GitHub)
+
 - Travel recommendation systems (search "travel recommendation github")
 - Multi-agent frameworks (LangChain examples)
 - Flutter chat apps (search "flutter chat ui")
 
 ### Academic Papers
+
 - "ReAct: Synergizing Reasoning and Acting in Language Models" (Yao et al., 2023)
 - "Towards Agents as Foundation Models" (Park et al., 2023)
 - Multi-agent systems in e-commerce (search ACM, IEEE Xplore)
