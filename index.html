@@ -1,0 +1,1639 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="JalanJalanMY — Agentic AI travel planner for Malaysia. One chat. Hotels, tours, itinerary — all sorted."
+    />
+    <title>JalanJalanMY — Your AI Travel Companion</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --dark: #0a1930;
+        --light: #f4f7fb;
+        --brand: #0093e9;
+        --lime: #80d0c7;
+        --textDark: #0a1930;
+        --textLight: #ffffff;
+        --muted: #5e7a93;
+
+        /* App Specific Design Tokens */
+        --app-blue: #0093e9;
+        --app-gradient: linear-gradient(135deg, #0093e9 0%, #80d0c7 100%);
+        --app-bg: #f8faff;
+        --app-card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        --app-radius: 16px;
+
+        --navOffset: 92px;
+        --radius: 14px;
+        --pill: 100px;
+        --max: 1160px;
+        --pad: 22px;
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        min-height: 100%;
+        scrollbar-width: none;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      header[id],
+      section[id] {
+        scroll-margin-top: var(--navOffset);
+      }
+      body {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        color: var(--textDark);
+        background: #f4f7fb;
+        line-height: 1.55;
+        -ms-overflow-style: none;
+      }
+      body::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 var(--pad);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(10, 25, 48, 0.18);
+        background: rgba(255, 255, 255, 0.85);
+        color: var(--textDark);
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          transform 140ms ease,
+          background 140ms ease;
+        user-select: none;
+        white-space: nowrap;
+      }
+      .btn:hover {
+        text-decoration: none;
+        transform: translateY(-1px) scale(1.01);
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.16);
+      }
+      .btn:active {
+        transform: translateY(0) scale(0.99);
+      }
+      .btnPrimary {
+        background: var(--app-blue);
+        color: white;
+        border-color: rgba(0, 0, 0, 0.1);
+      }
+      .btnDark {
+        background: var(--dark);
+        color: var(--textLight);
+      }
+      .btnGhost {
+        background: transparent;
+        color: var(--textLight);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .btnLime {
+        background: var(--lime);
+        color: var(--dark);
+        border-color: rgba(10, 25, 48, 0.15);
+      }
+
+      /* NAVBAR */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(10, 25, 48, 0.6);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(8px);
+        transition: all 180ms ease;
+      }
+      .nav.nav--solid {
+        background: rgba(10, 25, 48, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+      }
+      .navInner {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 0;
+      }
+      .logo {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        color: var(--textLight);
+        font-size: 18px;
+      }
+      .navLinks {
+        display: flex;
+        gap: 18px;
+        justify-content: center;
+        align-items: center;
+      }
+      .navLinks a {
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 700;
+        font-size: 13px;
+        padding: 8px 10px;
+        border-radius: 10px;
+      }
+      .navCta {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      /* HERO */
+      .hero {
+        background:
+          radial-gradient(
+            1100px 520px at 15% 10%,
+            rgba(0, 147, 233, 0.25),
+            transparent 60%
+          ),
+          var(--dark);
+        color: var(--textLight);
+        padding-top: 34px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+      .heroInner {
+        padding: 30px 0 72px;
+        width: 100%;
+      }
+      .heroCopy {
+        text-align: center;
+      }
+      .heroTitle {
+        margin: 16px 0 12px;
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: clamp(42px, 5.2vw, 66px);
+        letter-spacing: -0.04em;
+        line-height: 0.98;
+        animation: fadeUp 700ms ease both;
+      }
+      .heroSub {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 17px;
+        font-weight: 600;
+        max-width: 60ch;
+        animation: fadeUp 700ms ease both;
+        animation-delay: 80ms;
+      }
+      .heroCtas {
+        margin-top: 22px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+        animation: fadeUp 700ms ease both;
+        animation-delay: 160ms;
+      }
+      .heroBadges {
+        margin-top: 16px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        animation: fadeUp 700ms ease both;
+        animation-delay: 220ms;
+      }
+      .heroBadge {
+        padding: 8px 12px;
+        border-radius: var(--pill);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 12px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      /* PHONE MOCKUP */
+      .phones {
+        position: relative;
+        min-height: 560px;
+      }
+      .phone {
+        position: absolute;
+        width: 320px;
+        height: 560px;
+        border-radius: 34px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        backdrop-filter: blur(8px);
+        animation: float 6s ease-in-out infinite;
+      }
+      .phone:before {
+        content: "";
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 92px;
+        height: 22px;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.28);
+        z-index: 2;
+      }
+      .phoneScreenshot {
+        background: transparent;
+        border-color: rgba(255, 255, 255, 0.22);
+      }
+      .phoneScreenshot:before {
+        display: none;
+      }
+      .phoneImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 30px;
+        display: block;
+      }
+      .phone-relative {
+        position: relative;
+        width: 100%;
+        max-width: 320px;
+        height: 560px;
+        margin: 0 auto;
+        transform: none !important;
+        animation: none !important;
+        inset: auto !important;
+      }
+
+      .screen {
+        position: absolute;
+        inset: 12px;
+        border-radius: 24px;
+        background: var(--app-bg);
+        color: var(--textDark);
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .screen::-webkit-scrollbar {
+        width: 3px;
+      }
+      .screen::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 10px;
+      }
+
+      /* App Components */
+      .app-header {
+        background: var(--app-gradient);
+        color: white;
+        padding: 24px 16px 16px;
+        border-radius: 0 0 24px 24px;
+        flex-shrink: 0;
+      }
+      .app-header-home {
+        background: transparent;
+        padding: 20px 16px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .app-content {
+        padding: 12px 16px;
+        flex: 1;
+      }
+      .app-card {
+        background: white;
+        border-radius: var(--app-radius);
+        padding: 12px;
+        margin-bottom: 12px;
+        box-shadow: var(--app-card-shadow);
+      }
+      .app-card-soft {
+        background: #f7fbff;
+        border-radius: 16px;
+        padding: 12px;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        border: 1px solid #e6f0ff;
+      }
+      .app-title {
+        font-size: 18px;
+        font-weight: 800;
+      }
+      .app-subtitle {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .app-header-gradient {
+        background: linear-gradient(180deg, #0ea5e9 0%, #2b6cff 100%);
+        color: white;
+        padding: 22px 16px 18px;
+        border-radius: 0 0 22px 22px;
+      }
+      .app-logo {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        color: #0ea5e9;
+        font-size: 18px;
+      }
+      .app-header-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .app-icon-circle {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid #dbeafe;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0ea5e9;
+        font-size: 9px;
+        font-weight: 700;
+        position: relative;
+        background: white;
+      }
+      .app-badge {
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        background: #ef4444;
+        color: white;
+        font-size: 7px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .app-chat {
+        background: white;
+        border-radius: 16px;
+        padding: 12px;
+        display: flex;
+        gap: 10px;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+        border: 1px solid #eef2ff;
+        font-size: 12px;
+      }
+      .app-chat-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #0ea5e9;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .app-pill {
+        background: white;
+        border-radius: 14px;
+        padding: 10px 12px;
+        border: 1px solid #e6eefb;
+        font-size: 12px;
+        font-weight: 600;
+        color: #334155;
+        box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+      }
+      .app-tile {
+        border-radius: 16px;
+        padding: 14px;
+        color: white;
+        font-weight: 700;
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .app-tile-blue {
+        background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+      }
+      .app-tile-green {
+        background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      }
+      .app-input {
+        margin-top: 12px;
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .app-input-text {
+        font-size: 11px;
+        color: #94a3b8;
+      }
+      .app-input-actions {
+        display: flex;
+        gap: 6px;
+      }
+      .app-input-btn {
+        background: #0ea5e9;
+        color: white;
+        font-size: 9px;
+        font-weight: 700;
+        padding: 6px 10px;
+        border-radius: 14px;
+      }
+      .app-input-btn-ghost {
+        background: #f1f5f9;
+        color: #334155;
+      }
+      .app-search {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 14px;
+        padding: 10px 14px;
+        font-size: 11px;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+      }
+      .app-tabs-light .app-tab {
+        background: #f1f5f9;
+        color: #64748b;
+      }
+      .app-tab-pill {
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: #f1f5f9;
+        font-size: 11px;
+        font-weight: 700;
+        color: #64748b;
+      }
+      .app-tab-pill-active {
+        background: #0ea5e9;
+        color: white;
+      }
+      .app-feature-card {
+        background: #f0f7ff;
+        border-radius: 16px;
+        padding: 12px;
+        border: 1px solid #dbeafe;
+      }
+      .app-feature-thumb {
+        height: 80px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #c7e9ff 0%, #dfe7ff 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1f2937;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .app-chip {
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: #eef6ff;
+        border: 1px solid #cfe3ff;
+        font-size: 9px;
+        font-weight: 700;
+        color: #2563eb;
+      }
+      .app-progress {
+        height: 6px;
+        background: #e2e8f0;
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .app-progress-fill {
+        height: 100%;
+        background: #60a5fa;
+      }
+      .app-day-pill {
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: #f1f5f9;
+        color: #64748b;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .app-day-pill-active {
+        background: #0ea5e9;
+        color: white;
+      }
+      .app-timeline {
+        display: grid;
+        gap: 12px;
+      }
+      .app-timeline-item {
+        display: grid;
+        grid-template-columns: 34px 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+      .app-timeline-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #e0f2fe;
+        color: #0284c7;
+        font-size: 9px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .app-donut {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background: conic-gradient(
+          #3b82f6 0% 42%,
+          #0ea5e9 42% 74%,
+          #22c55e 74% 92%,
+          #f97316 92% 100%
+        );
+        display: grid;
+        place-items: center;
+        margin: 0 auto 12px;
+      }
+      .app-donut::after {
+        content: "";
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: white;
+      }
+      .app-bubble {
+        padding: 12px;
+        border-radius: 18px;
+        background: white;
+        margin-bottom: 12px;
+        font-size: 12px;
+        box-shadow: var(--app-card-shadow);
+      }
+      .app-bubble-ai {
+        border-bottom-left-radius: 4px;
+        display: flex;
+        gap: 8px;
+      }
+      .app-ai-icon {
+        width: 20px;
+        height: 20px;
+        background: var(--app-blue);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 10px;
+        flex-shrink: 0;
+      }
+      .app-prompt-pill {
+        padding: 10px 14px;
+        border-radius: 12px;
+        background: white;
+        border: 1px solid #f1f5f9;
+        margin-bottom: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #475569;
+      }
+      .app-grid-btn {
+        border-radius: 16px;
+        padding: 12px;
+        color: white;
+        font-weight: 700;
+        font-size: 11px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .app-progress-container {
+        height: 6px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+        margin: 8px 0;
+        overflow: hidden;
+      }
+      .app-progress-bar {
+        height: 100%;
+        background: white;
+      }
+      .app-tabs {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      .app-tab {
+        padding: 6px 14px;
+        border-radius: 20px;
+        background: #f1f5f9;
+        font-size: 11px;
+        font-weight: 700;
+        color: #64748b;
+        white-space: nowrap;
+      }
+      .app-tab-active {
+        background: var(--app-blue);
+        color: white;
+      }
+      .app-bottom-nav {
+        background: white;
+        border-top: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: space-around;
+        padding: 8px 0;
+        position: sticky;
+        bottom: 0;
+        flex-shrink: 0;
+      }
+      .app-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        color: #94a3b8;
+        font-size: 9px;
+        font-weight: 600;
+      }
+      .app-nav-icon {
+        width: 16px;
+        height: 16px;
+        border-radius: 5px;
+        border: 1px solid #cbd5f5;
+        background: white;
+      }
+      .app-nav-item-active {
+        color: var(--app-blue);
+      }
+      .app-nav-item-active .app-nav-icon {
+        border-color: #0ea5e9;
+        background: rgba(14, 165, 233, 0.15);
+      }
+
+      .phone--a {
+        top: 16px;
+        left: 2%;
+        transform: rotate(-6deg);
+      }
+      .phone--b {
+        top: 0;
+        right: 8%;
+        transform: rotate(6deg);
+        animation-delay: 0.6s;
+      }
+      .phone--c {
+        top: 110px;
+        left: 36%;
+        transform: rotate(-2deg);
+        animation-delay: 1.2s;
+      }
+
+      /* SECTION STYLES */
+      .section {
+        padding: 72px 0;
+      }
+      .sectionTitle {
+        margin: 0;
+        font-family: "Syne", sans-serif;
+        font-size: 34px;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+      }
+      .sectionHeader {
+        text-align: center;
+        margin-bottom: 24px;
+      }
+      .sectionHeader .sectionLead {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .sectionIcon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        background: rgba(10, 25, 48, 0.08);
+        margin-right: 10px;
+      }
+      .sectionIcon svg {
+        width: 18px;
+        height: 18px;
+        color: var(--brand);
+      }
+      .sectionLead {
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: 16px;
+        font-weight: 600;
+        max-width: 72ch;
+      }
+      .grid2 {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 34px;
+        align-items: center;
+      }
+      .grid2Alt {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 34px;
+        align-items: center;
+      }
+      .featureBand {
+        position: relative;
+        overflow: hidden;
+        color: var(--textDark);
+      }
+      .featureBand::before {
+        content: "";
+        position: absolute;
+        top: -600px; /* Use massive absolute pixel bleeding to prevent exposed edges at any screen height */
+        bottom: -600px;
+        left: 0;
+        right: 0;
+        background: var(
+          --bg,
+          linear-gradient(
+            120deg,
+            rgba(10, 25, 48, 0.08),
+            rgba(10, 25, 48, 0.02)
+          )
+        );
+        transform: translateY(var(--parallax, 0px));
+        transition: transform 80ms linear;
+        background-size: cover;
+        background-position: center;
+        z-index: 0;
+      }
+      .featureBand .wrap {
+        position: relative;
+        z-index: 1;
+      }
+      .featureRow {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 34px;
+        align-items: center;
+      }
+      .featureRowAlt {
+        grid-template-columns: 0.9fr 1.1fr;
+      }
+      .featureMedia {
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 24px 50px rgba(15, 23, 42, 0.2);
+        background: white;
+      }
+      .featureImage {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .featureList {
+        margin: 16px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+        color: #415255;
+        font-weight: 600;
+      }
+      .featureList li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .featureList svg {
+        width: 16px;
+        height: 16px;
+        color: var(--brand);
+      }
+      .integrationBar {
+        margin-top: 36px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 18px;
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .integrationLabel {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .integrationPills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .pill {
+        padding: 8px 14px;
+        border-radius: var(--pill);
+        background: rgba(255, 255, 255, 0.12);
+        color: white;
+        font-weight: 700;
+        font-size: 12px;
+      }
+      .featureGrid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 28px;
+      }
+      .featureCard {
+        background: white;
+        border: 1px solid #e5edf6;
+        border-radius: var(--radius);
+        padding: 18px;
+        box-shadow: var(--app-card-shadow);
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease;
+      }
+      .featureCard:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+      }
+      .featureCard h3 {
+        margin: 0 0 8px;
+        font-size: 16px;
+      }
+      .featureTitle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+      }
+      .featureIcon {
+        width: 16px;
+        height: 16px;
+        color: var(--brand);
+      }
+      .featureCard p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        min-height: 44px;
+      }
+      .faq {
+        max-width: 860px;
+        margin: 0 auto;
+        display: grid;
+        gap: 12px;
+      }
+      .faq details {
+        background: white;
+        border-radius: 14px;
+        border: 1px solid #e5edf6;
+        box-shadow: var(--app-card-shadow);
+        padding: 14px 18px;
+      }
+      .faq summary {
+        cursor: pointer;
+        font-weight: 700;
+        list-style: none;
+      }
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+      .faqBody {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 600ms ease,
+          transform 600ms ease;
+      }
+      section.reveal,
+      section.reveal.is-visible {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-item {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 600ms ease,
+          transform 600ms ease;
+      }
+      .reveal.is-visible .reveal-item {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .cta {
+        background: linear-gradient(120deg, #b8f0ea 0%, #80d0c7 100%);
+        padding: 72px 0;
+      }
+      .ctaInner {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 34px;
+        align-items: center;
+      }
+      .ctaTitle {
+        margin: 0;
+        font-family: "Syne", sans-serif;
+        font-size: clamp(32px, 4vw, 46px);
+        letter-spacing: -0.03em;
+      }
+      .ctaSub {
+        margin: 12px 0 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: rgba(10, 25, 48, 0.75);
+        max-width: 55ch;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 880px) {
+        .navInner {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .grid2,
+        .grid2Alt {
+          grid-template-columns: 1fr;
+        }
+        .featureRow,
+        .featureRowAlt {
+          grid-template-columns: 1fr;
+        }
+        .featureGrid {
+          grid-template-columns: 1fr;
+        }
+        .ctaInner {
+          grid-template-columns: 1fr;
+        }
+        .phone {
+          position: relative;
+          inset: auto;
+          transform: none;
+          width: 100%;
+          max-width: 320px;
+          height: 560px;
+          margin: 0 auto;
+        }
+        .phone--a,
+        .phone--b,
+        .phone--c {
+          top: auto;
+          left: auto;
+          right: auto;
+          margin-bottom: 20px;
+          animation: none;
+        }
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(var(--float-rotate, 0deg));
+        }
+        50% {
+          transform: translateY(-10px) rotate(var(--float-rotate, 0deg));
+        }
+      }
+
+      .phone--a {
+        --float-rotate: -6deg;
+      }
+      .phone--b {
+        --float-rotate: 6deg;
+      }
+      .phone--c {
+        --float-rotate: -2deg;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .phone,
+        .heroTitle,
+        .heroSub,
+        .heroCtas,
+        .heroBadges {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 1) NAVBAR -->
+    <nav class="nav" id="top">
+      <div class="wrap navInner">
+        <a class="logo" href="#home">JalanJalanMY</a>
+        <div class="navLinks">
+          <a href="#home">Home</a>
+          <a href="#how">How It Works</a>
+          <a href="#preview">Interface</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="navCta">
+          <a class="btn btnPrimary" href="#cta">Get Early Access</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 2) HERO -->
+    <header class="hero" id="home">
+      <div class="wrap heroInner">
+        <div class="grid2">
+          <div class="heroCopy">
+            <h1 class="heroTitle">Trip planning,<br />made effortless.</h1>
+            <p class="heroSub">
+              One AI chat. Hotels, tours, itinerary — all sorted.
+            </p>
+            <div class="heroCtas">
+              <a class="btn btnPrimary" href="#cta">Get Early Access</a>
+              <a class="btn btnGhost" href="#how">See How It Works</a>
+            </div>
+            <div class="heroBadges">
+              <div class="heroBadge">Powered by Gemini AI</div>
+              <div class="heroBadge">Malaysia-first travel planning</div>
+            </div>
+          </div>
+
+          <div class="phones">
+            <div class="phone phone--a phoneScreenshot">
+              <img
+                class="phoneImage"
+                src="Screenshot%202026-05-25%20011812.png"
+                alt="JalanJalanMY home screen"
+              />
+            </div>
+            <div class="phone phone--b phoneScreenshot">
+              <img
+                class="phoneImage"
+                src="Screenshot%202026-05-25%20011851.png"
+                alt="JalanJalanMY trip itinerary screen"
+              />
+            </div>
+            <div class="phone phone--c phoneScreenshot">
+              <img
+                class="phoneImage"
+                src="Screenshot%202026-05-25%20011910.png"
+                alt="JalanJalanMY budget tracker screen"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- INTEGRATIONS BAR -->
+    <section
+      class="section reveal"
+      style="
+        margin-top: -2px;
+        padding-top: 42px;
+        background: var(--dark);
+        color: white;
+      "
+    >
+      <div class="wrap">
+        <div class="integrationBar reveal-item">
+          <div class="integrationLabel">Booking powered by</div>
+          <div class="integrationPills">
+            <span class="pill">Agoda</span>
+            <span class="pill">Klook</span>
+            <span class="pill">Google Maps</span>
+            <span class="pill">Google Calendar</span>
+            <span class="pill">Firebase</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE BANDS -->
+    <section
+      class="section featureBand reveal"
+      data-parallax
+      style="
+        --bg:
+          radial-gradient(
+            900px 360px at 12% 18%,
+            rgba(128, 208, 199, 0.22),
+            transparent 60%
+          ),
+          linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0.92),
+            rgba(244, 247, 251, 0.92)
+          );
+      "
+    >
+      <div class="wrap">
+        <div class="featureRow">
+          <div class="reveal-group" data-stagger>
+            <h2 class="sectionTitle reveal-item">
+              <span class="sectionIcon"><i data-lucide="sparkles"></i></span>
+              AI Models
+            </h2>
+            <p class="sectionLead reveal-item">
+              Multimodal reasoning tuned for Malaysia travel planning and
+              booking.
+            </p>
+            <ul class="featureList">
+              <li class="reveal-item">
+                <i data-lucide="check-circle"></i>Natural-language requests to
+                full itineraries
+              </li>
+              <li class="reveal-item">
+                <i data-lucide="check-circle"></i>Budget-aware planning with
+                real availability
+              </li>
+              <li class="reveal-item">
+                <i data-lucide="check-circle"></i>Smart follow-ups for missing
+                trip details
+              </li>
+            </ul>
+          </div>
+          <div class="phone phoneScreenshot phone-relative reveal-item">
+            <img
+              class="phoneImage"
+              src="Screenshot%202026-05-25%20011812.png"
+              alt="JalanJalanMY AI planning interface"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="section featureBand reveal"
+      data-parallax
+      style="
+        --bg:
+          radial-gradient(
+            900px 360px at 88% 12%,
+            rgba(0, 147, 233, 0.22),
+            transparent 60%
+          ),
+          linear-gradient(
+            120deg,
+            rgba(244, 247, 251, 0.96),
+            rgba(255, 255, 255, 0.96)
+          );
+      "
+    >
+      <div class="wrap">
+        <div class="featureRow featureRowAlt">
+          <div class="phone phoneScreenshot phone-relative reveal-item">
+            <img
+              class="phoneImage"
+              src="Screenshot%202026-05-25%20011837.png"
+              alt="JalanJalanMY knowledge and discovery view"
+            />
+          </div>
+          <div class="reveal-group" data-stagger>
+            <h2 class="sectionTitle reveal-item">
+              <span class="sectionIcon"><i data-lucide="book-open"></i></span>
+              Knowledge Layer
+            </h2>
+            <p class="sectionLead reveal-item">
+              Curated places, tours, and local context with up-to-date sources.
+            </p>
+            <ul class="featureList">
+              <li class="reveal-item">
+                <i data-lucide="check-circle"></i>Agoda and Klook inventory
+                aligned
+              </li>
+              <li class="reveal-item">
+                <i data-lucide="check-circle"></i>Realtime pricing and
+                availability insights
+              </li>
+              <li class="reveal-item">
+                <i data-lucide="check-circle"></i>Route-aware recommendations by
+                day
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="section featureBand reveal"
+      data-parallax
+      style="
+        --bg:
+          radial-gradient(
+            900px 360px at 20% 16%,
+            rgba(128, 208, 199, 0.22),
+            transparent 60%
+          ),
+          linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0.94),
+            rgba(244, 247, 251, 0.94)
+          );
+      "
+    >
+      <div class="wrap">
+        <div class="featureRow">
+          <div class="reveal-group" data-stagger>
+            <h2 class="sectionTitle reveal-item">
+              <span class="sectionIcon"><i data-lucide="users"></i></span>
+              Social Signals
+            </h2>
+            <p class="sectionLead reveal-item">
+              Community-driven cues for what is trending and worth booking.
+            </p>
+            <ul class="featureList">
+              <li class="reveal-item">
+                <i data-lucide="check-circle"></i>Hotspots by season and
+                location
+              </li>
+              <li class="reveal-item">
+                <i data-lucide="check-circle"></i>Popularity signals for tours
+                and stays
+              </li>
+              <li class="reveal-item">
+                <i data-lucide="check-circle"></i>Smart alerts for price drops
+              </li>
+            </ul>
+          </div>
+          <div class="phone phoneScreenshot phone-relative reveal-item">
+            <img
+              class="phoneImage"
+              src="Screenshot%202026-05-25%20011851.png"
+              alt="JalanJalanMY activity and booking overview"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) HOW IT WORKS -->
+    <section class="section reveal" id="how">
+      <div class="wrap">
+        <div class="grid2Alt">
+          <div class="phone phoneScreenshot phone-relative reveal-item">
+            <img
+              class="phoneImage"
+              src="Screenshot%202026-05-25%20011837.png"
+              alt="JalanJalanMY discover screen"
+            />
+          </div>
+          <div>
+            <div class="sectionHeader reveal">
+              <h2 class="sectionTitle">
+                <span class="sectionIcon"><i data-lucide="route"></i></span>
+                How It Works
+              </h2>
+              <p class="sectionLead">From idea to full itinerary in seconds.</p>
+            </div>
+            <div
+              class="reveal-group"
+              data-stagger
+              style="display: grid; gap: 16px"
+            >
+              <div class="app-card reveal-item">
+                <strong>1. Tell us your trip</strong>
+                <p style="font-size: 14px; margin: 4px 0 0">
+                  “5 days in Penang, budget RM2000.”
+                </p>
+              </div>
+              <div class="app-card reveal-item">
+                <strong>2. AI builds your plan</strong>
+                <p style="font-size: 14px; margin: 4px 0 0">
+                  Optimized routes and bookings generated instantly.
+                </p>
+              </div>
+              <div class="app-card reveal-item">
+                <strong>3. Book & Go</strong>
+                <p style="font-size: 14px; margin: 4px 0 0">
+                  Confirm and sync to your calendar.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) PROFILE SECTION -->
+    <section class="section reveal" id="preview" style="background: #f1f5f9">
+      <div class="wrap">
+        <div class="grid2">
+          <div>
+            <div class="sectionHeader reveal">
+              <h2 class="sectionTitle">
+                <span class="sectionIcon"><i data-lucide="user"></i></span>
+                Personalized for you
+              </h2>
+              <p class="sectionLead">
+                JalanJalanMY learns your travel style to provide the best
+                recommendations.
+              </p>
+            </div>
+            <div class="featureGrid reveal-group" data-stagger>
+              <div class="featureCard reveal-item">
+                <h3 class="featureTitle">
+                  <i data-lucide="sparkles" class="featureIcon"></i>
+                  AI Trip Planner
+                </h3>
+                <p>
+                  Natural language to a complete itinerary with smart picks.
+                </p>
+              </div>
+              <div class="featureCard reveal-item">
+                <h3 class="featureTitle">
+                  <i data-lucide="hotel" class="featureIcon"></i>
+                  Hotel Search
+                </h3>
+                <p>Compare Agoda and more in one view with live pricing.</p>
+              </div>
+              <div class="featureCard reveal-item">
+                <h3 class="featureTitle">
+                  <i data-lucide="ticket" class="featureIcon"></i>
+                  Tour Booking
+                </h3>
+                <p>Tickets and experiences powered by Klook integrations.</p>
+              </div>
+              <div class="featureCard reveal-item">
+                <h3 class="featureTitle">
+                  <i data-lucide="calendar" class="featureIcon"></i>
+                  Calendar Sync
+                </h3>
+                <p>Auto-sync plans to Google Calendar with reminders.</p>
+              </div>
+              <div class="featureCard reveal-item">
+                <h3 class="featureTitle">
+                  <i data-lucide="bell" class="featureIcon"></i>
+                  Smart Alerts
+                </h3>
+                <p>Price drops, check-ins, and weather alerts delivered.</p>
+              </div>
+              <div class="featureCard reveal-item">
+                <h3 class="featureTitle">
+                  <i data-lucide="map" class="featureIcon"></i>
+                  Offline Maps
+                </h3>
+                <p>Download Malaysia maps for navigation without data.</p>
+              </div>
+            </div>
+          </div>
+          <div class="phone phoneScreenshot phone-relative reveal-item">
+            <img
+              class="phoneImage"
+              src="Screenshot%202026-05-25%20011923.png"
+              alt="JalanJalanMY profile screen"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section reveal" id="faq">
+      <div class="wrap">
+        <div class="sectionHeader reveal">
+          <h2 class="sectionTitle">
+            <span class="sectionIcon"><i data-lucide="help-circle"></i></span>
+            Frequently Asked Questions
+          </h2>
+          <p class="sectionLead">
+            Quick answers about the app, booking flow, and data sources.
+          </p>
+        </div>
+        <div class="faq reveal-group" data-stagger>
+          <details class="reveal-item">
+            <summary>Is JalanJalanMY live today?</summary>
+            <div class="faqBody">
+              The app is in active development. This site is a preview for
+              partners and early access.
+            </div>
+          </details>
+          <details class="reveal-item">
+            <summary>Which platforms are integrated?</summary>
+            <div class="faqBody">
+              We are integrating Agoda and Klook for hotels and tours, plus
+              Google Maps and Calendar for routing and scheduling.
+            </div>
+          </details>
+          <details class="reveal-item">
+            <summary>How does the AI build an itinerary?</summary>
+            <div class="faqBody">
+              It uses your budget, dates, and interests to plan routes, compare
+              bookings, and generate a day-by-day schedule.
+            </div>
+          </details>
+          <details class="reveal-item">
+            <summary>Will bookings happen inside the app?</summary>
+            <div class="faqBody">
+              JalanJalanMY will confirm availability and route you to partner
+              booking flows with deep links and tracking.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta reveal" id="cta">
+      <div class="wrap">
+        <div class="ctaInner reveal-group" data-stagger>
+          <div class="reveal-item">
+            <h2 class="ctaTitle">Plan your Malaysia trip today.</h2>
+            <p class="ctaSub">
+              Free to explore. No account needed yet. Get early access to the
+              agentic AI travel planner built for Malaysia.
+            </p>
+            <div
+              style="
+                margin-top: 20px;
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+              "
+            >
+              <a class="btn btnDark" href="#contact">Request Access</a>
+              <a
+                class="btn btnGhost"
+                href="#how"
+                style="border-color: rgba(10, 25, 48, 0.3); color: var(--dark)"
+                >View Features</a
+              >
+            </div>
+          </div>
+          <div class="phone phoneScreenshot phone-relative reveal-item">
+            <img
+              class="phoneImage"
+              src="Screenshot%202026-05-25%20011910.png"
+              alt="JalanJalanMY budget tracker screen"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) CONTACT -->
+    <section class="section reveal" id="contact">
+      <div class="wrap reveal-item">
+        <h2 class="sectionTitle">Contact</h2>
+        <div class="app-card" style="margin-top: 24px; padding: 24px">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px">
+            <div>
+              <h3 style="margin: 0 0 12px; font-size: 16px">
+                Operator Details
+              </h3>
+              <p style="font-size: 14px; margin: 0">
+                <strong>Muhammad Umair Arif</strong
+                ><br />muhammad_22005713@utp.edu.my<br />Universiti Teknologi
+                PETRONAS
+              </p>
+            </div>
+            <div>
+              <h3 style="margin: 0 0 12px; font-size: 16px">Platform Notes</h3>
+              <p style="font-size: 14px; margin: 0">
+                AI Travel Platform for Malaysia inbound tourists. Powered by
+                Gemini AI.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) FOOTER -->
+    <footer
+      style="
+        background: var(--dark);
+        color: white;
+        padding: 40px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      "
+    >
+      <div
+        class="wrap"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div
+          style="font-family: &quot;Syne&quot;, sans-serif; font-weight: 800"
+        >
+          JalanJalanMY
+        </div>
+        <div style="font-size: 12px; opacity: 0.6">
+          © 2026 JalanJalanMY. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      (function () {
+        var nav = document.querySelector(".nav");
+        window.addEventListener(
+          "scroll",
+          function () {
+            nav.classList.toggle("nav--solid", window.scrollY > 20);
+          },
+          { passive: true },
+        );
+      })();
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      var revealItems = document.querySelectorAll(".reveal");
+      var revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            entry.target.classList.toggle("is-visible", entry.isIntersecting);
+          });
+        },
+        { threshold: 0.15 },
+      );
+      revealItems.forEach(function (el) {
+        revealObserver.observe(el);
+      });
+
+      document.querySelectorAll("[data-stagger]").forEach(function (group) {
+        var items = group.querySelectorAll(".reveal-item");
+        items.forEach(function (item, index) {
+          item.style.transitionDelay = index * 80 + "ms";
+        });
+      });
+
+      var parallaxSections = document.querySelectorAll("[data-parallax]");
+      function updateParallax() {
+        parallaxSections.forEach(function (section) {
+          var rect = section.getBoundingClientRect();
+          var offset = rect.top * -0.15; // Parallax effect based on the element's position relative to the viewport
+          section.style.setProperty("--parallax", offset + "px");
+        });
+      }
+      if (parallaxSections.length) {
+        window.addEventListener("scroll", updateParallax, { passive: true });
+        updateParallax();
+      }
+    </script>
+  </body>
+</html>
