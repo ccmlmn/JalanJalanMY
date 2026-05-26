@@ -2,3 +2,6 @@ node_modules/
 .vercel/
 .env
 .DS_Store
+ 
+# Ignore Markdown files
+*.md
