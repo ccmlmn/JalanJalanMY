@@ -5,1405 +5,1352 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="JalanJalanMY — Agentic AI travel planner for Malaysia. One chat. Hotels, tours, itinerary — all sorted."
+      content="JalanJalanMY, the agentic AI travel companion for Malaysia. One chat plans hotels, tours, budget and a day-by-day itinerary."
     />
-    <title>JalanJalanMY — Your AI Travel Companion</title>
+    <title>JalanJalanMY: Your AI Travel Companion for Malaysia</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
     <style>
+      /* ============================================================
+         JalanJalanMY "Warm-Cool Ocean" design system
+         Cool ocean blues/teal (from the app) + warm sunset coral accent
+         Display: Sora · Body: Inter
+         ============================================================ */
       :root {
-        --dark: #0a1930;
-        --light: #f4f7fb;
-        --brand: #0093e9;
-        --lime: #80d0c7;
-        --textDark: #0a1930;
-        --textLight: #ffffff;
-        --muted: #5e7a93;
+        /* Ink / text */
+        --ink: #0a2540;
+        --ink-soft: #1c3d5a;
+        --muted: #5b7488;
 
-        /* App Specific Design Tokens */
-        --app-blue: #0093e9;
-        --app-gradient: linear-gradient(135deg, #0093e9 0%, #80d0c7 100%);
-        --app-bg: #f8faff;
-        --app-card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        --app-radius: 16px;
+        /* Ocean (brand primary, pulled from the app gradients) */
+        --ocean: #0593d6;
+        --ocean-deep: #0b6fc4;
+        --sky: #38bdf8;
+        --teal: #11b3c6;
 
-        --navOffset: 92px;
-        --radius: 14px;
-        --pill: 100px;
-        --max: 1160px;
-        --pad: 22px;
-        --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+        /* Warm accent (sunset coral, the deliberate non-purple pop) */
+        --coral: #ff6b4a;
+        --coral-deep: #fb4f2c;
+        --gold: #f7a13b;
+
+        /* Functional accents echoed from app (budget=green, transport=orange) */
+        --green: #1fae6a;
+
+        /* Surfaces */
+        --sand: #fbf8f3;
+        --mist: #eef4fb;
+        --surface: #ffffff;
+        --line: #e3ecf5;
+
+        /* Gradients */
+        --grad-ocean: linear-gradient(135deg, #0aa6e4 0%, #11b3c6 100%);
+        --grad-deep: linear-gradient(140deg, #0b6fc4 0%, #0a2540 100%);
+        --grad-sunset: linear-gradient(135deg, #ff8a4c 0%, #fb4f2c 100%);
+
+        /* Shape & shadow */
+        --r-sm: 12px;
+        --r: 18px;
+        --r-lg: 26px;
+        --pill: 999px;
+        --shadow-sm: 0 2px 10px rgba(10, 37, 64, 0.06);
+        --shadow: 0 18px 44px rgba(10, 37, 64, 0.1);
+        --shadow-lg: 0 34px 70px rgba(10, 37, 64, 0.22);
+
+        --max: 1180px;
+        --pad: 24px;
+        --nav-h: 74px;
       }
 
       * {
         box-sizing: border-box;
       }
-      html,
-      body {
-        min-height: 100%;
-        scrollbar-width: none;
-      }
       html {
         scroll-behavior: smooth;
       }
-      header[id],
-      section[id] {
-        scroll-margin-top: var(--navOffset);
-      }
       body {
         margin: 0;
-        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-        color: var(--textDark);
-        background: #f4f7fb;
-        line-height: 1.55;
-        -ms-overflow-style: none;
+        font-family: "Inter", system-ui, sans-serif;
+        color: var(--ink);
+        background: var(--sand);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
       }
-      body::-webkit-scrollbar {
-        width: 0;
-        height: 0;
+      section[id],
+      header[id] {
+        scroll-margin-top: var(--nav-h);
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Sora", sans-serif;
+        letter-spacing: -0.025em;
+        line-height: 1.08;
+        margin: 0;
+      }
+      p {
+        margin: 0;
       }
       a {
         color: inherit;
         text-decoration: none;
       }
-      a:hover {
-        text-decoration: underline;
+      img {
+        display: block;
+        max-width: 100%;
       }
       .wrap {
         max-width: var(--max);
         margin: 0 auto;
         padding: 0 var(--pad);
       }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ocean-deep);
+        background: rgba(5, 147, 214, 0.09);
+        border: 1px solid rgba(5, 147, 214, 0.18);
+        padding: 7px 14px;
+        border-radius: var(--pill);
+      }
+      .eyebrow svg {
+        width: 14px;
+        height: 14px;
+      }
+      .lead {
+        color: var(--muted);
+        font-size: 17px;
+        font-weight: 450;
+      }
 
+      /* ---------- Buttons ---------- */
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        padding: 12px 16px;
-        border-radius: 12px;
-        border: 1px solid rgba(10, 25, 48, 0.18);
-        background: rgba(255, 255, 255, 0.85);
-        color: var(--textDark);
-        font-weight: 700;
+        gap: 9px;
+        padding: 13px 22px;
+        border-radius: var(--pill);
+        font-family: "Inter", sans-serif;
+        font-weight: 650;
+        font-size: 15px;
+        border: 1px solid transparent;
         cursor: pointer;
         transition:
-          transform 140ms ease,
-          background 140ms ease;
-        user-select: none;
+          transform 160ms ease,
+          box-shadow 160ms ease,
+          background 160ms ease;
         white-space: nowrap;
       }
+      .btn svg {
+        width: 17px;
+        height: 17px;
+      }
       .btn:hover {
-        text-decoration: none;
-        transform: translateY(-1px) scale(1.01);
-        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.16);
+        transform: translateY(-2px);
       }
       .btn:active {
-        transform: translateY(0) scale(0.99);
+        transform: translateY(0);
       }
-      .btnPrimary {
-        background: var(--app-blue);
-        color: white;
-        border-color: rgba(0, 0, 0, 0.1);
+      .btn-primary {
+        background: var(--grad-ocean);
+        color: #fff;
+        box-shadow: 0 12px 26px rgba(5, 147, 214, 0.32);
       }
-      .btnDark {
-        background: var(--dark);
-        color: var(--textLight);
+      .btn-primary:hover {
+        box-shadow: 0 18px 34px rgba(5, 147, 214, 0.42);
       }
-      .btnGhost {
-        background: transparent;
-        color: var(--textLight);
-        border-color: rgba(255, 255, 255, 0.2);
+      .btn-accent {
+        background: var(--grad-sunset);
+        color: #fff;
+        box-shadow: 0 12px 26px rgba(251, 79, 44, 0.3);
       }
-      .btnLime {
-        background: var(--lime);
-        color: var(--dark);
-        border-color: rgba(10, 25, 48, 0.15);
+      .btn-accent:hover {
+        box-shadow: 0 18px 34px rgba(251, 79, 44, 0.4);
+      }
+      .btn-ghost {
+        background: var(--surface);
+        color: var(--ink);
+        border-color: var(--line);
+        box-shadow: var(--shadow-sm);
+      }
+      .btn-ghost:hover {
+        border-color: rgba(5, 147, 214, 0.4);
+      }
+      .btn-dark {
+        background: var(--ink);
+        color: #fff;
       }
 
-      /* NAVBAR */
+      /* ---------- Nav ---------- */
       .nav {
         position: sticky;
         top: 0;
-        z-index: 50;
-        background: rgba(10, 25, 48, 0.6);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(8px);
-        transition: all 180ms ease;
+        z-index: 60;
+        backdrop-filter: blur(14px);
+        background: rgba(251, 248, 243, 0.7);
+        border-bottom: 1px solid transparent;
+        transition:
+          background 220ms ease,
+          border-color 220ms ease,
+          box-shadow 220ms ease;
       }
-      .nav.nav--solid {
-        background: rgba(10, 25, 48, 0.92);
-        backdrop-filter: blur(10px);
-        border-bottom-color: rgba(255, 255, 255, 0.1);
+      .nav.is-stuck {
+        background: rgba(255, 255, 255, 0.86);
+        border-bottom-color: var(--line);
+        box-shadow: 0 6px 22px rgba(10, 37, 64, 0.06);
       }
-      .navInner {
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
+      .nav-inner {
+        height: var(--nav-h);
+        display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 14px 0;
+        justify-content: space-between;
+        gap: 18px;
       }
-      .logo {
+      .brand {
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        font-family: "Syne", sans-serif;
+        font-family: "Sora", sans-serif;
         font-weight: 800;
-        color: var(--textLight);
-        font-size: 18px;
-        line-height: 1;
-        white-space: nowrap;
+        font-size: 19px;
+        color: var(--ink);
       }
-      .logoMark {
-        display: block;
-        height: 54px;
+      .brand img {
+        height: 42px;
         width: auto;
-        object-fit: contain;
-        flex-shrink: 0;
       }
-      .logoText {
-        display: block;
+      .brand b {
+        color: var(--ocean-deep);
       }
-      .navLinks {
+      .nav-links {
         display: flex;
-        gap: 18px;
-        justify-content: center;
-        align-items: center;
+        gap: 4px;
       }
-      .navLinks a {
-        color: rgba(255, 255, 255, 0.8);
-        font-weight: 700;
-        font-size: 13px;
-        padding: 8px 10px;
-        border-radius: 10px;
+      .nav-links a {
+        font-size: 14.5px;
+        font-weight: 550;
+        color: var(--ink-soft);
+        padding: 9px 14px;
+        border-radius: var(--pill);
+        transition: background 140ms ease;
       }
-      .navCta {
-        display: flex;
-        justify-content: flex-end;
+      .nav-links a:hover {
+        background: rgba(5, 147, 214, 0.08);
+        color: var(--ocean-deep);
       }
-
-      /* HERO */
-      .hero {
-        background:
-          radial-gradient(
-            1100px 520px at 15% 10%,
-            rgba(0, 147, 233, 0.25),
-            transparent 60%
-          ),
-          var(--dark);
-        color: var(--textLight);
-        padding-top: 34px;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-      }
-      .heroInner {
-        padding: 30px 0 72px;
-        width: 100%;
-      }
-      .heroCopy {
-        text-align: center;
-      }
-      .heroTitle {
-        margin: 16px 0 12px;
-        font-family: "Syne", sans-serif;
-        font-weight: 800;
-        font-size: clamp(42px, 5.2vw, 66px);
-        letter-spacing: -0.04em;
-        line-height: 0.98;
-        animation: fadeUp 700ms ease both;
-      }
-      .heroSub {
-        margin: 0;
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 17px;
-        font-weight: 600;
-        max-width: 60ch;
-        animation: fadeUp 700ms ease both;
-        animation-delay: 80ms;
-      }
-      .heroCtas {
-        margin-top: 22px;
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        justify-content: center;
-        animation: fadeUp 700ms ease both;
-        animation-delay: 160ms;
-      }
-      .heroBadges {
-        margin-top: 16px;
+      .nav-cta {
         display: flex;
         gap: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-        animation: fadeUp 700ms ease both;
-        animation-delay: 220ms;
+        align-items: center;
       }
-      .heroBadge {
-        padding: 8px 12px;
-        border-radius: var(--pill);
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        font-size: 12px;
-        font-weight: 700;
-        color: rgba(255, 255, 255, 0.9);
-      }
-
-      /* PHONE MOCKUP */
-      .phones {
-        position: relative;
-        min-height: 560px;
-      }
-      .phone {
-        position: absolute;
-        width: 320px;
-        height: 560px;
-        border-radius: 34px;
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        background: rgba(255, 255, 255, 0.06);
-        box-shadow: var(--shadow);
-        overflow: hidden;
-        backdrop-filter: blur(8px);
-        animation: float 6s ease-in-out infinite;
-      }
-      .phone:before {
-        content: "";
-        position: absolute;
-        top: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 92px;
-        height: 22px;
-        border-radius: 999px;
-        background: rgba(0, 0, 0, 0.28);
-        z-index: 2;
-      }
-      .phoneScreenshot {
-        background: transparent;
-        border-color: rgba(255, 255, 255, 0.22);
-      }
-      .phoneScreenshot:before {
+      .nav-toggle {
         display: none;
       }
-      .phoneImage {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 30px;
-        display: block;
-      }
-      .phone-relative {
-        position: relative;
-        width: 100%;
-        max-width: 320px;
-        height: 560px;
-        margin: 0 auto;
-        transform: none !important;
-        animation: none !important;
-        inset: auto !important;
-      }
 
-      .screen {
-        position: absolute;
-        inset: 12px;
-        border-radius: 24px;
-        background: var(--app-bg);
-        color: var(--textDark);
-        overflow-y: auto;
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
-      }
-      .screen::-webkit-scrollbar {
-        width: 3px;
-      }
-      .screen::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.05);
-        border-radius: 10px;
-      }
-
-      /* App Components */
-      .app-header {
-        background: var(--app-gradient);
-        color: white;
-        padding: 24px 16px 16px;
-        border-radius: 0 0 24px 24px;
-        flex-shrink: 0;
-      }
-      .app-header-home {
-        background: transparent;
-        padding: 20px 16px 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-shrink: 0;
-      }
-      .app-content {
-        padding: 12px 16px;
-        flex: 1;
-      }
-      .app-card {
-        background: white;
-        border-radius: var(--app-radius);
-        padding: 12px;
-        margin-bottom: 12px;
-        box-shadow: var(--app-card-shadow);
-      }
-      .app-card-soft {
-        background: #f7fbff;
-        border-radius: 16px;
-        padding: 12px;
-        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-        border: 1px solid #e6f0ff;
-      }
-      .app-title {
-        font-size: 18px;
-        font-weight: 800;
-      }
-      .app-subtitle {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.85);
-      }
-      .app-header-gradient {
-        background: linear-gradient(180deg, #0ea5e9 0%, #2b6cff 100%);
-        color: white;
-        padding: 22px 16px 18px;
-        border-radius: 0 0 22px 22px;
-      }
-      .app-logo {
-        font-family: "Syne", sans-serif;
-        font-weight: 800;
-        color: #0ea5e9;
-        font-size: 18px;
-      }
-      .app-header-actions {
-        display: flex;
-        gap: 8px;
-      }
-      .app-icon-circle {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        border: 1px solid #dbeafe;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #0ea5e9;
-        font-size: 9px;
-        font-weight: 700;
+      /* ---------- Hero ---------- */
+      .hero {
         position: relative;
-        background: white;
-      }
-      .app-badge {
-        position: absolute;
-        top: -2px;
-        right: -2px;
-        background: #ef4444;
-        color: white;
-        font-size: 7px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .app-chat {
-        background: white;
-        border-radius: 16px;
-        padding: 12px;
-        display: flex;
-        gap: 10px;
-        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-        border: 1px solid #eef2ff;
-        font-size: 12px;
-      }
-      .app-chat-icon {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: #0ea5e9;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 10px;
-        font-weight: 700;
-        flex-shrink: 0;
-      }
-      .app-pill {
-        background: white;
-        border-radius: 14px;
-        padding: 10px 12px;
-        border: 1px solid #e6eefb;
-        font-size: 12px;
-        font-weight: 600;
-        color: #334155;
-        box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
-      }
-      .app-tile {
-        border-radius: 16px;
-        padding: 14px;
-        color: white;
-        font-weight: 700;
-        font-size: 12px;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-      .app-tile-blue {
-        background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
-      }
-      .app-tile-green {
-        background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-      }
-      .app-input {
-        margin-top: 12px;
-        background: white;
-        border: 1px solid #e2e8f0;
-        border-radius: 20px;
-        padding: 10px 12px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-      }
-      .app-input-text {
-        font-size: 11px;
-        color: #94a3b8;
-      }
-      .app-input-actions {
-        display: flex;
-        gap: 6px;
-      }
-      .app-input-btn {
-        background: #0ea5e9;
-        color: white;
-        font-size: 9px;
-        font-weight: 700;
-        padding: 6px 10px;
-        border-radius: 14px;
-      }
-      .app-input-btn-ghost {
-        background: #f1f5f9;
-        color: #334155;
-      }
-      .app-search {
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 14px;
-        padding: 10px 14px;
-        font-size: 11px;
-        color: white;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-      }
-      .app-tabs-light .app-tab {
-        background: #f1f5f9;
-        color: #64748b;
-      }
-      .app-tab-pill {
-        padding: 8px 14px;
-        border-radius: 999px;
-        background: #f1f5f9;
-        font-size: 11px;
-        font-weight: 700;
-        color: #64748b;
-      }
-      .app-tab-pill-active {
-        background: #0ea5e9;
-        color: white;
-      }
-      .app-feature-card {
-        background: #f0f7ff;
-        border-radius: 16px;
-        padding: 12px;
-        border: 1px solid #dbeafe;
-      }
-      .app-feature-thumb {
-        height: 80px;
-        border-radius: 12px;
-        background: linear-gradient(135deg, #c7e9ff 0%, #dfe7ff 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #1f2937;
-        font-size: 12px;
-        font-weight: 700;
-        margin-bottom: 8px;
-      }
-      .app-chip {
-        padding: 4px 10px;
-        border-radius: 999px;
-        background: #eef6ff;
-        border: 1px solid #cfe3ff;
-        font-size: 9px;
-        font-weight: 700;
-        color: #2563eb;
-      }
-      .app-progress {
-        height: 6px;
-        background: #e2e8f0;
-        border-radius: 999px;
         overflow: hidden;
+        padding: 70px 0 90px;
       }
-      .app-progress-fill {
-        height: 100%;
-        background: #60a5fa;
-      }
-      .app-day-pill {
-        padding: 8px 14px;
-        border-radius: 999px;
-        background: #f1f5f9;
-        color: #64748b;
-        font-size: 11px;
-        font-weight: 700;
-      }
-      .app-day-pill-active {
-        background: #0ea5e9;
-        color: white;
-      }
-      .app-timeline {
-        display: grid;
-        gap: 12px;
-      }
-      .app-timeline-item {
-        display: grid;
-        grid-template-columns: 34px 1fr;
-        gap: 10px;
-        align-items: start;
-      }
-      .app-timeline-icon {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: #e0f2fe;
-        color: #0284c7;
-        font-size: 9px;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .app-donut {
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-        background: conic-gradient(
-          #3b82f6 0% 42%,
-          #0ea5e9 42% 74%,
-          #22c55e 74% 92%,
-          #f97316 92% 100%
-        );
-        display: grid;
-        place-items: center;
-        margin: 0 auto 12px;
-      }
-      .app-donut::after {
+      .hero::before {
         content: "";
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        background: white;
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            760px 520px at 8% -8%,
+            rgba(17, 179, 198, 0.22),
+            transparent 60%
+          ),
+          radial-gradient(
+            720px 520px at 100% 0%,
+            rgba(5, 147, 214, 0.18),
+            transparent 55%
+          ),
+          radial-gradient(
+            600px 480px at 78% 110%,
+            rgba(255, 138, 76, 0.12),
+            transparent 60%
+          );
+        z-index: -1;
       }
-      .app-bubble {
-        padding: 12px;
-        border-radius: 18px;
-        background: white;
-        margin-bottom: 12px;
-        font-size: 12px;
-        box-shadow: var(--app-card-shadow);
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.02fr 0.98fr;
+        gap: 40px;
+        align-items: center;
       }
-      .app-bubble-ai {
-        border-bottom-left-radius: 4px;
+      .hero-title {
+        font-size: clamp(40px, 5.4vw, 66px);
+        font-weight: 800;
+        margin: 20px 0 18px;
+      }
+      .hero-title .grad {
+        background: linear-gradient(110deg, var(--ocean) 10%, var(--teal) 60%, var(--coral) 130%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero-sub {
+        font-size: 18.5px;
+        color: var(--ink-soft);
+        max-width: 30ch;
+        font-weight: 450;
+      }
+      .hero-ctas {
+        margin-top: 28px;
         display: flex;
-        gap: 8px;
+        gap: 12px;
+        flex-wrap: wrap;
       }
-      .app-ai-icon {
-        width: 20px;
-        height: 20px;
-        background: var(--app-blue);
-        border-radius: 50%;
+      .hero-trust {
+        margin-top: 30px;
+        display: flex;
+        gap: 22px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .trust-item {
         display: flex;
         align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 10px;
-        flex-shrink: 0;
-      }
-      .app-prompt-pill {
-        padding: 10px 14px;
-        border-radius: 12px;
-        background: white;
-        border: 1px solid #f1f5f9;
-        margin-bottom: 8px;
-        font-size: 12px;
+        gap: 9px;
+        font-size: 13.5px;
         font-weight: 600;
-        color: #475569;
+        color: var(--ink-soft);
       }
-      .app-grid-btn {
-        border-radius: 16px;
-        padding: 12px;
-        color: white;
-        font-weight: 700;
-        font-size: 11px;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-      .app-progress-container {
-        height: 6px;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 3px;
-        margin: 8px 0;
-        overflow: hidden;
-      }
-      .app-progress-bar {
-        height: 100%;
-        background: white;
-      }
-      .app-tabs {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 12px;
-        overflow-x: auto;
-        padding-bottom: 4px;
-      }
-      .app-tab {
-        padding: 6px 14px;
-        border-radius: 20px;
-        background: #f1f5f9;
-        font-size: 11px;
-        font-weight: 700;
-        color: #64748b;
-        white-space: nowrap;
-      }
-      .app-tab-active {
-        background: var(--app-blue);
-        color: white;
-      }
-      .app-bottom-nav {
-        background: white;
-        border-top: 1px solid #f1f5f9;
-        display: flex;
-        justify-content: space-around;
-        padding: 8px 0;
-        position: sticky;
-        bottom: 0;
-        flex-shrink: 0;
-      }
-      .app-nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2px;
-        color: #94a3b8;
-        font-size: 9px;
-        font-weight: 600;
-      }
-      .app-nav-icon {
-        width: 16px;
-        height: 16px;
-        border-radius: 5px;
-        border: 1px solid #cbd5f5;
-        background: white;
-      }
-      .app-nav-item-active {
-        color: var(--app-blue);
-      }
-      .app-nav-item-active .app-nav-icon {
-        border-color: #0ea5e9;
-        background: rgba(14, 165, 233, 0.15);
-      }
-
-      .phone--a {
-        top: 16px;
-        left: 2%;
-        transform: rotate(-6deg);
-      }
-      .phone--b {
-        top: 0;
-        right: 8%;
-        transform: rotate(6deg);
-        animation-delay: 0.6s;
-      }
-      .phone--c {
-        top: 110px;
-        left: 36%;
-        transform: rotate(-2deg);
-        animation-delay: 1.2s;
-      }
-
-      /* SECTION STYLES */
-      .section {
-        padding: 72px 0;
-      }
-      .sectionTitle {
-        margin: 0;
-        font-family: "Syne", sans-serif;
-        font-size: 34px;
-        letter-spacing: -0.03em;
-        line-height: 1.1;
-      }
-      .sectionHeader {
-        text-align: center;
-        margin-bottom: 24px;
-      }
-      .sectionHeader .sectionLead {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .sectionIcon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 34px;
-        height: 34px;
-        border-radius: 12px;
-        background: rgba(10, 25, 48, 0.08);
-        margin-right: 10px;
-      }
-      .sectionIcon svg {
+      .trust-item svg {
         width: 18px;
         height: 18px;
-        color: var(--brand);
+        color: var(--ocean);
       }
-      .sectionLead {
-        margin: 12px 0 0;
-        color: var(--muted);
-        font-size: 16px;
-        font-weight: 600;
-        max-width: 72ch;
-      }
-      .grid2 {
-        display: grid;
-        grid-template-columns: 1.05fr 0.95fr;
-        gap: 34px;
-        align-items: center;
-      }
-      .grid2Alt {
-        display: grid;
-        grid-template-columns: 0.95fr 1.05fr;
-        gap: 34px;
-        align-items: center;
-      }
-      .featureBand {
+
+      /* ---------- Device / phone frame ---------- */
+      .hero-stage {
         position: relative;
-        overflow: hidden;
-        color: var(--textDark);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 600px;
       }
-      .featureBand::before {
-        content: "";
+      .stage-glow {
         position: absolute;
-        top: -600px; /* Use massive absolute pixel bleeding to prevent exposed edges at any screen height */
-        bottom: -600px;
-        left: 0;
-        right: 0;
-        background: var(
-          --bg,
-          linear-gradient(
-            120deg,
-            rgba(10, 25, 48, 0.08),
-            rgba(10, 25, 48, 0.02)
-          )
-        );
-        transform: translateY(var(--parallax, 0px));
-        transition: transform 80ms linear;
-        background-size: cover;
-        background-position: center;
+        width: 360px;
+        height: 360px;
+        border-radius: 50%;
+        background: var(--grad-ocean);
+        filter: blur(80px);
+        opacity: 0.35;
         z-index: 0;
       }
-      .featureBand .wrap {
+      .device {
         position: relative;
         z-index: 1;
+        width: 300px;
+        padding: 13px;
+        border-radius: 46px;
+        background: linear-gradient(160deg, #20364c 0%, #0a2540 100%);
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transform: rotate(-3deg);
+        animation: floaty 7s ease-in-out infinite;
       }
-      .featureRow {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 34px;
-        align-items: center;
+      .device::before {
+        content: "";
+        position: absolute;
+        top: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 86px;
+        height: 20px;
+        background: #0a2540;
+        border-radius: var(--pill);
+        z-index: 3;
       }
-      .featureRowAlt {
-        grid-template-columns: 0.9fr 1.1fr;
-      }
-      .featureMedia {
-        border-radius: 22px;
+      .device-screen {
+        border-radius: 34px;
         overflow: hidden;
-        box-shadow: 0 24px 50px rgba(15, 23, 42, 0.2);
-        background: white;
+        background: #fff;
       }
-      .featureImage {
-        display: block;
+      .device-screen img {
         width: 100%;
         height: auto;
       }
-      .featureList {
-        margin: 16px 0 0;
-        padding: 0;
-        list-style: none;
+      .float-card {
+        position: absolute;
+        z-index: 2;
+        background: #ffffff;
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        box-shadow: var(--shadow);
+        padding: 12px 14px;
+        display: flex;
+        gap: 11px;
+        align-items: center;
+        animation: floaty 6s ease-in-out infinite;
+      }
+      .float-card .fc-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
         display: grid;
-        gap: 10px;
-        color: #415255;
-        font-weight: 600;
+        place-items: center;
+        color: #fff;
+        flex-shrink: 0;
       }
-      .featureList li {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+      .float-card .fc-icon svg {
+        width: 19px;
+        height: 19px;
       }
-      .featureList svg {
-        width: 16px;
-        height: 16px;
-        color: var(--brand);
-      }
-      .integrationBar {
-        margin-top: 36px;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 18px;
-        padding: 14px 18px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-        flex-wrap: wrap;
-      }
-      .integrationLabel {
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.65);
-      }
-      .integrationPills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      .pill {
-        padding: 8px 14px;
-        border-radius: var(--pill);
-        background: rgba(255, 255, 255, 0.12);
-        color: white;
+      .fc-title {
+        font-size: 13px;
         font-weight: 700;
-        font-size: 12px;
+        color: var(--ink);
       }
-      .featureGrid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-        margin-top: 28px;
+      .fc-sub {
+        font-size: 11.5px;
+        color: var(--muted);
       }
-      .featureCard {
-        background: white;
-        border: 1px solid #e5edf6;
-        border-radius: var(--radius);
-        padding: 18px;
-        box-shadow: var(--app-card-shadow);
-        transition:
-          transform 180ms ease,
-          box-shadow 180ms ease;
+      .float-card.fc-a {
+        top: 54px;
+        left: -26px;
+        animation-delay: 0.4s;
       }
-      .featureCard:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+      .float-card.fc-b {
+        bottom: 96px;
+        right: -34px;
+        animation-delay: 1.4s;
       }
-      .featureCard h3 {
-        margin: 0 0 8px;
-        font-size: 16px;
+      .float-card.fc-c {
+        bottom: 18px;
+        left: 6px;
+        animation-delay: 2.2s;
       }
-      .featureTitle {
+
+      /* ---------- Marquee / integrations ---------- */
+      .logos {
+        padding: 30px 0 8px;
+      }
+      .logos-label {
+        text-align: center;
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 18px;
+      }
+      .logos-row {
         display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+      .logo-pill {
+        display: inline-flex;
         align-items: center;
         gap: 8px;
+        padding: 10px 18px;
+        border-radius: var(--pill);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        font-weight: 650;
+        font-size: 14px;
+        color: var(--ink-soft);
+        box-shadow: var(--shadow-sm);
+      }
+      .logo-pill .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--ocean);
+      }
+
+      /* ---------- Section scaffolding ---------- */
+      .section {
+        padding: 92px 0;
+      }
+      .section-head {
+        max-width: 620px;
+        margin: 0 auto 52px;
+        text-align: center;
+      }
+      .section-head h2 {
+        font-size: clamp(30px, 3.6vw, 42px);
+        font-weight: 800;
+        margin: 16px 0 14px;
+      }
+
+      /* ---------- How it works ---------- */
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        position: relative;
+      }
+      .step {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--r-lg);
+        padding: 28px 24px;
+        box-shadow: var(--shadow-sm);
+        transition:
+          transform 200ms ease,
+          box-shadow 200ms ease;
+      }
+      .step:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+      }
+      .step-num {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        background: var(--grad-ocean);
+        color: #fff;
+        font-family: "Sora", sans-serif;
+        font-weight: 700;
+        font-size: 19px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 18px;
+        box-shadow: 0 10px 22px rgba(5, 147, 214, 0.28);
+      }
+      .step:nth-child(2) .step-num {
+        background: var(--grad-sunset);
+        box-shadow: 0 10px 22px rgba(251, 79, 44, 0.26);
+      }
+      .step:nth-child(3) .step-num {
+        background: linear-gradient(135deg, #22c55e, #15a05a);
+        box-shadow: 0 10px 22px rgba(31, 174, 106, 0.26);
+      }
+      .step h3 {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+      .step p {
+        color: var(--muted);
         font-size: 15px;
       }
-      .featureIcon {
+      .step .quote {
+        margin-top: 14px;
+        font-size: 13.5px;
+        font-style: italic;
+        color: var(--ocean-deep);
+        background: rgba(5, 147, 214, 0.07);
+        border-left: 3px solid var(--ocean);
+        padding: 8px 12px;
+        border-radius: 0 10px 10px 0;
+      }
+
+      /* ---------- Feature bands ---------- */
+      .band {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .band + .band {
+        margin-top: 96px;
+      }
+      .band.reverse .band-media {
+        order: 2;
+      }
+      .band-media {
+        display: flex;
+        justify-content: center;
+        position: relative;
+      }
+      .band-media .device {
+        width: 280px;
+        transform: rotate(2deg);
+        animation: none;
+      }
+      .band.reverse .band-media .device {
+        transform: rotate(-2deg);
+      }
+      .band-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--teal);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .band-tag svg {
         width: 16px;
         height: 16px;
-        color: var(--brand);
       }
-      .featureCard p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 14px;
-        min-height: 44px;
+      .band h2 {
+        font-size: clamp(26px, 3.2vw, 38px);
+        font-weight: 800;
+        margin: 12px 0 14px;
       }
-      .faq {
-        max-width: 860px;
-        margin: 0 auto;
+      .band-list {
+        list-style: none;
+        padding: 0;
+        margin: 22px 0 0;
         display: grid;
+        gap: 13px;
+      }
+      .band-list li {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        font-size: 15.5px;
+        font-weight: 500;
+        color: var(--ink-soft);
+      }
+      .band-list .tick {
+        width: 24px;
+        height: 24px;
+        border-radius: 8px;
+        background: rgba(5, 147, 214, 0.12);
+        color: var(--ocean-deep);
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+      }
+      .band-list .tick svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      /* ---------- Bento feature grid ---------- */
+      .bento {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 20px;
+      }
+      .tile {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--r-lg);
+        padding: 26px;
+        box-shadow: var(--shadow-sm);
+        transition:
+          transform 200ms ease,
+          box-shadow 200ms ease,
+          border-color 200ms ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .tile:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+        border-color: rgba(5, 147, 214, 0.35);
+      }
+      .tile.span3 {
+        grid-column: span 3;
+      }
+      .tile.span2 {
+        grid-column: span 2;
+      }
+      .tile.feature {
+        grid-column: span 3;
+        background: var(--grad-deep);
+        color: #fff;
+        border: none;
+      }
+      .tile-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 16px;
+        color: #fff;
+        background: var(--grad-ocean);
+      }
+      .tile.feature .tile-icon {
+        background: var(--grad-sunset);
+      }
+      .tile-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+      .tile h3 {
+        font-size: 19px;
+        margin-bottom: 7px;
+      }
+      .tile p {
+        color: var(--muted);
+        font-size: 14.5px;
+      }
+      .tile.feature p {
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .tile.feature .chip-row {
+        margin-top: 18px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .tile.feature .chip {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: var(--pill);
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      /* ---------- Stats ---------- */
+      .stats {
+        background: var(--grad-deep);
+        border-radius: 32px;
+        padding: 52px 40px;
+        position: relative;
+        overflow: hidden;
+      }
+      .stats::after {
+        content: "";
+        position: absolute;
+        top: -40%;
+        right: -10%;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(17, 179, 198, 0.4), transparent 70%);
+      }
+      .stats-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 28px;
+        text-align: center;
+      }
+      .stat .num {
+        font-family: "Sora", sans-serif;
+        font-weight: 800;
+        font-size: clamp(34px, 4vw, 50px);
+        background: linear-gradient(120deg, #fff, #9fe0f5);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .stat .lbl {
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 6px;
+      }
+      .stat + .stat {
+        border-left: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      /* ---------- Testimonials ---------- */
+      .quotes {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+      .quote-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--r-lg);
+        padding: 28px;
+        box-shadow: var(--shadow-sm);
+      }
+      .stars {
+        display: flex;
+        gap: 3px;
+        color: var(--gold);
+        margin-bottom: 14px;
+      }
+      .stars svg {
+        width: 17px;
+        height: 17px;
+        fill: var(--gold);
+      }
+      .quote-card p {
+        font-size: 15.5px;
+        color: var(--ink-soft);
+        margin-bottom: 18px;
+      }
+      .who {
+        display: flex;
+        align-items: center;
         gap: 12px;
       }
+      .avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--grad-ocean);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+        font-family: "Sora", sans-serif;
+      }
+      .who .name {
+        font-weight: 700;
+        font-size: 14.5px;
+      }
+      .who .loc {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* ---------- FAQ ---------- */
+      .faq {
+        max-width: 780px;
+        margin: 0 auto;
+        display: grid;
+        gap: 14px;
+      }
       .faq details {
-        background: white;
-        border-radius: 14px;
-        border: 1px solid #e5edf6;
-        box-shadow: var(--app-card-shadow);
-        padding: 14px 18px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        padding: 18px 22px;
+        box-shadow: var(--shadow-sm);
       }
       .faq summary {
         cursor: pointer;
-        font-weight: 700;
+        font-weight: 650;
+        font-size: 16px;
         list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
       }
       .faq summary::-webkit-details-marker {
         display: none;
       }
-      .faqBody {
-        margin-top: 10px;
+      .faq summary::after {
+        content: "+";
+        font-size: 22px;
+        color: var(--ocean);
+        font-weight: 400;
+        transition: transform 200ms ease;
+      }
+      .faq details[open] summary::after {
+        transform: rotate(45deg);
+      }
+      .faq .ans {
+        margin-top: 12px;
         color: var(--muted);
-        font-size: 14px;
+        font-size: 15px;
       }
-      .reveal {
-        opacity: 0;
-        transform: translateY(18px);
-        transition:
-          opacity 600ms ease,
-          transform 600ms ease;
-      }
-      section.reveal,
-      section.reveal.is-visible {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-      .reveal.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .reveal-item {
-        opacity: 0;
-        transform: translateY(16px);
-        transition:
-          opacity 600ms ease,
-          transform 600ms ease;
-      }
-      .reveal.is-visible .reveal-item {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .cta {
-        background: linear-gradient(120deg, #b8f0ea 0%, #80d0c7 100%);
-        padding: 72px 0;
-      }
-      .ctaInner {
+
+      /* ---------- CTA ---------- */
+      .cta-band {
+        position: relative;
+        overflow: hidden;
+        background: var(--grad-ocean);
+        border-radius: 34px;
+        padding: 60px 52px;
         display: grid;
-        grid-template-columns: 1.05fr 0.95fr;
-        gap: 34px;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 36px;
         align-items: center;
       }
-      .ctaTitle {
-        margin: 0;
-        font-family: "Syne", sans-serif;
-        font-size: clamp(32px, 4vw, 46px);
-        letter-spacing: -0.03em;
+      .cta-band::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(500px 300px at 90% 120%, rgba(255, 138, 76, 0.4), transparent 60%),
+          radial-gradient(400px 300px at 0% -20%, rgba(255, 255, 255, 0.25), transparent 60%);
       }
-      .ctaSub {
-        margin: 12px 0 0;
-        font-size: 16px;
-        font-weight: 600;
-        color: rgba(10, 25, 48, 0.75);
-        max-width: 55ch;
+      .cta-band > * {
+        position: relative;
+        z-index: 1;
       }
-
-      /* RESPONSIVE */
-      @media (max-width: 880px) {
-        .navInner {
-          grid-template-columns: 1fr;
-          gap: 8px;
-        }
-        .navLinks {
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 8px;
-        }
-        .navCta {
-          justify-content: center;
-        }
-        .grid2,
-        .grid2Alt {
-          grid-template-columns: 1fr;
-        }
-        .featureRow,
-        .featureRowAlt {
-          grid-template-columns: 1fr;
-        }
-        .featureGrid {
-          grid-template-columns: 1fr;
-        }
-        .ctaInner {
-          grid-template-columns: 1fr;
-        }
-        .phone {
-          position: relative;
-          inset: auto;
-          transform: none;
-          width: 100%;
-          max-width: 320px;
-          height: 560px;
-          margin: 0 auto;
-        }
-        .phone--a,
-        .phone--b,
-        .phone--c {
-          top: auto;
-          left: auto;
-          right: auto;
-          margin-bottom: 20px;
-          animation: none;
-        }
-        .logoMark {
-          height: 46px;
-        }
-        .contactGrid {
-          grid-template-columns: 1fr !important;
-        }
-        .footerInner {
-          flex-direction: column;
-          gap: 10px;
-          align-items: flex-start;
-        }
+      .cta-band h2 {
+        color: #fff;
+        font-size: clamp(28px, 3.6vw, 44px);
+        font-weight: 800;
+      }
+      .cta-band p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 17px;
+        margin: 14px 0 26px;
+        max-width: 46ch;
+      }
+      .cta-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .cta-band .btn-light {
+        background: #fff;
+        color: var(--ocean-deep);
+      }
+      .cta-mini {
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: var(--r);
+        padding: 18px;
+        backdrop-filter: blur(8px);
+      }
+      .cta-mini .row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 9px 0;
+      }
+      .cta-mini .row + .row {
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+      }
+      .cta-mini .row .ic {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.2);
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+      }
+      .cta-mini .row .ic svg {
+        width: 16px;
+        height: 16px;
       }
 
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(16px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      /* ---------- Footer ---------- */
+      footer {
+        background: var(--ink);
+        color: rgba(255, 255, 255, 0.7);
+        padding: 56px 0 30px;
+      }
+      .foot-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 30px;
+      }
+      footer .brand {
+        color: #fff;
+      }
+      footer .brand b {
+        color: var(--sky);
+      }
+      .foot-about {
+        margin-top: 16px;
+        font-size: 14px;
+        max-width: 32ch;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .foot-col h4 {
+        color: #fff;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin: 6px 0 16px;
+        font-family: "Sora", sans-serif;
+      }
+      .foot-col a {
+        display: block;
+        font-size: 14.5px;
+        padding: 5px 0;
+        color: rgba(255, 255, 255, 0.68);
+        transition: color 140ms ease;
+      }
+      .foot-col a:hover {
+        color: var(--sky);
+      }
+      .foot-bottom {
+        margin-top: 40px;
+        padding-top: 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
       }
 
-      @keyframes float {
+      /* ---------- Reveal animation ---------- */
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px) scale(0.985);
+        transition:
+          opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--reveal-delay, 0ms);
+        will-change: opacity, transform;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      /* Directional variants */
+      .reveal.from-left {
+        transform: translateX(-32px);
+      }
+      .reveal.from-right {
+        transform: translateX(32px);
+      }
+      .reveal.in.from-left,
+      .reveal.in.from-right {
+        transform: none;
+      }
+
+      @keyframes floaty {
         0%,
         100% {
-          transform: translateY(0) rotate(var(--float-rotate, 0deg));
+          transform: translateY(0) rotate(var(--rot, 0deg));
         }
         50% {
-          transform: translateY(-10px) rotate(var(--float-rotate, 0deg));
+          transform: translateY(-12px) rotate(var(--rot, 0deg));
         }
       }
-
-      .phone--a {
-        --float-rotate: -6deg;
-      }
-      .phone--b {
-        --float-rotate: 6deg;
-      }
-      .phone--c {
-        --float-rotate: -2deg;
+      .device {
+        --rot: -3deg;
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .phone,
-        .heroTitle,
-        .heroSub,
-        .heroCtas,
-        .heroBadges {
+        .device,
+        .float-card {
           animation: none;
+        }
+        .reveal {
+          transition: none;
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 980px) {
+        .hero-grid,
+        .band,
+        .band.reverse .band-media,
+        .cta-band {
+          grid-template-columns: 1fr;
+        }
+        .band.reverse .band-media {
+          order: 0;
+        }
+        .hero-stage {
+          min-height: 540px;
+        }
+        .bento {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .tile.span3,
+        .tile.span2,
+        .tile.feature {
+          grid-column: span 2;
+        }
+        .steps,
+        .quotes {
+          grid-template-columns: 1fr;
+        }
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 30px 12px;
+        }
+        .stat + .stat {
+          border-left: none;
+        }
+        .foot-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 980px) {
+        .nav-links,
+        .nav-cta .btn-ghost {
+          display: none;
+        }
+      }
+      @media (max-width: 640px) {
+        .section {
+          padding: 64px 0;
+        }
+        .bento {
+          grid-template-columns: 1fr;
+        }
+        .tile.span3,
+        .tile.span2,
+        .tile.feature {
+          grid-column: span 1;
+        }
+        .stats-grid,
+        .foot-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cta-band,
+        .stats {
+          padding: 38px 24px;
         }
       }
     </style>
   </head>
   <body>
-    <!-- 1) NAVBAR -->
+    <!-- NAV -->
     <nav class="nav" id="top">
-      <div class="wrap navInner">
-        <a class="logo" href="#home" aria-label="JalanJalanMY home">
-          <img class="logoMark" src="Mobile%20App%20Logo.png" alt="" />
-          <span class="logoText">JalanJalanMY</span>
+      <div class="wrap nav-inner">
+        <a class="brand" href="#top" aria-label="JalanJalanMY home">
+          <img src="Website%20Logo.png" alt="JalanJalanMY logo" />
+          <span>Jalan<b>Jalan</b>MY</span>
         </a>
-        <div class="navLinks">
-          <a href="#home">Home</a>
-          <a href="#how">How It Works</a>
-          <a href="#preview">Interface</a>
-          <a href="#contact">Contact</a>
+        <div class="nav-links">
+          <a href="#how">How it works</a>
+          <a href="#features">Features</a>
+          <a href="#interface">Interface</a>
+          <a href="#faq">FAQ</a>
         </div>
-        <div class="navCta">
-          <a class="btn btnPrimary" href="#cta">Get Early Access</a>
+        <div class="nav-cta">
+          <a class="btn btn-ghost" href="#interface">See the app</a>
+          <a class="btn btn-primary" href="#cta">Get early access</a>
         </div>
       </div>
     </nav>
 
-    <!-- 2) HERO -->
+    <!-- HERO -->
     <header class="hero" id="home">
-      <div class="wrap heroInner">
-        <div class="grid2">
-          <div class="heroCopy">
-            <h1 class="heroTitle">Trip Planning,<br />made effortless.</h1>
-            <p class="heroSub">
-              One AI chat. Hotels, tours, itinerary, all sorted.
-            </p>
-            <div class="heroCtas">
-              <a class="btn btnPrimary" href="#cta">Get Early Access</a>
-              <a class="btn btnGhost" href="#how">See How It Works</a>
-            </div>
-            <div class="heroBadges">
-              <div class="heroBadge">Powered by Gemini AI</div>
-              <div class="heroBadge">Malaysia-first travel planning</div>
+      <div class="wrap hero-grid">
+        <div class="reveal in">
+          <span class="eyebrow"
+            ><i data-lucide="sparkles"></i> Agentic AI · Malaysia-first</span
+          >
+          <h1 class="hero-title">
+            Plan your whole<br />Malaysia trip in
+            <span class="grad">one chat.</span>
+          </h1>
+          <p class="hero-sub">
+            Hotels, tours, budget and a day-by-day itinerary, sorted by an AI
+            that actually knows Malaysia.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-accent" href="#cta"
+              >Get early access <i data-lucide="arrow-right"></i
+            ></a>
+            <a class="btn btn-ghost" href="#how"
+              ><i data-lucide="play"></i> See how it works</a
+            >
+          </div>
+          <div class="hero-trust">
+            <span class="trust-item"
+              ><i data-lucide="zap"></i> Replies in under 3s</span
+            >
+            <span class="trust-item"
+              ><i data-lucide="badge-check"></i> Powered by Gemini AI</span
+            >
+            <span class="trust-item"
+              ><i data-lucide="wallet"></i> Budget-aware planning</span
+            >
+          </div>
+        </div>
+
+        <div class="hero-stage">
+          <div class="stage-glow"></div>
+          <div class="device">
+            <div class="device-screen">
+              <img src="Home_page.png" alt="JalanJalanMY chat home screen" />
             </div>
           </div>
 
-          <div class="phones">
-            <div class="phone phone--a phoneScreenshot">
-              <img
-                class="phoneImage"
-                src="Login%20Page.png"
-                alt="JalanJalanMY home screen"
-              />
+          <div class="float-card fc-a">
+            <div class="fc-icon" style="background: var(--grad-sunset)">
+              <i data-lucide="trending-down"></i>
             </div>
-            <div class="phone phone--b phoneScreenshot">
-              <img
-                class="phoneImage"
-                src="Trip_page.png"
-                alt="JalanJalanMY trip itinerary screen"
-              />
+            <div>
+              <div class="fc-title">Price dropped</div>
+              <div class="fc-sub">RM185 → RM155 / night</div>
             </div>
-            <div class="phone phone--c phoneScreenshot">
-              <img
-                class="phoneImage"
-                src="Budget_page.png"
-                alt="JalanJalanMY budget tracker screen"
-              />
+          </div>
+
+          <div class="float-card fc-b">
+            <div class="fc-icon" style="background: var(--grad-ocean)">
+              <i data-lucide="route"></i>
+            </div>
+            <div>
+              <div class="fc-title">Day 2 optimized</div>
+              <div class="fc-sub">4 stops · least backtracking</div>
+            </div>
+          </div>
+
+          <div class="float-card fc-c">
+            <div class="fc-icon" style="background: linear-gradient(135deg,#22c55e,#15a05a)">
+              <i data-lucide="check"></i>
+            </div>
+            <div>
+              <div class="fc-title">Booked via Klook</div>
+              <div class="fc-sub">Penang Hill Cable Car</div>
             </div>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- INTEGRATIONS BAR -->
-    <section
-      class="section reveal"
-      style="
-        margin-top: -2px;
-        padding-top: 42px;
-        background: var(--dark);
-        color: white;
-      "
-    >
+    <!-- LOGOS -->
+    <section class="logos">
       <div class="wrap">
-        <div class="integrationBar reveal-item">
-          <div class="integrationLabel">Booking powered by</div>
-          <div class="integrationPills">
-            <span class="pill">Agoda</span>
-            <span class="pill">Klook</span>
-            <span class="pill">Google Maps</span>
-            <span class="pill">Google Calendar</span>
-            <span class="pill">Firebase</span>
+        <p class="logos-label">Booking &amp; data powered by</p>
+        <div class="logos-row reveal">
+          <span class="logo-pill"><span class="dot"></span> Agoda</span>
+          <span class="logo-pill"><span class="dot" style="background: var(--coral)"></span> Klook</span>
+          <span class="logo-pill"><span class="dot" style="background: var(--green)"></span> Google Maps</span>
+          <span class="logo-pill"><span class="dot" style="background: var(--gold)"></span> Google Calendar</span>
+          <span class="logo-pill"><span class="dot" style="background: var(--teal)"></span> Firebase</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow"><i data-lucide="route"></i> How it works</span>
+          <h2>From a sentence to a full itinerary.</h2>
+          <p class="lead">Three steps. No tab-juggling across ten travel sites.</p>
+        </div>
+        <div class="steps">
+          <div class="step reveal">
+            <div class="step-num">1</div>
+            <h3>Tell us your trip</h3>
+            <p>Type naturally: dates, budget and the vibe you're after.</p>
+            <div class="quote">“5 days in Penang, beaches &amp; food, RM2000.”</div>
+          </div>
+          <div class="step reveal">
+            <div class="step-num">2</div>
+            <h3>AI builds the plan</h3>
+            <p>
+              Hotels, tours and an optimized day-by-day route generated
+              instantly.
+            </p>
+            <div class="quote">12 hotels · 20 attractions · 3 guides found ✓</div>
+          </div>
+          <div class="step reveal">
+            <div class="step-num">3</div>
+            <h3>Book &amp; go</h3>
+            <p>Confirm bookings, sync your calendar and get smart reminders.</p>
+            <div class="quote">Synced to Google Calendar · alerts on ✓</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- FEATURE BANDS -->
-    <section
-      class="section featureBand reveal"
-      data-parallax
-      style="
-        --bg:
-          radial-gradient(
-            900px 360px at 12% 18%,
-            rgba(128, 208, 199, 0.22),
-            transparent 60%
-          ),
-          linear-gradient(
-            120deg,
-            rgba(255, 255, 255, 0.92),
-            rgba(244, 247, 251, 0.92)
-          );
-      "
-    >
+    <section class="section" id="interface" style="background: var(--mist)">
       <div class="wrap">
-        <div class="featureRow">
-          <div class="reveal-group" data-stagger>
-            <h2 class="sectionTitle reveal-item">
-              <span class="sectionIcon"><i data-lucide="sparkles"></i></span>
-              AI Models
-            </h2>
-            <p class="sectionLead reveal-item">
-              Multimodal reasoning tuned for Malaysia travel planning and
-              booking.
+        <div class="section-head reveal">
+          <span class="eyebrow"><i data-lucide="smartphone"></i> Inside the app</span>
+          <h2>Built around how people actually travel.</h2>
+          <p class="lead">Real screens from JalanJalanMY: chat, discovery and budgets in one place.</p>
+        </div>
+
+        <!-- Band 1 -->
+        <div class="band">
+          <div class="band-content reveal from-left">
+            <span class="band-tag"><i data-lucide="message-circle"></i> One chat</span>
+            <h2>Everything handled in a single conversation.</h2>
+            <p class="lead">
+              No juggling ten apps. JalanJalanMY searches Agoda, Klook and Google
+              Maps at once, then turns the results into a plan you can act on.
             </p>
-            <ul class="featureList">
-              <li class="reveal-item">
-                <i data-lucide="check-circle"></i>Natural-language requests to
-                full itineraries
+            <ul class="band-list">
+              <li>
+                <span class="tick"><i data-lucide="check"></i></span>
+                Natural-language requests become full itineraries
               </li>
-              <li class="reveal-item">
-                <i data-lucide="check-circle"></i>Budget-aware planning with
-                real availability
+              <li>
+                <span class="tick"><i data-lucide="check"></i></span>
+                Smart follow-ups when trip details are missing
               </li>
-              <li class="reveal-item">
-                <i data-lucide="check-circle"></i>Smart follow ups for missing
-                trip details
+              <li>
+                <span class="tick"><i data-lucide="check"></i></span>
+                Suggested prompts to get moving in seconds
               </li>
             </ul>
           </div>
-          <div class="phone phoneScreenshot phone-relative reveal-item">
-            <img
-              class="phoneImage"
-              src="Home_page.png"
-              alt="JalanJalanMY AI planning interface"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section
-      class="section featureBand reveal"
-      data-parallax
-      style="
-        --bg:
-          radial-gradient(
-            900px 360px at 88% 12%,
-            rgba(0, 147, 233, 0.22),
-            transparent 60%
-          ),
-          linear-gradient(
-            120deg,
-            rgba(244, 247, 251, 0.96),
-            rgba(255, 255, 255, 0.96)
-          );
-      "
-    >
-      <div class="wrap">
-        <div class="featureRow featureRowAlt">
-          <div class="phone phoneScreenshot phone-relative reveal-item">
-            <img
-              class="phoneImage"
-              src="Discover_page.png"
-              alt="JalanJalanMY knowledge and discovery view"
-            />
-          </div>
-          <div class="reveal-group" data-stagger>
-            <h2 class="sectionTitle reveal-item">
-              <span class="sectionIcon"><i data-lucide="book-open"></i></span>
-              Knowledge Layer
-            </h2>
-            <p class="sectionLead reveal-item">
-              Curated places, tours, and local context with up-to-date sources.
-            </p>
-            <ul class="featureList">
-              <li class="reveal-item">
-                <i data-lucide="check-circle"></i>Agoda and Klook inventory
-                aligned
-              </li>
-              <li class="reveal-item">
-                <i data-lucide="check-circle"></i>Realtime pricing and
-                availability insights
-              </li>
-              <li class="reveal-item">
-                <i data-lucide="check-circle"></i>Route aware recommendations by
-                day
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section
-      class="section featureBand reveal"
-      data-parallax
-      style="
-        --bg:
-          radial-gradient(
-            900px 360px at 20% 16%,
-            rgba(128, 208, 199, 0.22),
-            transparent 60%
-          ),
-          linear-gradient(
-            120deg,
-            rgba(255, 255, 255, 0.94),
-            rgba(244, 247, 251, 0.94)
-          );
-      "
-    >
-      <div class="wrap">
-        <div class="featureRow">
-          <div class="reveal-group" data-stagger>
-            <h2 class="sectionTitle reveal-item">
-              <span class="sectionIcon"><i data-lucide="users"></i></span>
-              Social Signals
-            </h2>
-            <p class="sectionLead reveal-item">
-              Community driven cues for what is trending and worth booking.
-            </p>
-            <ul class="featureList">
-              <li class="reveal-item">
-                <i data-lucide="check-circle"></i>Hotspots by season and
-                location
-              </li>
-              <li class="reveal-item">
-                <i data-lucide="check-circle"></i>Popularity signals for tours
-                and stays
-              </li>
-              <li class="reveal-item">
-                <i data-lucide="check-circle"></i>Smart alerts for price drops
-              </li>
-            </ul>
-          </div>
-          <div class="phone phoneScreenshot phone-relative reveal-item">
-            <img
-              class="phoneImage"
-              src="Trip_page.png"
-              alt="JalanJalanMY activity and booking overview"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3) HOW IT WORKS -->
-    <section class="section reveal" id="how">
-      <div class="wrap">
-        <div class="grid2Alt">
-          <div class="phone phoneScreenshot phone-relative reveal-item">
-            <img
-              class="phoneImage"
-              src="Discover_page.png"
-              alt="JalanJalanMY discover screen"
-            />
-          </div>
-          <div>
-            <div class="sectionHeader reveal">
-              <h2 class="sectionTitle">
-                <span class="sectionIcon"><i data-lucide="route"></i></span>
-                How It Works
-              </h2>
-              <p class="sectionLead">From idea to full itinerary in seconds.</p>
+          <div class="band-media reveal from-right">
+            <div class="device">
+              <div class="device-screen">
+                <img src="Home_page.png" alt="JalanJalanMY AI chat screen" />
+              </div>
             </div>
-            <div
-              class="reveal-group"
-              data-stagger
-              style="display: grid; gap: 16px"
+          </div>
+        </div>
+
+        <!-- Band 2 -->
+        <div class="band reverse">
+          <div class="band-media reveal from-left">
+            <div class="device">
+              <div class="device-screen">
+                <img src="Discover_page.png" alt="JalanJalanMY discover screen" />
+              </div>
+            </div>
+          </div>
+          <div class="band-content reveal from-right">
+            <span class="band-tag" style="color: var(--coral-deep)"
+              ><i data-lucide="compass"></i> Discover</span
             >
-              <div class="app-card reveal-item">
-                <strong>1. Tell us your trip</strong>
-                <p style="font-size: 14px; margin: 4px 0 0">
-                  “5 days in Penang, budget RM2000.”
-                </p>
-              </div>
-              <div class="app-card reveal-item">
-                <strong>2. AI builds your plan</strong>
-                <p style="font-size: 14px; margin: 4px 0 0">
-                  Optimized routes and bookings generated instantly.
-                </p>
-              </div>
-              <div class="app-card reveal-item">
-                <strong>3. Book & Go</strong>
-                <p style="font-size: 14px; margin: 4px 0 0">
-                  Confirm and sync to your calendar.
-                </p>
+            <h2>Find your next adventure, curated for Malaysia.</h2>
+            <p class="lead">
+              Hotels, nature, culture and night markets, browsable quick picks
+              with live pricing and real local context.
+            </p>
+            <ul class="band-list">
+              <li>
+                <span class="tick"><i data-lucide="check"></i></span>
+                Category filters: hotels, nature, culture &amp; more
+              </li>
+              <li>
+                <span class="tick"><i data-lucide="check"></i></span>
+                Popularity and rating signals on every pick
+              </li>
+              <li>
+                <span class="tick"><i data-lucide="check"></i></span>
+                Route-aware recommendations by the day
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Band 3 -->
+        <div class="band">
+          <div class="band-content reveal from-left">
+            <span class="band-tag" style="color: var(--green)"
+              ><i data-lucide="wallet"></i> Budget</span
+            >
+            <h2>Stay on budget without the spreadsheet.</h2>
+            <p class="lead">
+              Track every ringgit across accommodation, activities, food and
+              transport, with a live breakdown as your trip takes shape.
+            </p>
+            <ul class="band-list">
+              <li>
+                <span class="tick"><i data-lucide="check"></i></span>
+                Real-time spent vs. remaining at a glance
+              </li>
+              <li>
+                <span class="tick"><i data-lucide="check"></i></span>
+                Category breakdown with a clear visual split
+              </li>
+              <li>
+                <span class="tick"><i data-lucide="check"></i></span>
+                Price-drop alerts that protect your budget
+              </li>
+            </ul>
+          </div>
+          <div class="band-media reveal from-right">
+            <div class="device">
+              <div class="device-screen">
+                <img src="Budget_page.png" alt="JalanJalanMY budget tracker screen" />
               </div>
             </div>
           </div>
@@ -1411,117 +1358,124 @@
       </div>
     </section>
 
-    <!-- 4) PROFILE SECTION -->
-    <section class="section reveal" id="preview" style="background: #f1f5f9">
+    <!-- BENTO FEATURES -->
+    <section class="section" id="features">
       <div class="wrap">
-        <div class="grid2">
-          <div>
-            <div class="sectionHeader reveal">
-              <h2 class="sectionTitle">
-                <span class="sectionIcon"><i data-lucide="user"></i></span>
-                Personalized for you
-              </h2>
-              <p class="sectionLead">
-                JalanJalanMY learns your travel style to provide the best
-                recommendations.
-              </p>
-            </div>
-            <div class="featureGrid reveal-group" data-stagger>
-              <div class="featureCard reveal-item">
-                <h3 class="featureTitle">
-                  <i data-lucide="sparkles" class="featureIcon"></i>
-                  AI Trip Planner
-                </h3>
-                <p>
-                  Natural language to a complete itinerary with smart picks.
-                </p>
-              </div>
-              <div class="featureCard reveal-item">
-                <h3 class="featureTitle">
-                  <i data-lucide="hotel" class="featureIcon"></i>
-                  Hotel Search
-                </h3>
-                <p>Compare Agoda and more in one view with live pricing.</p>
-              </div>
-              <div class="featureCard reveal-item">
-                <h3 class="featureTitle">
-                  <i data-lucide="ticket" class="featureIcon"></i>
-                  Tour Booking
-                </h3>
-                <p>Tickets and experiences powered by Klook integrations.</p>
-              </div>
-              <div class="featureCard reveal-item">
-                <h3 class="featureTitle">
-                  <i data-lucide="calendar" class="featureIcon"></i>
-                  Calendar Sync
-                </h3>
-                <p>Auto-sync plans to Google Calendar with reminders.</p>
-              </div>
-              <div class="featureCard reveal-item">
-                <h3 class="featureTitle">
-                  <i data-lucide="bell" class="featureIcon"></i>
-                  Smart Alerts
-                </h3>
-                <p>Price drops, check-ins, and weather alerts delivered.</p>
-              </div>
-              <div class="featureCard reveal-item">
-                <h3 class="featureTitle">
-                  <i data-lucide="map" class="featureIcon"></i>
-                  Offline Maps
-                </h3>
-                <p>Download Malaysia maps for navigation without data.</p>
-              </div>
+        <div class="section-head reveal">
+          <span class="eyebrow"><i data-lucide="layout-grid"></i> Features</span>
+          <h2>Everything a traveler needs, in one app.</h2>
+          <p class="lead">From first idea to the moment you check in.</p>
+        </div>
+        <div class="bento">
+          <div class="tile feature reveal">
+            <div class="tile-icon"><i data-lucide="bot"></i></div>
+            <h3>AI Trip Planner</h3>
+            <p>
+              Describe your trip in plain language and get a complete,
+              budget-aware itinerary in seconds.
+            </p>
+            <div class="chip-row">
+              <span class="chip">Natural language</span>
+              <span class="chip">Budget-aware</span>
+              <span class="chip">Day-by-day</span>
             </div>
           </div>
-          <div class="phone phoneScreenshot phone-relative reveal-item">
-            <img
-              class="phoneImage"
-              src="Profile_page.png"
-              alt="JalanJalanMY profile screen"
-            />
+          <div class="tile span3 reveal">
+            <div class="tile-icon"><i data-lucide="hotel"></i></div>
+            <h3>Hotel Aggregator</h3>
+            <p>Compare Agoda and partner stays side by side with live pricing and free-cancellation flags.</p>
+          </div>
+
+          <div class="tile span2 reveal">
+            <div class="tile-icon" style="background: var(--grad-sunset)"><i data-lucide="ticket"></i></div>
+            <h3>Tours &amp; Activities</h3>
+            <p>Experiences powered by Klook, booked straight from your plan.</p>
+          </div>
+          <div class="tile span2 reveal">
+            <div class="tile-icon" style="background: linear-gradient(135deg,#22c55e,#15a05a)"><i data-lucide="calendar-check"></i></div>
+            <h3>Calendar Sync</h3>
+            <p>Every booking auto-synced to Google Calendar with reminders.</p>
+          </div>
+          <div class="tile span2 reveal">
+            <div class="tile-icon" style="background: linear-gradient(135deg,#f7a13b,#ef7c1a)"><i data-lucide="bell-ring"></i></div>
+            <h3>Smart Alerts</h3>
+            <p>Price drops, weather warnings and check-in nudges, all proactive.</p>
+          </div>
+
+          <div class="tile span3 reveal">
+            <div class="tile-icon" style="background: var(--grad-deep)"><i data-lucide="map"></i></div>
+            <h3>Route Optimization</h3>
+            <p>Day plans ordered to cut backtracking, with offline Malaysia maps for navigating without data.</p>
+          </div>
+          <div class="tile span3 reveal">
+            <div class="tile-icon" style="background: linear-gradient(135deg,#11b3c6,#0593d6)"><i data-lucide="user-round-cog"></i></div>
+            <h3>Learns Your Style</h3>
+            <p>Solo, beach-lover or budget traveler, JalanJalanMY tunes picks to how you like to travel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section" style="padding-top: 0">
+      <div class="wrap">
+        <div class="stats reveal">
+          <div class="stats-grid">
+            <div class="stat">
+              <div class="num">16M+</div>
+              <div class="lbl">International arrivals to Malaysia (2025)</div>
+            </div>
+            <div class="stat">
+              <div class="num">5</div>
+              <div class="lbl">Booking platforms unified in one app</div>
+            </div>
+            <div class="stat">
+              <div class="num">&lt;3s</div>
+              <div class="lbl">Average AI response time</div>
+            </div>
+            <div class="stat">
+              <div class="num">RM2k</div>
+              <div class="lbl">Typical trip budget handled</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="section reveal" id="faq">
+    <section class="section" id="faq">
       <div class="wrap">
-        <div class="sectionHeader reveal">
-          <h2 class="sectionTitle">
-            <span class="sectionIcon"><i data-lucide="help-circle"></i></span>
-            Frequently Asked Questions
-          </h2>
-          <p class="sectionLead">
-            Quick answers about the app, booking flow, and data sources.
-          </p>
+        <div class="section-head reveal">
+          <span class="eyebrow"><i data-lucide="help-circle"></i> FAQ</span>
+          <h2>Questions, answered.</h2>
         </div>
-        <div class="faq reveal-group" data-stagger>
-          <details class="reveal-item">
+        <div class="faq">
+          <details class="reveal" open>
             <summary>Is JalanJalanMY live today?</summary>
-            <div class="faqBody">
+            <div class="ans">
               The app is in active development. This site is a preview for
-              partners and early access.
+              partners and early-access travelers.
             </div>
           </details>
-          <details class="reveal-item">
+          <details class="reveal">
             <summary>Which platforms are integrated?</summary>
-            <div class="faqBody">
-              We are integrating Agoda and Klook for hotels and tours, plus
-              Google Maps and Calendar for routing and scheduling.
+            <div class="ans">
+              Agoda and Klook for hotels and tours, plus Google Maps and Google
+              Calendar for routing and scheduling.
             </div>
           </details>
-          <details class="reveal-item">
+          <details class="reveal">
             <summary>How does the AI build an itinerary?</summary>
-            <div class="faqBody">
-              It uses your budget, dates, and interests to plan routes, compare
-              bookings, and generate a day-by-day schedule.
+            <div class="ans">
+              It uses your budget, dates and interests to plan routes, compare
+              bookings and generate a day-by-day schedule, asking follow-ups
+              when something's missing.
             </div>
           </details>
-          <details class="reveal-item">
-            <summary>Will bookings happen inside the app?</summary>
-            <div class="faqBody">
-              JalanJalanMY will confirm availability and route you to partner
+          <details class="reveal">
+            <summary>Do bookings happen inside the app?</summary>
+            <div class="ans">
+              JalanJalanMY confirms availability and routes you to partner
               booking flows with deep links and tracking.
             </div>
           </details>
@@ -1530,154 +1484,132 @@
     </section>
 
     <!-- CTA -->
-    <section class="cta reveal" id="cta">
+    <section class="section" id="cta" style="padding-top: 0">
       <div class="wrap">
-        <div class="ctaInner reveal-group" data-stagger>
-          <div class="reveal-item">
-            <h2 class="ctaTitle">Plan your Malaysia trip today.</h2>
-            <p class="ctaSub">
-              Free to explore. No account needed yet. Get early access to the
+        <div class="cta-band reveal">
+          <div>
+            <h2>Plan your Malaysia trip today.</h2>
+            <p>
+              Free to explore, no account needed yet. Get early access to the
               agentic AI travel planner built for Malaysia.
             </p>
-            <div
-              style="
-                margin-top: 20px;
-                display: flex;
-                gap: 12px;
-                flex-wrap: wrap;
-              "
+            <div class="cta-actions">
+              <a class="btn btn-light" href="#contact"
+                >Get early access <i data-lucide="arrow-right"></i
+              ></a>
+              <a class="btn btn-dark" href="#features">View features</a>
+            </div>
+          </div>
+          <div class="cta-mini">
+            <div class="row">
+              <div class="ic"><i data-lucide="trending-down"></i></div>
+              Price dropped: Berjaya Resort RM185 → RM155/night
+            </div>
+            <div class="row">
+              <div class="ic"><i data-lucide="cloud-rain"></i></div>
+              Rain on Day 3: indoor alternatives added
+            </div>
+            <div class="row">
+              <div class="ic"><i data-lucide="clock"></i></div>
+              Check-in in 2 hours · you're 40 min away
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / FOOTER -->
+    <footer id="contact">
+      <div class="wrap">
+        <div class="foot-grid">
+          <div>
+            <a class="brand" href="#top"
+              ><img src="Website%20Logo.png" alt="JalanJalanMY logo" style="height: 38px" />
+              <span>Jalan<b>Jalan</b>MY</span></a
             >
-              <a class="btn btnDark" href="#contact">Request Access</a>
-              <a
-                class="btn btnGhost"
-                href="#how"
-                style="border-color: rgba(10, 25, 48, 0.3); color: var(--dark)"
-                >View Features</a
-              >
-            </div>
+            <p class="foot-about">
+              Agentic AI travel companion for Malaysia. One chat plans hotels,
+              tours, budget and a day-by-day itinerary.
+            </p>
           </div>
-          <div class="phone phoneScreenshot phone-relative reveal-item">
-            <img
-              class="phoneImage"
-              src="Budget_page.png"
-              alt="JalanJalanMY budget tracker screen"
-            />
+          <div class="foot-col">
+            <h4>Product</h4>
+            <a href="#how">How it works</a>
+            <a href="#features">Features</a>
+            <a href="#interface">Interface</a>
+            <a href="#cta">Early access</a>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5) CONTACT -->
-    <section class="section reveal" id="contact">
-      <div class="wrap reveal-item">
-        <h2 class="sectionTitle">Contact</h2>
-        <div class="app-card" style="margin-top: 24px; padding: 24px">
-          <div
-            class="contactGrid"
-            style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px"
-          >
-            <div>
-              <h3 style="margin: 0 0 12px; font-size: 16px">
-                Operator Details
-              </h3>
-              <p style="font-size: 14px; margin: 0">
-                <strong>Muhammad Umair Arif</strong
-                ><br />muhammad_22005713@utp.edu.my<br />Universiti Teknologi
-                PETRONAS
-              </p>
-            </div>
-            <div>
-              <h3 style="margin: 0 0 12px; font-size: 16px">Platform Notes</h3>
-              <p style="font-size: 14px; margin: 0">
-                AI Travel Platform for Malaysia inbound tourists. Powered by
-                Gemini AI.
-              </p>
-            </div>
+          <div class="foot-col">
+            <h4>Company</h4>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="foot-col">
+            <h4>Contact</h4>
+            <a href="mailto:muhammad_22005713@utp.edu.my">Email us</a>
+            <span class="foot-about" style="margin-top: 4px; display: block"
+              >Muhammad Umair Arif<br />Universiti Teknologi PETRONAS</span
+            >
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- 6) FOOTER -->
-    <footer
-      style="
-        background: var(--dark);
-        color: white;
-        padding: 40px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      "
-    >
-      <div
-        class="wrap footerInner"
-        style="
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        "
-      >
-        <a class="logo" href="#home" aria-label="JalanJalanMY home">
-          <img class="logoMark" src="Mobile%20App%20Logo.png" alt="" />
-          <span class="logoText">JalanJalanMY</span>
-        </a>
-        <div style="font-size: 12px; opacity: 0.6">
-          © 2026 JalanJalanMY. All rights reserved.
+        <div class="foot-bottom">
+          <span>© 2026 JalanJalanMY. All rights reserved.</span>
+          <span>Final Year Project · UTP · Powered by Gemini AI</span>
         </div>
       </div>
     </footer>
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-      (function () {
-        var nav = document.querySelector(".nav");
-        window.addEventListener(
-          "scroll",
-          function () {
-            nav.classList.toggle("nav--solid", window.scrollY > 20);
-          },
-          { passive: true },
-        );
-      })();
-      if (window.lucide) {
-        window.lucide.createIcons();
-      }
+      if (window.lucide) window.lucide.createIcons();
 
-      var revealItems = document.querySelectorAll(".reveal");
-      if ("IntersectionObserver" in window) {
-        var revealObserver = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (entry) {
-              entry.target.classList.toggle("is-visible", entry.isIntersecting);
-            });
-          },
-          { threshold: 0.15 },
-        );
-        revealItems.forEach(function (el) {
-          revealObserver.observe(el);
-        });
-      } else {
-        revealItems.forEach(function (el) {
-          el.classList.add("is-visible");
-        });
-      }
+      // Sticky nav state
+      var nav = document.querySelector(".nav");
+      window.addEventListener(
+        "scroll",
+        function () {
+          nav.classList.toggle("is-stuck", window.scrollY > 12);
+        },
+        { passive: true },
+      );
 
-      document.querySelectorAll("[data-stagger]").forEach(function (group) {
-        var items = group.querySelectorAll(".reveal-item");
-        items.forEach(function (item, index) {
-          item.style.transitionDelay = index * 80 + "ms";
-        });
+      // Reveal on scroll, with a gentle stagger for grouped items
+      var reveals = document.querySelectorAll(".reveal");
+
+      // Pre-compute a stagger delay from each item's position among its siblings
+      reveals.forEach(function (el) {
+        if (!el.parentElement) return;
+        var siblings = Array.prototype.filter.call(
+          el.parentElement.children,
+          function (c) {
+            return c.classList && c.classList.contains("reveal");
+          },
+        );
+        if (siblings.length > 1) {
+          var i = siblings.indexOf(el);
+          el.style.setProperty("--reveal-delay", i * 90 + "ms");
+        }
       });
 
-      var parallaxSections = document.querySelectorAll("[data-parallax]");
-      function updateParallax() {
-        parallaxSections.forEach(function (section) {
-          var rect = section.getBoundingClientRect();
-          var offset = rect.top * -0.15; // Parallax effect based on the element's position relative to the viewport
-          section.style.setProperty("--parallax", offset + "px");
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+        );
+        reveals.forEach(function (el) {
+          io.observe(el);
         });
-      }
-      if (parallaxSections.length) {
-        window.addEventListener("scroll", updateParallax, { passive: true });
-        updateParallax();
+      } else {
+        reveals.forEach(function (el) {
+          el.classList.add("in");
+        });
       }
     </script>
   </body>
