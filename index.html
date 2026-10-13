@@ -3,68 +3,38 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JalanJalanMY | Plan your trip across Malaysia</title>
     <meta
       name="description"
-      content="JalanJalanMY, the agentic AI travel companion for Malaysia. One chat plans hotels, tours, budget and a day-by-day itinerary."
+      content="Plan a trip across Malaysia in minutes. Tell JalanJalanMY where, when and your budget, and get a day-by-day plan with hotels and tours you can book."
     />
-    <title>JalanJalanMY: Your AI Travel Companion for Malaysia</title>
+
+    <link rel="icon" type="image/png" href="/Website%20Logo.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
     <style>
-      /* ============================================================
-         JalanJalanMY "Warm-Cool Ocean" design system
-         Cool ocean blues/teal (from the app) + warm sunset coral accent
-         Display: Sora · Body: Inter
-         ============================================================ */
       :root {
-        /* Ink / text */
-        --ink: #0a2540;
-        --ink-soft: #1c3d5a;
-        --muted: #5b7488;
+        --white: #ffffff;
+        --bg: #ffffff;
+        --bg-alt: #f3f3f1;
+        --ink: #111214;
+        --ink-2: #3d4046;
+        --muted: #73767d;
+        --line: #e4e4e0;
+        --brand: #29306e;
+        --brand-hover: #1e2453;
+        --dark: #0f1013;
 
-        /* Ocean (brand primary, pulled from the app gradients) */
-        --ocean: #0593d6;
-        --ocean-deep: #0b6fc4;
-        --sky: #38bdf8;
-        --teal: #11b3c6;
-
-        /* Warm accent (sunset coral, the deliberate non-purple pop) */
-        --coral: #ff6b4a;
-        --coral-deep: #fb4f2c;
-        --gold: #f7a13b;
-
-        /* Functional accents echoed from app (budget=green, transport=orange) */
-        --green: #1fae6a;
-
-        /* Surfaces */
-        --sand: #fbf8f3;
-        --mist: #eef4fb;
-        --surface: #ffffff;
-        --line: #e3ecf5;
-
-        /* Gradients */
-        --grad-ocean: linear-gradient(135deg, #0aa6e4 0%, #11b3c6 100%);
-        --grad-deep: linear-gradient(140deg, #0b6fc4 0%, #0a2540 100%);
-        --grad-sunset: linear-gradient(135deg, #ff8a4c 0%, #fb4f2c 100%);
-
-        /* Shape & shadow */
-        --r-sm: 12px;
-        --r: 18px;
-        --r-lg: 26px;
-        --pill: 999px;
-        --shadow-sm: 0 2px 10px rgba(10, 37, 64, 0.06);
-        --shadow: 0 18px 44px rgba(10, 37, 64, 0.1);
-        --shadow-lg: 0 34px 70px rgba(10, 37, 64, 0.22);
-
-        --max: 1180px;
-        --pad: 24px;
-        --nav-h: 74px;
+        --font: "Hanken Grotesk", system-ui, sans-serif;
+        --max: 1280px;
+        --gutter: 40px;
+        --r: 10px;
       }
 
       * {
@@ -72,1634 +42,1483 @@
       }
       html {
         scroll-behavior: smooth;
+        scroll-padding-top: 72px;
       }
       body {
         margin: 0;
-        font-family: "Inter", system-ui, sans-serif;
+        background: var(--bg);
         color: var(--ink);
-        background: var(--sand);
-        line-height: 1.6;
+        font-family: var(--font);
+        font-size: 16px;
+        line-height: 1.55;
         -webkit-font-smoothing: antialiased;
-      }
-      section[id],
-      header[id] {
-        scroll-margin-top: var(--nav-h);
-      }
-      h1,
-      h2,
-      h3 {
-        font-family: "Sora", sans-serif;
-        letter-spacing: -0.025em;
-        line-height: 1.08;
-        margin: 0;
-      }
-      p {
-        margin: 0;
-      }
-      a {
-        color: inherit;
-        text-decoration: none;
       }
       img {
         display: block;
         max-width: 100%;
       }
+      a {
+        color: inherit;
+      }
       .wrap {
         max-width: var(--max);
         margin: 0 auto;
-        padding: 0 var(--pad);
+        padding: 0 var(--gutter);
       }
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 12.5px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--ocean-deep);
-        background: rgba(5, 147, 214, 0.09);
-        border: 1px solid rgba(5, 147, 214, 0.18);
-        padding: 7px 14px;
-        border-radius: var(--pill);
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        line-height: 1.08;
       }
-      .eyebrow svg {
-        width: 14px;
-        height: 14px;
+      .h2 {
+        font-size: clamp(30px, 3.6vw, 46px);
       }
-      .lead {
-        color: var(--muted);
-        font-size: 17px;
-        font-weight: 450;
+      .sub {
+        color: var(--ink-2);
+        font-size: 18px;
+        margin: 14px 0 0;
+        max-width: 52ch;
+      }
+      .sec {
+        padding: 120px 0;
+      }
+      .sec-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 32px;
+        margin-bottom: 48px;
+      }
+      .more {
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+        border-bottom: 1.5px solid var(--ink);
+        padding-bottom: 2px;
       }
 
-      /* ---------- Buttons ---------- */
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 9px;
-        padding: 13px 22px;
-        border-radius: var(--pill);
-        font-family: "Inter", sans-serif;
-        font-weight: 650;
-        font-size: 15px;
-        border: 1px solid transparent;
+        gap: 8px;
+        height: 52px;
+        padding: 0 26px;
+        border-radius: 999px;
+        border: 0;
+        background: var(--brand);
+        color: #fff;
+        font: 600 16px/1 var(--font);
+        text-decoration: none;
         cursor: pointer;
-        transition:
-          transform 160ms ease,
-          box-shadow 160ms ease,
-          background 160ms ease;
-        white-space: nowrap;
-      }
-      .btn svg {
-        width: 17px;
-        height: 17px;
+        transition: background 150ms ease;
       }
       .btn:hover {
-        transform: translateY(-2px);
+        background: var(--brand-hover);
       }
-      .btn:active {
-        transform: translateY(0);
-      }
-      .btn-primary {
-        background: var(--grad-ocean);
-        color: #fff;
-        box-shadow: 0 12px 26px rgba(5, 147, 214, 0.32);
-      }
-      .btn-primary:hover {
-        box-shadow: 0 18px 34px rgba(5, 147, 214, 0.42);
-      }
-      .btn-accent {
-        background: var(--grad-sunset);
-        color: #fff;
-        box-shadow: 0 12px 26px rgba(251, 79, 44, 0.3);
-      }
-      .btn-accent:hover {
-        box-shadow: 0 18px 34px rgba(251, 79, 44, 0.4);
-      }
-      .btn-ghost {
-        background: var(--surface);
+      .btn-light {
+        background: #fff;
         color: var(--ink);
-        border-color: var(--line);
-        box-shadow: var(--shadow-sm);
       }
-      .btn-ghost:hover {
-        border-color: rgba(5, 147, 214, 0.4);
-      }
-      .btn-dark {
-        background: var(--ink);
-        color: #fff;
+      .btn-light:hover {
+        background: #ececec;
       }
 
       /* ---------- Nav ---------- */
       .nav {
-        position: sticky;
-        top: 0;
-        z-index: 60;
-        backdrop-filter: blur(14px);
-        background: rgba(251, 248, 243, 0.7);
-        border-bottom: 1px solid transparent;
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 30;
+        color: #fff;
         transition:
-          background 220ms ease,
-          border-color 220ms ease,
-          box-shadow 220ms ease;
+          background 200ms ease,
+          color 200ms ease,
+          box-shadow 200ms ease;
       }
-      .nav.is-stuck {
-        background: rgba(255, 255, 255, 0.86);
-        border-bottom-color: var(--line);
-        box-shadow: 0 6px 22px rgba(10, 37, 64, 0.06);
+      .nav.solid {
+        background: #fff;
+        color: var(--ink);
+        box-shadow: 0 1px 0 var(--line);
       }
-      .nav-inner {
-        height: var(--nav-h);
+      .nav-in {
+        height: 76px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 18px;
+        gap: 40px;
       }
-      .brand {
+      .logo {
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        font-family: "Sora", sans-serif;
-        font-weight: 800;
-        font-size: 19px;
-        color: var(--ink);
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: -0.02em;
+        text-decoration: none;
       }
-      .brand img {
-        height: 42px;
-        width: auto;
+      .logo svg {
+        width: 24px;
+        height: 30px;
       }
-      .brand b {
-        color: var(--ocean-deep);
+      .logo .pin {
+        fill: currentColor;
+      }
+      .nav.solid .logo .pin {
+        fill: var(--brand);
+      }
+      .logo .hole {
+        fill: var(--ink);
+      }
+      .nav:not(.solid) .logo .hole {
+        fill: #2b3a40;
       }
       .nav-links {
         display: flex;
-        gap: 4px;
+        gap: 32px;
+        font-weight: 500;
+        font-size: 15px;
       }
       .nav-links a {
-        font-size: 14.5px;
-        font-weight: 550;
-        color: var(--ink-soft);
-        padding: 9px 14px;
-        border-radius: var(--pill);
-        transition: background 140ms ease;
+        text-decoration: none;
+        opacity: 0.88;
       }
       .nav-links a:hover {
-        background: rgba(5, 147, 214, 0.08);
-        color: var(--ocean-deep);
+        opacity: 1;
       }
-      .nav-cta {
+      .nav-right {
+        margin-left: auto;
         display: flex;
-        gap: 10px;
         align-items: center;
+        gap: 20px;
       }
-      .nav-toggle {
+      .nav-right .btn {
+        height: 42px;
+        padding: 0 20px;
+        font-size: 15px;
+      }
+      .nav:not(.solid) .nav-right .btn {
+        background: #fff;
+        color: var(--ink);
+      }
+      .menu-btn {
         display: none;
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        border: 1px solid currentColor;
+        background: none;
+        color: inherit;
+        cursor: pointer;
       }
 
       /* ---------- Hero ---------- */
       .hero {
         position: relative;
-        overflow: hidden;
-        padding: 70px 0 90px;
+        min-height: clamp(640px, 100svh, 960px);
+        display: flex;
+        align-items: flex-end;
+        color: #fff;
+        background: #20343a url("assets/photos/hero-redang.jpg") center 60% / cover no-repeat;
       }
       .hero::before {
         content: "";
         position: absolute;
         inset: 0;
         background:
-          radial-gradient(
-            760px 520px at 8% -8%,
-            rgba(17, 179, 198, 0.22),
-            transparent 60%
-          ),
-          radial-gradient(
-            720px 520px at 100% 0%,
-            rgba(5, 147, 214, 0.18),
-            transparent 55%
-          ),
-          radial-gradient(
-            600px 480px at 78% 110%,
-            rgba(255, 138, 76, 0.12),
-            transparent 60%
+          linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 60%),
+          linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.35) 0%,
+            rgba(0, 0, 0, 0) 22%,
+            rgba(0, 0, 0, 0) 45%,
+            rgba(0, 0, 0, 0.6) 100%
           );
-        z-index: -1;
       }
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1.02fr 0.98fr;
-        gap: 40px;
-        align-items: center;
-      }
-      .hero-title {
-        font-size: clamp(40px, 5.4vw, 66px);
-        font-weight: 800;
-        margin: 20px 0 18px;
-      }
-      .hero-title .grad {
-        background: linear-gradient(
-          110deg,
-          var(--ocean) 10%,
-          var(--teal) 60%,
-          var(--coral) 130%
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      .hero-sub {
-        font-size: 18.5px;
-        color: var(--ink-soft);
-        max-width: 30ch;
-        font-weight: 450;
-      }
-      .hero-ctas {
-        margin-top: 28px;
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-      .hero-trust {
-        margin-top: 30px;
-        display: flex;
-        gap: 22px;
-        flex-wrap: wrap;
-        align-items: center;
-      }
-      .trust-item {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        font-size: 13.5px;
-        font-weight: 600;
-        color: var(--ink-soft);
-      }
-      .trust-item svg {
-        width: 18px;
-        height: 18px;
-        color: var(--ocean);
-      }
-
-      /* ---------- Device / phone frame ---------- */
-      .hero-stage {
+      .hero-in {
         position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 600px;
-      }
-      .stage-glow {
-        position: absolute;
-        width: 360px;
-        height: 360px;
-        border-radius: 50%;
-        background: var(--grad-ocean);
-        filter: blur(80px);
-        opacity: 0.35;
-        z-index: 0;
-      }
-      .device {
-        position: relative;
-        z-index: 1;
-        width: 300px;
-        padding: 13px;
-        border-radius: 46px;
-        background: linear-gradient(160deg, #20364c 0%, #0a2540 100%);
-        box-shadow: var(--shadow-lg);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        transform: rotate(-3deg);
-        animation: floaty 7s ease-in-out infinite;
-      }
-      .device::before {
-        content: "";
-        position: absolute;
-        top: 24px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 86px;
-        height: 20px;
-        background: #0a2540;
-        border-radius: var(--pill);
-        z-index: 3;
-      }
-      .device-screen {
-        border-radius: 34px;
-        overflow: hidden;
-        background: #fff;
-      }
-      .device-screen img {
         width: 100%;
-        height: auto;
+        padding-top: 140px;
+        padding-bottom: 56px;
       }
-      .float-card {
-        position: absolute;
-        z-index: 2;
-        background: #ffffff;
-        border: 1px solid var(--line);
-        border-radius: var(--r);
-        box-shadow: var(--shadow);
-        padding: 12px 14px;
-        display: flex;
-        gap: 11px;
-        align-items: center;
-        animation: floaty 6s ease-in-out infinite;
+      .hero h1 {
+        font-size: clamp(44px, 7vw, 96px);
+        letter-spacing: -0.035em;
+        line-height: 0.98;
+        max-width: 11ch;
       }
-      .float-card .fc-icon {
-        width: 38px;
-        height: 38px;
-        border-radius: 12px;
-        display: grid;
-        place-items: center;
-        color: #fff;
-        flex-shrink: 0;
-      }
-      .float-card .fc-icon svg {
-        width: 19px;
-        height: 19px;
-      }
-      .fc-title {
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--ink);
-      }
-      .fc-sub {
-        font-size: 11.5px;
-        color: var(--muted);
-      }
-      .float-card.fc-a {
-        top: 54px;
-        left: -26px;
-        animation-delay: 0.4s;
-      }
-      .float-card.fc-b {
-        bottom: 96px;
-        right: -34px;
-        animation-delay: 1.4s;
-      }
-      .float-card.fc-c {
-        bottom: 18px;
-        left: 6px;
-        animation-delay: 2.2s;
-      }
-
-      /* ---------- Marquee / integrations ---------- */
-      .logos {
-        padding: 30px 0 8px;
-      }
-      .logos-label {
-        text-align: center;
-        font-size: 12.5px;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 18px;
-      }
-      .logos-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        justify-content: center;
-      }
-      .logo-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 18px;
-        border-radius: var(--pill);
-        background: var(--surface);
-        border: 1px solid var(--line);
-        font-weight: 650;
-        font-size: 14px;
-        color: var(--ink-soft);
-        box-shadow: var(--shadow-sm);
-      }
-      .logo-pill .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--ocean);
-      }
-
-      /* ---------- Section scaffolding ---------- */
-      .section {
-        padding: 92px 0;
-      }
-      .section-head {
-        max-width: 620px;
-        margin: 0 auto 52px;
-        text-align: center;
-      }
-      .section-head h2 {
-        font-size: clamp(30px, 3.6vw, 42px);
-        font-weight: 800;
-        margin: 16px 0 14px;
-      }
-
-      /* ---------- How it works ---------- */
-      .steps {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 22px;
-        position: relative;
-      }
-      .step {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: var(--r-lg);
-        padding: 28px 24px;
-        box-shadow: var(--shadow-sm);
-        transition:
-          transform 200ms ease,
-          box-shadow 200ms ease;
-      }
-      .step:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow);
-      }
-      .step-num {
-        width: 46px;
-        height: 46px;
-        border-radius: 14px;
-        background: var(--grad-ocean);
-        color: #fff;
-        font-family: "Sora", sans-serif;
-        font-weight: 700;
-        font-size: 19px;
-        display: grid;
-        place-items: center;
-        margin-bottom: 18px;
-        box-shadow: 0 10px 22px rgba(5, 147, 214, 0.28);
-      }
-      .step:nth-child(2) .step-num {
-        background: var(--grad-sunset);
-        box-shadow: 0 10px 22px rgba(251, 79, 44, 0.26);
-      }
-      .step:nth-child(3) .step-num {
-        background: linear-gradient(135deg, #22c55e, #15a05a);
-        box-shadow: 0 10px 22px rgba(31, 174, 106, 0.26);
-      }
-      .step h3 {
+      .hero p {
         font-size: 20px;
-        margin-bottom: 8px;
-      }
-      .step p {
-        color: var(--muted);
-        font-size: 15px;
-      }
-      .step .quote {
-        margin-top: 14px;
-        font-size: 13.5px;
-        font-style: italic;
-        color: var(--ocean-deep);
-        background: rgba(5, 147, 214, 0.07);
-        border-left: 3px solid var(--ocean);
-        padding: 8px 12px;
-        border-radius: 0 10px 10px 0;
-      }
-
-      /* ---------- Feature bands ---------- */
-      .band {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 56px;
-        align-items: center;
-      }
-      .band + .band {
-        margin-top: 96px;
-      }
-      .band.reverse .band-media {
-        order: 2;
-      }
-      .band-media {
-        display: flex;
-        justify-content: center;
-        position: relative;
-      }
-      .band-media .device {
-        width: 280px;
-        transform: rotate(2deg);
-        animation: none;
-      }
-      .band.reverse .band-media .device {
-        transform: rotate(-2deg);
-      }
-      .band-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--teal);
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-      }
-      .band-tag svg {
-        width: 16px;
-        height: 16px;
-      }
-      .band h2 {
-        font-size: clamp(26px, 3.2vw, 38px);
-        font-weight: 800;
-        margin: 12px 0 14px;
-      }
-      .band-list {
-        list-style: none;
-        padding: 0;
+        max-width: 40ch;
         margin: 22px 0 0;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .planner {
+        margin-top: 44px;
+        background: #fff;
+        color: var(--ink);
+        border-radius: 999px;
         display: grid;
-        gap: 13px;
+        grid-template-columns: 1.3fr 1fr 1fr 1fr auto;
+        align-items: center;
+        padding: 8px 8px 8px 12px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+        max-width: 1040px;
       }
-      .band-list li {
-        display: flex;
-        gap: 12px;
-        align-items: flex-start;
-        font-size: 15.5px;
-        font-weight: 500;
-        color: var(--ink-soft);
+      .field {
+        padding: 8px 20px;
+        border-right: 1px solid var(--line);
+        min-width: 0;
       }
-      .band-list .tick {
-        width: 24px;
-        height: 24px;
-        border-radius: 8px;
-        background: rgba(5, 147, 214, 0.12);
-        color: var(--ocean-deep);
-        display: grid;
-        place-items: center;
-        flex-shrink: 0;
+      .field:nth-last-child(2) {
+        border-right: 0;
       }
-      .band-list .tick svg {
-        width: 15px;
-        height: 15px;
-      }
-
-      /* ---------- Bento feature grid ---------- */
-      .bento {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 20px;
-      }
-      .tile {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: var(--r-lg);
-        padding: 26px;
-        box-shadow: var(--shadow-sm);
-        transition:
-          transform 200ms ease,
-          box-shadow 200ms ease,
-          border-color 200ms ease;
-        position: relative;
-        overflow: hidden;
-      }
-      .tile:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow);
-        border-color: rgba(5, 147, 214, 0.35);
-      }
-      .tile.span3 {
-        grid-column: span 3;
-      }
-      .tile.span2 {
-        grid-column: span 2;
-      }
-      .tile.feature {
-        grid-column: span 3;
-        background: var(--grad-deep);
-        color: #fff;
-        border: none;
-      }
-      .tile-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 14px;
-        display: grid;
-        place-items: center;
-        margin-bottom: 16px;
-        color: #fff;
-        background: var(--grad-ocean);
-      }
-      .tile.feature .tile-icon {
-        background: var(--grad-sunset);
-      }
-      .tile-icon svg {
-        width: 22px;
-        height: 22px;
-      }
-      .tile h3 {
-        font-size: 19px;
-        margin-bottom: 7px;
-      }
-      .tile p {
-        color: var(--muted);
-        font-size: 14.5px;
-      }
-      .tile.feature p {
-        color: rgba(255, 255, 255, 0.8);
-      }
-      .tile.feature .chip-row {
-        margin-top: 18px;
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-      .tile.feature .chip {
+      .field label {
+        display: block;
         font-size: 12px;
         font-weight: 600;
-        padding: 6px 12px;
-        border-radius: var(--pill);
-        background: rgba(255, 255, 255, 0.14);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        letter-spacing: 0.02em;
+        color: var(--ink);
       }
-
-      /* ---------- Stats ---------- */
-      .stats {
-        background: var(--grad-deep);
-        border-radius: 32px;
-        padding: 52px 40px;
-        position: relative;
-        overflow: hidden;
-      }
-      .stats::after {
-        content: "";
-        position: absolute;
-        top: -40%;
-        right: -10%;
-        width: 420px;
-        height: 420px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(17, 179, 198, 0.4),
-          transparent 70%
-        );
-      }
-      .stats-grid {
-        position: relative;
-        z-index: 1;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 28px;
-        text-align: center;
-      }
-      .stat .num {
-        font-family: "Sora", sans-serif;
-        font-weight: 800;
-        font-size: clamp(34px, 4vw, 50px);
-        background: linear-gradient(120deg, #fff, #9fe0f5);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      .stat .lbl {
-        color: rgba(255, 255, 255, 0.72);
-        font-size: 14px;
-        font-weight: 500;
-        margin-top: 6px;
-      }
-      .stat + .stat {
-        border-left: 1px solid rgba(255, 255, 255, 0.12);
-      }
-
-      /* ---------- Testimonials ---------- */
-      .quotes {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 22px;
-      }
-      .quote-card {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: var(--r-lg);
-        padding: 28px;
-        box-shadow: var(--shadow-sm);
-      }
-      .stars {
-        display: flex;
-        gap: 3px;
-        color: var(--gold);
-        margin-bottom: 14px;
-      }
-      .stars svg {
-        width: 17px;
-        height: 17px;
-        fill: var(--gold);
-      }
-      .quote-card p {
-        font-size: 15.5px;
-        color: var(--ink-soft);
-        margin-bottom: 18px;
-      }
-      .who {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .avatar {
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: var(--grad-ocean);
-        color: #fff;
-        display: grid;
-        place-items: center;
-        font-weight: 700;
-        font-family: "Sora", sans-serif;
-      }
-      .who .name {
-        font-weight: 700;
-        font-size: 14.5px;
-      }
-      .who .loc {
-        font-size: 13px;
-        color: var(--muted);
-      }
-
-      /* ---------- FAQ ---------- */
-      .faq {
-        max-width: 780px;
-        margin: 0 auto;
-        display: grid;
-        gap: 14px;
-      }
-      .faq details {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: var(--r);
-        padding: 18px 22px;
-        box-shadow: var(--shadow-sm);
-      }
-      .faq summary {
+      .field select,
+      .field input {
+        width: 100%;
+        border: 0;
+        padding: 2px 0 0;
+        background: transparent;
+        font: 400 15px var(--font);
+        color: var(--ink-2);
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
         cursor: pointer;
-        font-weight: 650;
-        font-size: 16px;
-        list-style: none;
+      }
+      .field input {
+        cursor: text;
+      }
+      .planner .btn {
+        height: 56px;
+        padding: 0 30px;
+      }
+      .hero-meta {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-      }
-      .faq summary::-webkit-details-marker {
-        display: none;
-      }
-      .faq summary::after {
-        content: "+";
-        font-size: 22px;
-        color: var(--ocean);
-        font-weight: 400;
-        transition: transform 200ms ease;
-      }
-      .faq details[open] summary::after {
-        transform: rotate(45deg);
-      }
-      .faq .ans {
-        margin-top: 12px;
-        color: var(--muted);
-        font-size: 15px;
+        gap: 20px;
+        margin-top: 36px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.78);
       }
 
-      /* ---------- CTA ---------- */
-      .cta-band {
+      /* ---------- Destinations ---------- */
+      .dest-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 280px;
+        gap: 16px;
+      }
+      .card {
         position: relative;
         overflow: hidden;
-        background: var(--grad-ocean);
-        border-radius: 34px;
-        padding: 60px 52px;
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 36px;
-        align-items: center;
+        border-radius: var(--r);
+        color: #fff;
+        text-decoration: none;
+        background: #ccc;
       }
-      .cta-band::before {
+      .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 600ms ease;
+      }
+      .card:hover img {
+        transform: scale(1.04);
+      }
+      .card::after {
         content: "";
         position: absolute;
         inset: 0;
-        background:
-          radial-gradient(
-            500px 300px at 90% 120%,
-            rgba(255, 138, 76, 0.4),
-            transparent 60%
-          ),
-          radial-gradient(
-            400px 300px at 0% -20%,
-            rgba(255, 255, 255, 0.25),
-            transparent 60%
-          );
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.25) 40%, rgba(0, 0, 0, 0) 65%);
       }
-      .cta-band > * {
-        position: relative;
+      .card-txt {
+        position: absolute;
+        left: 22px;
+        right: 22px;
+        bottom: 20px;
         z-index: 1;
       }
-      .cta-band h2 {
-        color: #fff;
-        font-size: clamp(28px, 3.6vw, 44px);
-        font-weight: 800;
+      .card h3 {
+        font-size: 24px;
       }
-      .cta-band p {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 17px;
-        margin: 14px 0 26px;
-        max-width: 46ch;
+      .card .big h3 {
+        font-size: 34px;
       }
-      .cta-actions {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
+      .card-txt span {
+        display: block;
+        margin-top: 4px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.85);
       }
-      .cta-band .btn-light {
+      .c-kl {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+      .c-wide {
+        grid-column: span 2;
+      }
+
+      /* ---------- Trip ideas ---------- */
+      .ideas {
+        background: var(--bg-alt);
+      }
+      .idea-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+      .idea {
         background: #fff;
-        color: var(--ocean-deep);
-      }
-      .cta-mini {
-        background: rgba(255, 255, 255, 0.14);
-        border: 1px solid rgba(255, 255, 255, 0.28);
         border-radius: var(--r);
-        padding: 18px;
-        backdrop-filter: blur(8px);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
       }
-      .cta-mini .row {
+      .idea img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+      .idea-body {
+        padding: 22px 22px 24px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .idea-meta {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .idea h3 {
+        font-size: 21px;
+        margin-top: 8px;
+        line-height: 1.2;
+      }
+      .idea ol {
+        margin: 16px 0 20px;
+        padding: 0;
+        list-style: none;
+        font-size: 14px;
+        color: var(--ink-2);
+        display: grid;
+        gap: 6px;
+      }
+      .idea ol li {
+        display: flex;
+        gap: 10px;
+      }
+      .idea ol b {
+        font-weight: 600;
+        color: var(--ink);
+        min-width: 42px;
+      }
+      .idea-foot {
+        margin-top: auto;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .idea-foot strong {
+        font-size: 18px;
+        color: var(--ink);
+      }
+      .fine {
+        margin-top: 24px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* ---------- Planner demo ---------- */
+      .demo {
+        background: var(--dark);
+        color: #fff;
+      }
+      .demo .sub {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .demo-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 24px;
+        margin-top: 56px;
+      }
+      .panel {
+        background: #1a1c20;
+        border: 1px solid #2a2d33;
+        border-radius: 14px;
+        padding: 28px;
+      }
+      .panel-label {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 20px;
+      }
+      .msg {
+        max-width: 92%;
+        padding: 14px 18px;
+        border-radius: 16px;
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 12px;
+      }
+      .msg-user {
+        margin-left: auto;
+        background: #fff;
+        color: var(--ink);
+        border-bottom-right-radius: 4px;
+      }
+      .msg-bot {
+        background: #2a2d33;
+        color: rgba(255, 255, 255, 0.92);
+        border-bottom-left-radius: 4px;
+      }
+      .msg-bot ul {
+        margin: 8px 0 0;
+        padding-left: 18px;
+      }
+      .composer {
+        margin-top: 24px;
         display: flex;
         align-items: center;
-        gap: 12px;
-        color: #fff;
-        font-size: 14px;
-        font-weight: 500;
-        padding: 9px 0;
+        gap: 10px;
+        border: 1px solid #34373e;
+        border-radius: 999px;
+        padding: 6px 6px 6px 18px;
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 15px;
       }
-      .cta-mini .row + .row {
-        border-top: 1px solid rgba(255, 255, 255, 0.16);
+      .composer span {
+        flex: 1;
       }
-      .cta-mini .row .ic {
-        width: 32px;
-        height: 32px;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.2);
+      .composer i {
+        width: 38px;
+        height: 38px;
+        border-radius: 999px;
+        background: #fff;
         display: grid;
         place-items: center;
-        flex-shrink: 0;
       }
-      .cta-mini .row .ic svg {
-        width: 16px;
-        height: 16px;
+      .plan-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .plan-head h3 {
+        font-size: 26px;
+      }
+      .plan-head p {
+        margin: 6px 0 0;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 14px;
+      }
+      .budget {
+        text-align: right;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .budget strong {
+        display: block;
+        font-size: 22px;
+        color: #fff;
+      }
+      .bar {
+        height: 4px;
+        background: #34373e;
+        border-radius: 4px;
+        margin-top: 8px;
+        width: 160px;
+        overflow: hidden;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        width: 78%;
+        background: #fff;
+      }
+      .days {
+        display: flex;
+        gap: 8px;
+        margin: 24px 0 8px;
+        flex-wrap: wrap;
+      }
+      .day {
+        border: 1px solid #34373e;
+        background: none;
+        color: rgba(255, 255, 255, 0.75);
+        border-radius: 999px;
+        padding: 8px 16px;
+        font: 500 14px var(--font);
+        cursor: pointer;
+      }
+      .day[aria-selected="true"] {
+        background: #fff;
+        color: var(--ink);
+        border-color: #fff;
+      }
+      .stops {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .stops li {
+        display: grid;
+        grid-template-columns: 64px 1fr auto;
+        gap: 16px;
+        padding: 16px 0;
+        border-bottom: 1px solid #2a2d33;
+        align-items: baseline;
+      }
+      .stops li:last-child {
+        border-bottom: 0;
+      }
+      .stops time {
+        font-variant-numeric: tabular-nums;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 14px;
+      }
+      .stops b {
+        font-weight: 500;
+      }
+      .stops small {
+        display: block;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 13px;
+      }
+      .tag {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid #3a3d44;
+        color: rgba(255, 255, 255, 0.8);
+        white-space: nowrap;
+      }
+      .steps3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-top: 72px;
+        padding-top: 40px;
+        border-top: 1px solid #2a2d33;
+      }
+      .steps3 div span {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .steps3 h3 {
+        font-size: 20px;
+        margin: 8px 0 8px;
+      }
+      .steps3 p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* ---------- Food ---------- */
+      .food {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        min-height: 560px;
+      }
+      .food img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .food-txt {
+        background: var(--bg-alt);
+        padding: 64px 56px 64px max(56px, calc((100vw - var(--max)) / 2 + var(--gutter)));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .food-txt ul {
+        list-style: none;
+        margin: 28px 0 0;
+        padding: 0;
+        border-top: 1px solid var(--line);
+      }
+      .food-txt li {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+        color: var(--ink-2);
+      }
+
+      /* ---------- App ---------- */
+      .app-grid {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .shots {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        background: var(--bg-alt);
+        border-radius: 14px;
+        padding: 48px 36px;
+      }
+      .shots img {
+        width: 100%;
+        aspect-ratio: 510 / 880;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 22px;
+        border: 6px solid #111214;
+      }
+      .shots img:nth-child(2) {
+        transform: translateY(-24px);
+      }
+      .stores {
+        display: flex;
+        gap: 12px;
+        margin-top: 32px;
+        flex-wrap: wrap;
+      }
+      .store {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 56px;
+        padding: 0 20px;
+        border-radius: 10px;
+        background: var(--ink);
+        color: #fff;
+        text-decoration: none;
+        line-height: 1.15;
+      }
+      .store small {
+        font-size: 11px;
+        opacity: 0.7;
+      }
+      .store b {
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .checks {
+        list-style: none;
+        padding: 0;
+        margin: 28px 0 0;
+        display: grid;
+        gap: 12px;
+        color: var(--ink-2);
+      }
+      .checks li {
+        display: flex;
+        gap: 12px;
+      }
+      .checks svg {
+        flex-shrink: 0;
+        margin-top: 4px;
+      }
+
+      /* ---------- Partners ---------- */
+      .partners {
+        border-top: 1px solid var(--line);
+        padding: 72px 0;
+      }
+      .partner-in {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .partner-logos {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+      }
+      .partner-logos div {
+        padding: 28px 16px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 16px;
+        color: var(--ink-2);
+        border-right: 1px solid var(--line);
+      }
+      .partner-logos div:last-child {
+        border-right: 0;
+      }
+      .partner-logos small {
+        display: block;
+        font-weight: 400;
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 2px;
       }
 
       /* ---------- Footer ---------- */
-      footer {
-        background: var(--ink);
+      .footer {
+        background: var(--dark);
         color: rgba(255, 255, 255, 0.7);
-        padding: 56px 0 30px;
+        padding: 96px 0 40px;
+        font-size: 15px;
       }
-      .foot-grid {
-        display: grid;
-        grid-template-columns: 1.4fr 1fr 1fr 1fr;
-        gap: 30px;
-      }
-      footer .brand {
-        color: #fff;
-      }
-      footer .brand b {
-        color: var(--sky);
-      }
-      .foot-about {
-        margin-top: 16px;
-        font-size: 14px;
-        max-width: 32ch;
-        color: rgba(255, 255, 255, 0.6);
-      }
-      .foot-col h4 {
-        color: #fff;
-        font-size: 13px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        margin: 6px 0 16px;
-        font-family: "Sora", sans-serif;
-      }
-      .foot-col a {
-        display: block;
-        font-size: 14.5px;
-        padding: 5px 0;
-        color: rgba(255, 255, 255, 0.68);
-        transition: color 140ms ease;
-      }
-      .foot-col a:hover {
-        color: var(--sky);
-      }
-      .foot-bottom {
-        margin-top: 40px;
-        padding-top: 22px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      .foot-cta {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 12px;
+        align-items: flex-end;
+        gap: 40px;
+        padding-bottom: 72px;
+        border-bottom: 1px solid #2a2d33;
+      }
+      .foot-cta h2 {
+        color: #fff;
+        font-size: clamp(34px, 4.6vw, 60px);
+        max-width: 18ch;
+      }
+      .signup {
+        display: flex;
+        gap: 8px;
+        background: #1a1c20;
+        border: 1px solid #2a2d33;
+        border-radius: 999px;
+        padding: 6px;
+        width: min(460px, 100%);
+      }
+      .signup input {
+        flex: 1;
+        min-width: 0;
+        background: none;
+        border: 0;
+        padding: 0 16px;
+        color: #fff;
+        font: 400 16px var(--font);
+        outline: none;
+      }
+      .signup input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .signup .btn {
+        height: 48px;
+      }
+      .signup-note {
+        margin: 12px 0 0 18px;
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .foot-cols {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr 1fr;
+        gap: 40px;
+        padding: 56px 0;
+      }
+      .foot-cols h4 {
+        margin: 0 0 16px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .foot-cols ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 10px;
+      }
+      .foot-cols a {
+        text-decoration: none;
+      }
+      .foot-cols a:hover {
+        color: #fff;
+      }
+      .foot-cols .logo {
+        color: #fff;
+      }
+      .foot-cols p {
+        max-width: 32ch;
+        margin: 16px 0 0;
+      }
+      .foot-base {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        padding-top: 28px;
+        border-top: 1px solid #2a2d33;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .credits summary {
+        cursor: pointer;
+      }
+      .credits ul {
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 4px;
       }
 
-      /* ---------- Reveal animation ---------- */
-      .reveal {
-        opacity: 0;
-        transform: translateY(26px) scale(0.985);
-        transition:
-          opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
-          transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
-        transition-delay: var(--reveal-delay, 0ms);
-        will-change: opacity, transform;
-      }
-      .reveal.in {
-        opacity: 1;
-        transform: none;
-      }
-      /* Directional variants */
-      .reveal.from-left {
-        transform: translateX(-32px);
-      }
-      .reveal.from-right {
-        transform: translateX(32px);
-      }
-      .reveal.in.from-left,
-      .reveal.in.from-right {
-        transform: none;
-      }
-
-      @keyframes floaty {
-        0%,
-        100% {
-          transform: translateY(0) rotate(var(--rot, 0deg));
-        }
-        50% {
-          transform: translateY(-12px) rotate(var(--rot, 0deg));
-        }
-      }
-      .device {
-        --rot: -3deg;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .device,
-        .float-card {
-          animation: none;
-        }
-        .reveal {
-          transition: none;
-          opacity: 1;
-          transform: none;
-        }
+      a:focus-visible,
+      button:focus-visible,
+      select:focus-visible,
+      input:focus-visible,
+      summary:focus-visible {
+        outline: 2px solid #6b78d6;
+        outline-offset: 3px;
       }
 
       /* ---------- Responsive ---------- */
-      @media (max-width: 980px) {
-        .hero-grid,
-        .band,
-        .band.reverse .band-media,
-        .cta-band {
-          grid-template-columns: 1fr;
+      @media (max-width: 1080px) {
+        .planner {
+          grid-template-columns: 1fr 1fr;
+          border-radius: 18px;
+          padding: 12px;
+          gap: 4px;
         }
-        .band.reverse .band-media {
-          order: 0;
+        .field {
+          border-right: 0;
+          padding: 10px 12px;
         }
-        .hero-stage {
-          min-height: 540px;
+        .planner .btn {
+          grid-column: 1 / -1;
         }
-        .bento {
+        .idea-row {
           grid-template-columns: repeat(2, 1fr);
         }
-        .tile.span3,
-        .tile.span2,
-        .tile.feature {
-          grid-column: span 2;
-        }
-        .steps,
-        .quotes {
+        .demo-grid,
+        .app-grid,
+        .partner-in {
           grid-template-columns: 1fr;
         }
-        .stats-grid {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 30px 12px;
-        }
-        .stat + .stat {
-          border-left: none;
-        }
-        .foot-grid {
+        .food {
           grid-template-columns: 1fr 1fr;
         }
+        .food-txt {
+          grid-column: 1 / -1;
+          order: -1;
+        }
+        .food img {
+          aspect-ratio: 4 / 3;
+        }
       }
-      @media (max-width: 980px) {
+      @media (max-width: 860px) {
+        :root {
+          --gutter: 24px;
+        }
         .nav-links,
-        .nav-cta .btn-ghost {
+        .nav-right .btn {
           display: none;
         }
-      }
-      @media (max-width: 640px) {
-        .section {
-          padding: 64px 0;
+        .menu-btn {
+          display: inline-grid;
+          place-items: center;
         }
-        .bento {
-          grid-template-columns: 1fr;
+        .nav.open {
+          background: #fff;
+          color: var(--ink);
         }
-        .tile.span3,
-        .tile.span2,
-        .tile.feature {
+        .nav.open .nav-links {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          position: absolute;
+          top: 76px;
+          left: 0;
+          right: 0;
+          background: #fff;
+          padding: 8px var(--gutter) 24px;
+          border-bottom: 1px solid var(--line);
+        }
+        .nav.open .nav-links a {
+          padding: 14px 0;
+          border-bottom: 1px solid var(--line);
+          font-size: 17px;
+        }
+        .sec {
+          padding: 80px 0;
+        }
+        .sec-head {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+        }
+        .dest-grid {
+          grid-template-columns: 1fr 1fr;
+          grid-auto-rows: 220px;
+        }
+        .c-wide {
           grid-column: span 1;
         }
-        .stats-grid,
-        .foot-grid {
+        .steps3 {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .foot-cta {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .foot-cols {
           grid-template-columns: 1fr 1fr;
         }
-        .cta-band,
-        .stats {
-          padding: 38px 24px;
+        .foot-cols > div:first-child {
+          grid-column: 1 / -1;
+        }
+        .partner-logos {
+          grid-template-columns: 1fr 1fr;
+        }
+        .partner-logos div:nth-child(2) {
+          border-right: 0;
+        }
+        .partner-logos div:nth-child(-n + 2) {
+          border-bottom: 1px solid var(--line);
+        }
+      }
+      @media (max-width: 600px) {
+        :root {
+          --gutter: 16px;
+        }
+        .hero p {
+          font-size: 17px;
+        }
+        .hero-meta {
+          flex-direction: column;
+          gap: 6px;
+        }
+        .dest-grid {
+          grid-template-columns: 1fr;
+          grid-auto-rows: 240px;
+        }
+        .c-kl {
+          grid-column: auto;
+          grid-row: span 1;
+        }
+        .card .big h3 {
+          font-size: 26px;
+        }
+        .idea-row {
+          grid-template-columns: 1fr;
+        }
+        .panel {
+          padding: 20px;
+        }
+        .stops li {
+          grid-template-columns: 52px 1fr;
+        }
+        .stops .tag {
+          grid-column: 2;
+          justify-self: start;
+        }
+        .budget {
+          text-align: left;
+        }
+        .food {
+          grid-template-columns: 1fr;
+        }
+        .food-txt {
+          padding: 56px var(--gutter);
+        }
+        .shots {
+          padding: 32px 16px;
+          gap: 10px;
+        }
+        .shots img {
+          border-width: 4px;
+          border-radius: 16px;
+        }
+        .foot-cols {
+          grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <!-- NAV -->
-    <nav class="nav" id="top">
-      <div class="wrap nav-inner">
-        <a class="brand" href="#top" aria-label="JalanJalanMY home">
-          <img src="Website%20Logo.png" alt="JalanJalanMY logo" />
-          <span>Jalan<b>Jalan</b>MY</span>
+    <!-- Navigation -->
+    <header class="nav" id="nav">
+      <div class="wrap nav-in">
+        <a class="logo" href="#top" aria-label="JalanJalanMY home">
+          <svg viewBox="0 0 24 30" aria-hidden="true">
+            <path class="pin" d="M12 0C5.4 0 0 5.2 0 11.6 0 20 12 30 12 30s12-10 12-18.4C24 5.2 18.6 0 12 0z" />
+            <circle class="hole" cx="12" cy="11.3" r="6.8" />
+            <rect class="pin" x="8.4" y="6.8" width="2.3" height="9" />
+            <rect class="pin" x="13.3" y="6.8" width="2.3" height="9" />
+            <rect class="pin" x="10.7" y="10.6" width="2.6" height="1.1" />
+          </svg>
+          JalanJalanMY
         </a>
-        <div class="nav-links">
+        <nav class="nav-links" aria-label="Main">
+          <a href="#destinations">Destinations</a>
+          <a href="#ideas">Trip ideas</a>
           <a href="#how">How it works</a>
-          <a href="#features">Features</a>
-          <a href="#interface">Interface</a>
-          <a href="#faq">FAQ</a>
-        </div>
-        <div class="nav-cta">
-          <a class="btn btn-ghost" href="#interface">See the app</a>
-          <a class="btn btn-primary" href="#cta">Get early access</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- HERO -->
-    <header class="hero" id="home">
-      <div class="wrap hero-grid">
-        <div class="reveal in">
-          <span class="eyebrow"
-            ><i data-lucide="sparkles"></i> Agentic AI · Malaysia-first</span
-          >
-          <h1 class="hero-title">
-            Plan your whole<br />Malaysia trip in
-            <span class="grad">one chat.</span>
-          </h1>
-          <p class="hero-sub">
-            Hotels, tours, budget and a day-by-day itinerary, sorted by an AI
-            that actually knows Malaysia.
-          </p>
-          <div class="hero-ctas">
-            <a class="btn btn-accent" href="#cta"
-              >Get early access <i data-lucide="arrow-right"></i
-            ></a>
-            <a class="btn btn-ghost" href="#how"
-              ><i data-lucide="play"></i> See how it works</a
-            >
-          </div>
-          <div class="hero-trust">
-            <span class="trust-item"
-              ><i data-lucide="zap"></i> Replies in under 3s</span
-            >
-            <span class="trust-item"
-              ><i data-lucide="badge-check"></i> Powered by Gemini AI</span
-            >
-            <span class="trust-item"
-              ><i data-lucide="wallet"></i> Budget-aware planning</span
-            >
-          </div>
-        </div>
-
-        <div class="hero-stage">
-          <div class="stage-glow"></div>
-          <div class="device">
-            <div class="device-screen">
-              <img src="Home_page.png" alt="JalanJalanMY chat home screen" />
-            </div>
-          </div>
-
-          <div class="float-card fc-a">
-            <div class="fc-icon" style="background: var(--grad-sunset)">
-              <i data-lucide="trending-down"></i>
-            </div>
-            <div>
-              <div class="fc-title">Price dropped</div>
-              <div class="fc-sub">RM185 → RM155 / night</div>
-            </div>
-          </div>
-
-          <div class="float-card fc-b">
-            <div class="fc-icon" style="background: var(--grad-ocean)">
-              <i data-lucide="route"></i>
-            </div>
-            <div>
-              <div class="fc-title">Day 2 optimized</div>
-              <div class="fc-sub">4 stops · least backtracking</div>
-            </div>
-          </div>
-
-          <div class="float-card fc-c">
-            <div
-              class="fc-icon"
-              style="background: linear-gradient(135deg, #22c55e, #15a05a)"
-            >
-              <i data-lucide="check"></i>
-            </div>
-            <div>
-              <div class="fc-title">Booked via Klook</div>
-              <div class="fc-sub">Penang Hill Cable Car</div>
-            </div>
-          </div>
+          <a href="#app">The app</a>
+          <a href="#partners">Partners</a>
+        </nav>
+        <div class="nav-right">
+          <a class="btn" href="#access">Get early access</a>
+          <button class="menu-btn" aria-label="Menu" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+              <path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.6" />
+            </svg>
+          </button>
         </div>
       </div>
     </header>
 
-    <!-- LOGOS -->
-    <section class="logos">
-      <div class="wrap">
-        <p class="logos-label">Booking &amp; data powered by</p>
-        <div class="logos-row reveal">
-          <span class="logo-pill"><span class="dot"></span> Agoda</span>
-          <span class="logo-pill"
-            ><span class="dot" style="background: var(--coral)"></span>
-            Klook</span
-          >
-          <span class="logo-pill"
-            ><span class="dot" style="background: var(--green)"></span> Google
-            Maps</span
-          >
-          <span class="logo-pill"
-            ><span class="dot" style="background: var(--gold)"></span> Google
-            Calendar</span
-          >
-          <span class="logo-pill"
-            ><span class="dot" style="background: var(--teal)"></span>
-            Firebase</span
-          >
-        </div>
-      </div>
-    </section>
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="wrap hero-in">
+          <h1>Malaysia, planned around you.</h1>
+          <p>Pick a place, your dates and a budget. We build the day-by-day plan and line up the hotels and tours to book.</p>
 
-    <!-- HOW IT WORKS -->
-    <section class="section" id="how">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow"><i data-lucide="route"></i> How it works</span>
-          <h2>From a sentence to a full itinerary.</h2>
-          <p class="lead">
-            Three steps. No tab-juggling across ten travel sites.
-          </p>
+          <form class="planner" id="planner">
+            <div class="field">
+              <label for="f-where">Where</label>
+              <select id="f-where">
+                <option>Penang</option>
+                <option>Langkawi</option>
+                <option>Kuala Lumpur</option>
+                <option>Melaka</option>
+                <option>Cameron Highlands</option>
+                <option>Sabah</option>
+                <option>Perhentian Islands</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-when">When</label>
+              <select id="f-when">
+                <option>December</option>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-days">Length</label>
+              <select id="f-days">
+                <option>3 days</option>
+                <option selected>4 days</option>
+                <option>5 days</option>
+                <option>7 days</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-budget">Budget</label>
+              <input id="f-budget" value="RM2,000" inputmode="numeric" />
+            </div>
+            <button class="btn" type="submit">Plan my trip</button>
+          </form>
+
+          <div class="hero-meta">
+            <span>Hotels from Agoda &middot; Tours from Klook &middot; Routes from Google Maps</span>
+            <span>Pulau Redang, Terengganu</span>
+          </div>
         </div>
-        <div class="steps">
-          <div class="step reveal">
-            <div class="step-num">1</div>
-            <h3>Tell us your trip</h3>
-            <p>Type naturally: dates, budget and the vibe you're after.</p>
-            <div class="quote">
-              “5 days in Penang, beaches &amp; food, RM2000.”
+      </section>
+
+      <!-- Destinations -->
+      <section class="sec" id="destinations">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <h2 class="h2">Where to next?</h2>
+              <p class="sub">Cities, islands and highlands, all planned the same way.</p>
+            </div>
+            <a class="more" href="#ideas">See trip ideas</a>
+          </div>
+
+          <div class="dest-grid">
+            <a class="card c-kl" href="#planner" data-dest="Kuala Lumpur">
+              <img src="assets/photos/kuala-lumpur.jpg" alt="Petronas Twin Towers above the Kuala Lumpur skyline" loading="lazy" />
+              <div class="card-txt big"><h3>Kuala Lumpur</h3><span>Food, architecture and day trips &middot; 2&ndash;3 days</span></div>
+            </a>
+            <a class="card" href="#planner" data-dest="Penang">
+              <img src="assets/photos/penang.jpg" alt="Restored shophouses in George Town, Penang" loading="lazy" />
+              <div class="card-txt"><h3>Penang</h3><span>Hawker food, heritage &middot; 3&ndash;4 days</span></div>
+            </a>
+            <a class="card" href="#planner" data-dest="Langkawi">
+              <img src="assets/photos/langkawi.jpg" alt="Langkawi SkyCab over the rainforest" loading="lazy" />
+              <div class="card-txt"><h3>Langkawi</h3><span>Beaches, islands &middot; 3&ndash;5 days</span></div>
+            </a>
+            <a class="card" href="#planner" data-dest="Melaka">
+              <img src="assets/photos/melaka.jpg" alt="Shophouses reflected in the Melaka River" loading="lazy" />
+              <div class="card-txt"><h3>Melaka</h3><span>History, Peranakan food &middot; 1&ndash;2 days</span></div>
+            </a>
+            <a class="card" href="#planner" data-dest="Cameron Highlands">
+              <img src="assets/photos/cameron-highlands.jpg" alt="Tea plantation hills in Cameron Highlands" loading="lazy" />
+              <div class="card-txt"><h3>Cameron Highlands</h3><span>Tea estates, cool air &middot; 2&ndash;3 days</span></div>
+            </a>
+            <a class="card c-wide" href="#planner" data-dest="Sabah">
+              <img src="assets/photos/sabah.jpg" alt="Summit of Mount Kinabalu above the clouds at dawn" loading="lazy" />
+              <div class="card-txt"><h3>Sabah</h3><span>Mount Kinabalu, diving, wildlife &middot; 5&ndash;7 days</span></div>
+            </a>
+            <a class="card c-wide" href="#planner" data-dest="Perhentian Islands">
+              <img src="assets/photos/perhentian.jpg" alt="Palm-lined beach on the Perhentian Islands" loading="lazy" />
+              <div class="card-txt"><h3>Perhentian Islands</h3><span>Snorkelling, quiet beaches &middot; 3&ndash;4 days</span></div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trip ideas -->
+      <section class="sec ideas" id="ideas">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <h2 class="h2">Trip ideas to start from</h2>
+              <p class="sub">Open one, then change the dates, pace or budget to make it yours.</p>
             </div>
           </div>
-          <div class="step reveal">
-            <div class="step-num">2</div>
-            <h3>AI builds the plan</h3>
-            <p>
-              Hotels, tours and an optimized day-by-day route generated
-              instantly.
-            </p>
-            <div class="quote">
-              12 hotels · 20 attractions · 3 guides found ✓
-            </div>
-          </div>
-          <div class="step reveal">
-            <div class="step-num">3</div>
-            <h3>Book &amp; go</h3>
-            <p>Confirm bookings, sync your calendar and get smart reminders.</p>
-            <div class="quote">Synced to Google Calendar · alerts on ✓</div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- FEATURE BANDS -->
-    <section class="section" id="interface" style="background: var(--mist)">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow"
-            ><i data-lucide="smartphone"></i> Inside the app</span
-          >
-          <h2>Built around how people actually travel.</h2>
-          <p class="lead">
-            Real screens from JalanJalanMY: chat, discovery and budgets in one
-            place.
-          </p>
-        </div>
-
-        <!-- Band 1 -->
-        <div class="band">
-          <div class="band-content reveal from-left">
-            <span class="band-tag"
-              ><i data-lucide="message-circle"></i> One chat</span
-            >
-            <h2>Everything handled in a single conversation.</h2>
-            <p class="lead">
-              No juggling ten apps. JalanJalanMY searches Agoda, Klook and
-              Google Maps at once, then turns the results into a plan you can
-              act on.
-            </p>
-            <ul class="band-list">
-              <li>
-                <span class="tick"><i data-lucide="check"></i></span>
-                Natural-language requests become full itineraries
-              </li>
-              <li>
-                <span class="tick"><i data-lucide="check"></i></span>
-                Smart follow-ups when trip details are missing
-              </li>
-              <li>
-                <span class="tick"><i data-lucide="check"></i></span>
-                Suggested prompts to get moving in seconds
-              </li>
-            </ul>
-          </div>
-          <div class="band-media reveal from-right">
-            <div class="device">
-              <div class="device-screen">
-                <img src="Home_page.png" alt="JalanJalanMY AI chat screen" />
+          <div class="idea-row">
+            <article class="idea">
+              <img src="assets/photos/penang.jpg" alt="" loading="lazy" />
+              <div class="idea-body">
+                <span class="idea-meta">Penang &middot; 4 days</span>
+                <h3>Hawker stalls and heritage streets</h3>
+                <ol>
+                  <li><b>Day 1</b>George Town walking tour</li>
+                  <li><b>Day 2</b>Penang Hill and Kek Lok Si</li>
+                  <li><b>Day 3</b>Batu Ferringhi beach</li>
+                </ol>
+                <div class="idea-foot"><span>from</span><strong>RM1,400</strong></div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Band 2 -->
-        <div class="band reverse">
-          <div class="band-media reveal from-left">
-            <div class="device">
-              <div class="device-screen">
-                <img
-                  src="Discover_page.png"
-                  alt="JalanJalanMY discover screen"
-                />
+            </article>
+            <article class="idea">
+              <img src="assets/photos/langkawi.jpg" alt="" loading="lazy" />
+              <div class="idea-body">
+                <span class="idea-meta">Langkawi &middot; 5 days</span>
+                <h3>A slow island break</h3>
+                <ol>
+                  <li><b>Day 1</b>Pantai Cenang sunset</li>
+                  <li><b>Day 2</b>SkyCab and Sky Bridge</li>
+                  <li><b>Day 3</b>Kilim mangrove boat tour</li>
+                </ol>
+                <div class="idea-foot"><span>from</span><strong>RM1,900</strong></div>
               </div>
-            </div>
-          </div>
-          <div class="band-content reveal from-right">
-            <span class="band-tag" style="color: var(--coral-deep)"
-              ><i data-lucide="compass"></i> Discover</span
-            >
-            <h2>Find your next adventure, curated for Malaysia.</h2>
-            <p class="lead">
-              Hotels, nature, culture and night markets, browsable quick picks
-              with live pricing and real local context.
-            </p>
-            <ul class="band-list">
-              <li>
-                <span class="tick"><i data-lucide="check"></i></span>
-                Category filters: hotels, nature, culture &amp; more
-              </li>
-              <li>
-                <span class="tick"><i data-lucide="check"></i></span>
-                Popularity and rating signals on every pick
-              </li>
-              <li>
-                <span class="tick"><i data-lucide="check"></i></span>
-                Route-aware recommendations by the day
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Band 3 -->
-        <div class="band">
-          <div class="band-content reveal from-left">
-            <span class="band-tag" style="color: var(--green)"
-              ><i data-lucide="wallet"></i> Budget</span
-            >
-            <h2>Stay on budget without the spreadsheet.</h2>
-            <p class="lead">
-              Track every ringgit across accommodation, activities, food and
-              transport, with a live breakdown as your trip takes shape.
-            </p>
-            <ul class="band-list">
-              <li>
-                <span class="tick"><i data-lucide="check"></i></span>
-                Real-time spent vs. remaining at a glance
-              </li>
-              <li>
-                <span class="tick"><i data-lucide="check"></i></span>
-                Category breakdown with a clear visual split
-              </li>
-              <li>
-                <span class="tick"><i data-lucide="check"></i></span>
-                Price-drop alerts that protect your budget
-              </li>
-            </ul>
-          </div>
-          <div class="band-media reveal from-right">
-            <div class="device">
-              <div class="device-screen">
-                <img
-                  src="Budget_page.png"
-                  alt="JalanJalanMY budget tracker screen"
-                />
+            </article>
+            <article class="idea">
+              <img src="assets/photos/cameron-highlands.jpg" alt="" loading="lazy" />
+              <div class="idea-body">
+                <span class="idea-meta">Cameron Highlands &middot; 3 days</span>
+                <h3>Tea country and cool mornings</h3>
+                <ol>
+                  <li><b>Day 1</b>BOH tea estate</li>
+                  <li><b>Day 2</b>Mossy Forest trail</li>
+                  <li><b>Day 3</b>Strawberry farms, markets</li>
+                </ol>
+                <div class="idea-foot"><span>from</span><strong>RM750</strong></div>
               </div>
-            </div>
+            </article>
+            <article class="idea">
+              <img src="assets/photos/sabah.jpg" alt="" loading="lazy" />
+              <div class="idea-body">
+                <span class="idea-meta">Sabah &middot; 6 days</span>
+                <h3>Climbing Mount Kinabalu</h3>
+                <ol>
+                  <li><b>Day 1</b>Kota Kinabalu waterfront</li>
+                  <li><b>Day 2</b>Kinabalu Park</li>
+                  <li><b>Day 3</b>Summit climb, two days</li>
+                </ol>
+                <div class="idea-foot"><span>from</span><strong>RM3,500</strong></div>
+              </div>
+            </article>
           </div>
+          <p class="fine">Estimated per person for stays and activities, excluding flights. Prices change with dates and availability.</p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- BENTO FEATURES -->
-    <section class="section" id="features">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow"
-            ><i data-lucide="layout-grid"></i> Features</span
-          >
-          <h2>Everything a traveler needs, in one app.</h2>
-          <p class="lead">From first idea to the moment you check in.</p>
-        </div>
-        <div class="bento">
-          <div class="tile feature reveal">
-            <div class="tile-icon"><i data-lucide="bot"></i></div>
-            <h3>AI Trip Planner</h3>
-            <p>
-              Describe your trip in plain language and get a complete,
-              budget-aware itinerary in seconds.
-            </p>
-            <div class="chip-row">
-              <span class="chip">Natural language</span>
-              <span class="chip">Budget-aware</span>
-              <span class="chip">Day-by-day</span>
-            </div>
-          </div>
-          <div class="tile span3 reveal">
-            <div class="tile-icon"><i data-lucide="hotel"></i></div>
-            <h3>Hotel Aggregator</h3>
-            <p>
-              Compare Agoda and partner stays side by side with live pricing and
-              free-cancellation flags.
-            </p>
-          </div>
+      <!-- How it works / demo -->
+      <section class="sec demo" id="how">
+        <div class="wrap">
+          <h2 class="h2">Tell it the trip. Get the plan.</h2>
+          <p class="sub">Write it the way you would say it. JalanJalanMY asks about anything it needs, then lays out every day.</p>
 
-          <div class="tile span2 reveal">
-            <div class="tile-icon" style="background: var(--grad-sunset)">
-              <i data-lucide="ticket"></i>
+          <div class="demo-grid">
+            <div class="panel">
+              <div class="panel-label">Conversation</div>
+              <div class="msg msg-user" id="demo-prompt">4 days in Penang in December, mostly food and some beach time. Budget RM2,000 for two.</div>
+              <div class="msg msg-bot">
+                Here is a 4-day plan that keeps each day in one part of the island. I found:
+                <ul>
+                  <li>3 hotels near Batu Ferringhi under RM200 a night</li>
+                  <li>A morning heritage walk and a Penang Hill ticket on Klook</li>
+                </ul>
+              </div>
+              <div class="msg msg-user">Make day 3 lighter, we will be tired.</div>
+              <div class="msg msg-bot">Done. Day 3 is now beach in the morning and an early hawker dinner at Gurney Drive.</div>
+              <div class="composer"><span>Ask for a change&hellip;</span><i><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="#111214" stroke-width="1.6" fill="none" /></svg></i></div>
             </div>
-            <h3>Tours &amp; Activities</h3>
-            <p>Experiences powered by Klook, booked straight from your plan.</p>
-          </div>
-          <div class="tile span2 reveal">
-            <div
-              class="tile-icon"
-              style="background: linear-gradient(135deg, #22c55e, #15a05a)"
-            >
-              <i data-lucide="calendar-check"></i>
+
+            <div class="panel">
+              <div class="plan-head">
+                <div>
+                  <div class="panel-label" style="margin-bottom: 8px">Your plan</div>
+                  <h3 id="plan-title">Penang, 4 days</h3>
+                  <p>12&ndash;15 Dec &middot; 2 travellers</p>
+                </div>
+                <div class="budget">
+                  Estimated
+                  <strong>RM1,560 <span style="font-size: 14px; font-weight: 400; color: rgba(255, 255, 255, 0.55)">/ RM2,000</span></strong>
+                  <div class="bar"><i></i></div>
+                </div>
+              </div>
+              <div class="days" role="tablist" aria-label="Days">
+                <button class="day" role="tab" aria-selected="true" data-day="0">Day 1</button>
+                <button class="day" role="tab" aria-selected="false" data-day="1">Day 2</button>
+                <button class="day" role="tab" aria-selected="false" data-day="2">Day 3</button>
+                <button class="day" role="tab" aria-selected="false" data-day="3">Day 4</button>
+              </div>
+              <ul class="stops" id="stops"></ul>
             </div>
-            <h3>Calendar Sync</h3>
-            <p>Every booking auto-synced to Google Calendar with reminders.</p>
-          </div>
-          <div class="tile span2 reveal">
-            <div
-              class="tile-icon"
-              style="background: linear-gradient(135deg, #f7a13b, #ef7c1a)"
-            >
-              <i data-lucide="bell-ring"></i>
-            </div>
-            <h3>Smart Alerts</h3>
-            <p>
-              Price drops, weather warnings and check-in nudges, all proactive.
-            </p>
           </div>
 
-          <div class="tile span3 reveal">
-            <div class="tile-icon" style="background: var(--grad-deep)">
-              <i data-lucide="map"></i>
-            </div>
-            <h3>Route Optimization</h3>
-            <p>
-              Day plans ordered to cut backtracking, with offline Malaysia maps
-              for navigating without data.
-            </p>
-          </div>
-          <div class="tile span3 reveal">
-            <div
-              class="tile-icon"
-              style="background: linear-gradient(135deg, #11b3c6, #0593d6)"
-            >
-              <i data-lucide="user-round-cog"></i>
-            </div>
-            <h3>Learns Your Style</h3>
-            <p>
-              Solo, beach-lover or budget traveler, JalanJalanMY tunes picks to
-              how you like to travel.
-            </p>
+          <div class="steps3">
+            <div><span>01</span><h3>Describe it</h3><p>Where, when, who is coming and what you want to spend.</p></div>
+            <div><span>02</span><h3>Adjust it</h3><p>Ask for changes in plain words. The plan and the budget update together.</p></div>
+            <div><span>03</span><h3>Book it</h3><p>Open each hotel or tour on Agoda or Klook, then add the trip to Google Calendar.</p></div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- STATS -->
-    <section class="section" style="padding-top: 0">
-      <div class="wrap">
-        <div class="stats reveal">
-          <div class="stats-grid">
-            <div class="stat">
-              <div class="num">16M+</div>
-              <div class="lbl">International arrivals to Malaysia (2025)</div>
-            </div>
-            <div class="stat">
-              <div class="num">5</div>
-              <div class="lbl">Booking platforms unified in one app</div>
-            </div>
-            <div class="stat">
-              <div class="num">&lt;3s</div>
-              <div class="lbl">Average AI response time</div>
-            </div>
-            <div class="stat">
-              <div class="num">RM2k</div>
-              <div class="lbl">Typical trip budget handled</div>
-            </div>
-          </div>
+      <!-- Food -->
+      <section class="food" aria-label="Food">
+        <div class="food-txt">
+          <h2 class="h2">Planned around meals, too.</h2>
+          <p class="sub">In Malaysia the food is half the trip. Plans include where to eat near each stop and when the stalls are actually open.</p>
+          <ul>
+            <li>Hawker centres and night markets by area</li>
+            <li>Opening hours checked against your day</li>
+            <li>Halal, vegetarian and other preferences</li>
+          </ul>
         </div>
-      </div>
-    </section>
+        <img src="assets/photos/nasi-lemak.jpg" alt="Nasi lemak with sambal, egg, anchovies and peanuts" loading="lazy" />
+        <img src="assets/photos/char-kway-teow.jpg" alt="Plate of char kway teow" loading="lazy" />
+      </section>
 
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow"><i data-lucide="help-circle"></i> FAQ</span>
-          <h2>Questions, answered.</h2>
-        </div>
-        <div class="faq">
-          <details class="reveal" open>
-            <summary>Is JalanJalanMY live today?</summary>
-            <div class="ans">
-              The app is in active development. This site is a preview for
-              partners and early-access travelers.
-            </div>
-          </details>
-          <details class="reveal">
-            <summary>Which platforms are integrated?</summary>
-            <div class="ans">
-              Agoda and Klook for hotels and tours, plus Google Maps and Google
-              Calendar for routing and scheduling.
-            </div>
-          </details>
-          <details class="reveal">
-            <summary>How does the AI build an itinerary?</summary>
-            <div class="ans">
-              It uses your budget, dates and interests to plan routes, compare
-              bookings and generate a day-by-day schedule, asking follow-ups
-              when something's missing.
-            </div>
-          </details>
-          <details class="reveal">
-            <summary>Do bookings happen inside the app?</summary>
-            <div class="ans">
-              JalanJalanMY confirms availability and routes you to partner
-              booking flows with deep links and tracking.
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section" id="cta" style="padding-top: 0">
-      <div class="wrap">
-        <div class="cta-band reveal">
+      <!-- App -->
+      <section class="sec" id="app">
+        <div class="wrap app-grid">
           <div>
-            <h2>Plan your Malaysia trip today.</h2>
-            <p>
-              Free to explore, no account needed yet. Get early access to the
-              agentic AI travel planner built for Malaysia.
-            </p>
-            <div class="cta-actions">
-              <a class="btn btn-light" href="#contact"
-                >Get early access <i data-lucide="arrow-right"></i
-              ></a>
-              <a class="btn btn-dark" href="#features">View features</a>
+            <h2 class="h2">Your whole trip in your pocket.</h2>
+            <p class="sub">The plan, your bookings and your spending stay together, so you are not searching through emails on the road.</p>
+            <ul class="checks">
+              <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#29306E" stroke-width="2" fill="none" /></svg>Day-by-day itinerary with travel times</li>
+              <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#29306E" stroke-width="2" fill="none" /></svg>Budget tracking by stays, food, activities and transport</li>
+              <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#29306E" stroke-width="2" fill="none" /></svg>Reminders for check-in, departures and price changes</li>
+            </ul>
+            <div class="stores">
+              <a class="store" href="#access"><small>Coming soon on</small><b>App Store</b></a>
+              <a class="store" href="#access"><small>Coming soon on</small><b>Google Play</b></a>
             </div>
           </div>
-          <div class="cta-mini">
-            <div class="row">
-              <div class="ic"><i data-lucide="trending-down"></i></div>
-              Price dropped: Berjaya Resort RM185 → RM155/night
-            </div>
-            <div class="row">
-              <div class="ic"><i data-lucide="cloud-rain"></i></div>
-              Rain on Day 3: indoor alternatives added
-            </div>
-            <div class="row">
-              <div class="ic"><i data-lucide="clock"></i></div>
-              Check-in in 2 hours · you're 40 min away
-            </div>
+          <div class="shots">
+            <img src="Home_page.png" alt="JalanJalanMY home screen with the trip assistant" loading="lazy" />
+            <img src="Trip_page.png" alt="JalanJalanMY itinerary screen" loading="lazy" />
+            <img src="Budget_page.png" alt="JalanJalanMY budget tracker" loading="lazy" />
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- CONTACT / FOOTER -->
-    <footer id="contact">
-      <div class="wrap">
-        <div class="foot-grid">
+      <!-- Partners -->
+      <section class="partners" id="partners">
+        <div class="wrap partner-in">
           <div>
-            <a class="brand" href="#top"
-              ><img
-                src="Website%20Logo.png"
-                alt="JalanJalanMY logo"
-                style="height: 38px"
-              />
-              <span>Jalan<b>Jalan</b>MY</span></a
-            >
-            <p class="foot-about">
-              Agentic AI travel companion for Malaysia. One chat plans hotels,
-              tours, budget and a day-by-day itinerary.
+            <h2 class="h2" style="font-size: clamp(26px, 2.6vw, 34px)">Booked with names you know.</h2>
+            <p class="sub" style="font-size: 16px">
+              JalanJalanMY does not take payment. Each hotel or tour opens on the partner's own site, where you book at their price.
+              Partnership enquiries: <a href="mailto:muhammad_22005713@utp.edu.my">muhammad_22005713@utp.edu.my</a>
             </p>
           </div>
-          <div class="foot-col">
-            <h4>Product</h4>
-            <a href="#how">How it works</a>
-            <a href="#features">Features</a>
-            <a href="#interface">Interface</a>
-            <a href="#cta">Early access</a>
+          <div class="partner-logos">
+            <div>Agoda<small>Hotels</small></div>
+            <div>Klook<small>Tours &amp; tickets</small></div>
+            <div>Google Maps<small>Routes</small></div>
+            <div>Google Calendar<small>Sync</small></div>
           </div>
-          <div class="foot-col">
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer + sign-up -->
+    <footer class="footer" id="access">
+      <div class="wrap">
+        <div class="foot-cta">
+          <h2>Be first to plan with JalanJalanMY.</h2>
+          <form id="signup">
+            <div class="signup">
+              <input type="email" required placeholder="Your email address" aria-label="Email address" autocomplete="email" />
+              <button class="btn" type="submit">Get early access</button>
+            </div>
+            <p class="signup-note" id="signup-note">We will email you once, when your invite is ready.</p>
+          </form>
+        </div>
+
+        <div class="foot-cols">
+          <div>
+            <a class="logo" href="#top">
+              <svg viewBox="0 0 24 30" aria-hidden="true">
+                <path d="M12 0C5.4 0 0 5.2 0 11.6 0 20 12 30 12 30s12-10 12-18.4C24 5.2 18.6 0 12 0z" fill="#fff" />
+                <circle cx="12" cy="11.3" r="6.8" fill="#0f1013" />
+                <rect x="8.4" y="6.8" width="2.3" height="9" fill="#fff" />
+                <rect x="13.3" y="6.8" width="2.3" height="9" fill="#fff" />
+                <rect x="10.7" y="10.6" width="2.6" height="1.1" fill="#fff" />
+              </svg>
+              JalanJalanMY
+            </a>
+            <p>Trip planning for Malaysia. Built at Universiti Teknologi PETRONAS.</p>
+          </div>
+          <div>
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="#destinations">Destinations</a></li>
+              <li><a href="#ideas">Trip ideas</a></li>
+              <li><a href="#how">How it works</a></li>
+            </ul>
+          </div>
+          <div>
             <h4>Company</h4>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">Contact</a>
+            <ul>
+              <li><a href="#partners">Partners</a></li>
+              <li><a href="mailto:muhammad_22005713@utp.edu.my">Contact</a></li>
+            </ul>
           </div>
-          <div class="foot-col">
-            <h4>Contact</h4>
-            <a href="mailto:muhammad_22005713@utp.edu.my">Email us</a>
-            <span class="foot-about" style="margin-top: 4px; display: block"
-              >Muhammad Umair Arif<br />muhammad_22005713@utp.edu.my<br />Universiti
-              Teknologi PETRONAS</span
-            >
+          <div>
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#">Privacy policy</a></li>
+              <li><a href="#">Terms of service</a></li>
+            </ul>
           </div>
         </div>
-        <div class="foot-bottom">
-          <span>© 2026 JalanJalanMY. All rights reserved.</span>
-          <span>Final Year Project · UTP · Powered by Gemini AI</span>
+
+        <div class="foot-base">
+          <span>&copy; 2026 JalanJalanMY. All rights reserved.</span>
+          <details class="credits">
+            <summary>Photo credits</summary>
+            <ul>
+              <li>Pulau Redang: Mukherjeesaikat, CC BY-SA 3.0</li>
+              <li>Kuala Lumpur, Penang, Langkawi: CEphoto, Uwe Aranas, CC BY-SA 3.0</li>
+              <li>Melaka: Bjørn Christian Tørrissen, CC BY-SA 3.0</li>
+              <li>Cameron Highlands: Jakub Hałun, CC BY 4.0</li>
+              <li>Mount Kinabalu: kallerna, CC BY-SA 4.0</li>
+              <li>Perhentian Islands: Vyacheslav Argenberg, CC BY 4.0</li>
+              <li>Nasi lemak: Mw12310, CC BY-SA 3.0</li>
+              <li>Char kway teow: brown_colour, CC BY 2.0</li>
+              <li>All via Wikimedia Commons</li>
+            </ul>
+          </details>
         </div>
       </div>
     </footer>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-      if (window.lucide) window.lucide.createIcons();
+      // Nav: transparent over the hero, solid after scrolling
+      var nav = document.getElementById("nav");
+      function setNav() {
+        nav.classList.toggle("solid", window.scrollY > 40);
+      }
+      window.addEventListener("scroll", setNav, { passive: true });
+      setNav();
 
-      // Sticky nav state
-      var nav = document.querySelector(".nav");
-      window.addEventListener(
-        "scroll",
-        function () {
-          nav.classList.toggle("is-stuck", window.scrollY > 12);
-        },
-        { passive: true },
-      );
-
-      // Reveal on scroll, with a gentle stagger for grouped items
-      var reveals = document.querySelectorAll(".reveal");
-
-      // Pre-compute a stagger delay from each item's position among its siblings
-      reveals.forEach(function (el) {
-        if (!el.parentElement) return;
-        var siblings = Array.prototype.filter.call(
-          el.parentElement.children,
-          function (c) {
-            return c.classList && c.classList.contains("reveal");
-          },
-        );
-        if (siblings.length > 1) {
-          var i = siblings.indexOf(el);
-          el.style.setProperty("--reveal-delay", i * 90 + "ms");
+      var menuBtn = document.querySelector(".menu-btn");
+      menuBtn.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        menuBtn.setAttribute("aria-expanded", open);
+      });
+      document.querySelector(".nav-links").addEventListener("click", function (e) {
+        if (e.target.tagName === "A") {
+          nav.classList.remove("open");
+          menuBtn.setAttribute("aria-expanded", "false");
         }
       });
 
-      if ("IntersectionObserver" in window) {
-        var io = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (e) {
-              if (e.isIntersecting) {
-                e.target.classList.add("in");
-                io.unobserve(e.target);
-              }
-            });
-          },
-          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
-        );
-        reveals.forEach(function (el) {
-          io.observe(el);
-        });
-      } else {
-        reveals.forEach(function (el) {
-          el.classList.add("in");
-        });
+      // Sample plan
+      var days = [
+        [
+          ["09:30", "Check in, Batu Ferringhi", "Bag drop before the room is ready", "Agoda"],
+          ["11:00", "George Town heritage walk", "Armenian Street and Chew Jetty", "Klook"],
+          ["13:30", "Lunch at Kimberley Street", "Duck koay chap", ""],
+          ["19:00", "Red Garden Food Paradise", "Hawker dinner", ""],
+        ],
+        [
+          ["08:30", "Penang Hill Railway", "Go early to avoid the queue", "Klook"],
+          ["11:30", "Kek Lok Si Temple", "Air Itam", ""],
+          ["13:00", "Air Itam Market Laksa", "Closes when sold out", ""],
+          ["19:30", "Gurney Drive Hawker Centre", "Char kway teow, oyster omelette", ""],
+        ],
+        [
+          ["09:00", "Batu Ferringhi beach", "Morning swim, no transfers", ""],
+          ["12:30", "Lunch near the hotel", "Nasi kandar", ""],
+          ["15:00", "Rest at the hotel", "Lighter day, as requested", "Agoda"],
+          ["18:00", "Gurney Drive, early dinner", "", ""],
+        ],
+        [
+          ["09:00", "Check out", "Late check-out requested", "Agoda"],
+          ["10:00", "Penang Botanic Gardens", "", ""],
+          ["12:30", "Lunch on Chulia Street", "Wantan mee", ""],
+          ["15:00", "Airport transfer", "35 min by car", ""],
+        ],
+      ];
+      var stops = document.getElementById("stops");
+      function renderDay(i) {
+        stops.innerHTML = days[i]
+          .map(function (s) {
+            return (
+              "<li><time>" + s[0] + "</time><div><b>" + s[1] + "</b>" +
+              (s[2] ? "<small>" + s[2] + "</small>" : "") + "</div>" +
+              (s[3] ? '<span class="tag">' + s[3] + "</span>" : "<span></span>") + "</li>"
+            );
+          })
+          .join("");
       }
+      document.querySelectorAll(".day").forEach(function (b) {
+        b.addEventListener("click", function () {
+          document.querySelectorAll(".day").forEach(function (x) {
+            x.setAttribute("aria-selected", "false");
+          });
+          b.setAttribute("aria-selected", "true");
+          renderDay(+b.dataset.day);
+        });
+      });
+      renderDay(0);
+
+      // Destination cards pre-fill the planner
+      document.querySelectorAll("[data-dest]").forEach(function (c) {
+        c.addEventListener("click", function () {
+          document.getElementById("f-where").value = c.dataset.dest;
+        });
+      });
+
+      // Hero planner: until the web planner is live, show the sample plan
+      document.getElementById("planner").addEventListener("submit", function (e) {
+        e.preventDefault();
+        document.getElementById("how").scrollIntoView();
+      });
+
+      // Early access form (connect to a form service before launch)
+      document.getElementById("signup").addEventListener("submit", function (e) {
+        e.preventDefault();
+        document.getElementById("signup-note").textContent = "Thanks. You are on the list.";
+        e.target.reset();
+      });
     </script>
   </body>
 </html>
